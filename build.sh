@@ -1,0 +1,1 @@
+docker buildx bake --file docker-bake.hcl

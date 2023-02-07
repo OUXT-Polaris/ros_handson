@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "ros_handson"
+version = "0.1.0"
+description = ""
+authors = ["Masaya Kataoka <ms.kataoka@gmail.com>"]
+license = "Apache 2.0"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+rocker = "*"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
