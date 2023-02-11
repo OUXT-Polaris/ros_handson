@@ -32,7 +32,6 @@ theme:
 
 # Plugins
 plugins:
-  - github-dashboard
   - search
   - mermaid2:
       arguments:
