@@ -1,0 +1,6 @@
+
+repositories:
+  hermite_path_planner:
+    type: git
+    url: https://github.com/OUXT-Polaris/hermite_path_planner.git
+    version: master

@@ -1,11 +1,13 @@
-# Setup
+# How to setup
+
+# Docker Imageをlocalでビルド
 
 Just run
 ```
 docker build -t ros_handson .
 ```
 
-# Run docker image
+# Docker imageの起動
 
 ```bash
 docker run --rm -p 6080:80 --shm-size=4096m --security-opt seccomp=unconfined ros_handson
