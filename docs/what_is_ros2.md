@@ -522,3 +522,6 @@ def getPointsTransformComponent(lidar_name):
 
 こちらのサンプルコードの出典は[こちら](https://github.com/OUXT-Polaris/perception_bringup/blob/master/launch/perception_bringup.launch.py)になります
 上記のようなコードを記述することで、自作のComponentを読み込ませてROS2 Applicationを立ち上げることが可能になります.
+
+# 参考文献
+[1]:原 祥尭+, "ロボティクスミドルウェア ROS, ROS2, Ignition, Isaac の機能比較と通信評価", ROBOSYM 2020. 
