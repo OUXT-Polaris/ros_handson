@@ -13,6 +13,7 @@ fontawesome_markdown = "*"
 mkdocs-mermaid2-plugin = "*"
 pymdown-extensions = "*"
 plantuml-markdown = "*"
+python-markdown-math = "*"
 
 [tool.poetry.dev-dependencies]
 
