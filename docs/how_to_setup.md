@@ -26,7 +26,6 @@ Dockerのインストール手順は[こちら](https://docs.docker.com/engine/i
     本教材を執筆するにあたって筆者が使用している環境は`Ubuntu22.04`です。  
     Dockerが動けば他のOSでも動く可能性はあるとは思います。  
     ただしM1 Macなどの非x86系CPUの上だと多分動かないです。  
-    ハンズオンの前に事前にある程度読み進めて頂いて動作確認を取ることを強く推奨します。
 
 
 Dockerはソフトウェアの動作似必要なライブラリ群を一つにまとめ、共有できる仕組みです。  
@@ -46,9 +45,22 @@ docker run --rm -p 6080:80 --shm-size=4096m --security-opt seccomp=unconfined gh
 ```
 
 ブラウザで以下のURLを開いてください [http://127.0.0.1:6080/](http://127.0.0.1:6080/)
-VNCが立ち上がるので、ブラウザからDocker Conteinerにアクセスすることができます。
+VNCが立ち上がるので、ブラウザからDocker Conteiner内部の環境にアクセスすることができます。
 
 ![Not Found](images/desktop.png)
+
+こちらの環境にはすでに必要なソフトウェアがインストールされていますので、vnc上でシェルを立ち上げて
+
+```bash
+gazebo
+```
+
+と入力するとgazeboが立ち上がります。
+
+![Not Found](images/launch_gazebo.png)
+
+!!! warning
+    円滑な開催のため、ハンズオン会場に来られる前にここまでは必ず動作確認をお願いします。  
 
 今回はこの環境使ってハンズオンを進めていこうとおもいます。
 
