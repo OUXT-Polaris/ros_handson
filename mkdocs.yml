@@ -96,6 +96,8 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Setup: how_to_setup.md
-  - What Is ROS2: what_is_ros2.md
-  - Appendix: appendix.md
+  - ハンズオン資料:
+    - 環境構築: how_to_setup.md
+    - ROS2とは?: what_is_ros2.md
+    - 遠隔操作: teleop.md
+  - 付録: appendix.md
