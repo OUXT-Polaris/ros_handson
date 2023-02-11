@@ -78,16 +78,21 @@ extra_javascript:
 
 # Extensions
 markdown_extensions:
-  - pymdownx.highlight
-  - mdx_math:
-      enable_dollar_delimiter: true
-  - fontawesome_markdown
-  - admonition
-  - footnotes
   - attr_list
-  - toc:
-      permalink: ⚓︎
-      toc_depth: 3
+  - codehilite: { guess_lang: false }
+  - fontawesome_markdown
+  - mdx_math
+  - plantuml_markdown: { server: http://www.plantuml.com/plantuml }
+  - pymdownx.arithmatex
+  - pymdownx.emoji: { emoji_generator: !!python/name:pymdownx.emoji.to_svg  }
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - toc: { permalink: "#" }
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
 
 nav:
   - Home: index.md
