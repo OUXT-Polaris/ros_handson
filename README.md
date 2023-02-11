@@ -1,14 +1,6 @@
-# Setup
+# ros_handson教材
 
-Just run
-```
-docker build -t ros_handson .
-```
+[![docker build](https://github.com/OUXT-Polaris/ros_handson/actions/workflows/docker.yaml/badge.svg)](https://github.com/OUXT-Polaris/ros_handson/actions/workflows/docker.yaml)
+[![documentation](https://github.com/OUXT-Polaris/ros_handson/actions/workflows/documentation.yaml/badge.svg)](https://github.com/OUXT-Polaris/ros_handson/actions/workflows/documentation.yaml)
 
-# Run docker image
-
-```bash
-docker run --rm -p 6080:80 --shm-size=4096m --security-opt seccomp=unconfined ros_handson
-```
-
-Browse [http://127.0.0.1:6080/](http://127.0.0.1:6080/)
+[続きはWeb](https://ouxt-polaris.github.io/ros_handson/)で！
