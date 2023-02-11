@@ -240,8 +240,8 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="ros2">ROS2とは？<a class="headerlink" href="#ros2" title="Permanent link">⚓︎</a></h1>
-<h2 id="ros1ros2">ROS1とROS2の関係性<a class="headerlink" href="#ros1ros2" title="Permanent link">⚓︎</a></h2>
+<h1 id="ros2">ROS2とは？<a class="headerlink" href="#ros2" title="Permanent link">#</a></h1>
+<h2 id="ros1ros2">ROS1とROS2の関係性<a class="headerlink" href="#ros1ros2" title="Permanent link">#</a></h2>
 <p>まず、ROSとはなにか？ということについてわかりやすい資料がこちら</p>
 <iframe allowfullscreen="true" frameborder="0" height="569" mozallowfullscreen="true" src="https://docs.google.com/presentation/d/e/2PACX-1vQvX8nOOldvSrj9L7rbCSRcZuO4d4oCj_-KuVAo85D8urMcMmoIJIpqZDmme514_nvCcb4uaGTKdiut/embed?start=false&amp;loop=false&amp;delayms=3000" webkitallowfullscreen="true" width="960"></iframe>
 <p>ロボットのソフトウェアは</p>
@@ -258,8 +258,8 @@
 </ul>
 <p>しかし、ROS1にはその延長線上で開発を続けていては解決困難な問題があり、それを解決するべく1から再開発されたのがROS2です。<br/>
 ROSの最後のディストリビューションであるNoeticは<a href="http://wiki.ros.org/Distributions">2025年にサポート終了が予告</a>されており、そろそろROS2に移行しておかないとせっかく作った開発資産が使えなくなってしまうリスクがあります。</p>
-<h2 id="ros2_1">ROS2が作られた理由<a class="headerlink" href="#ros2_1" title="Permanent link">⚓︎</a></h2>
-<h3 id="_1">ライセンス問題<a class="headerlink" href="#_1" title="Permanent link">⚓︎</a></h3>
+<h2 id="ros2_1">ROS2が作られた理由<a class="headerlink" href="#ros2_1" title="Permanent link">#</a></h2>
+<h3 id="_1">ライセンス問題<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
 <p>ROS1時代はBSDライセンス等でコアライブラリが提供されてきました.
 しかし、コアライブラリの一部にコピーレフトなライセンスに依存する可能性のあるものが含まれていたり、初期の開発過程がトレースされていなかったことによりライセンスに関して
 不明瞭な部分が存在しました.
@@ -268,8 +268,7 @@ ROSの最後のディストリビューションであるNoeticは<a href="http:
 の開発工程が管理されているため安心して商用利用することが可能です.</p>
 <details>
 <summary>Apache 2.0 License</summary>
-<pre><code>
-                                 Apache License
+<div class="highlight"><pre><span></span><code>                                 Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
@@ -470,9 +469,9 @@ ROSの最後のディストリビューションであるNoeticは<a href="http:
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-</code></pre>
+</code></pre></div>
 </details>
-<h3 id="_2">単一障害点の排除<a class="headerlink" href="#_2" title="Permanent link">⚓︎</a></h3>
+<h3 id="_2">単一障害点の排除<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
 <p>ROS1時代にはros masterというプロセスがrosparamの管理、新規ノードの発見やトピック間の接続という重要な仕事を担っていました.</p>
 <p><strong>ros masterの役割の一例、TalkerとListenerノードの接続</strong>
 <img alt="" src="../images/ros_master_0.png"/>
@@ -484,13 +483,13 @@ ROSの最後のディストリビューションであるNoeticは<a href="http:
 <p>そのため、ROS1アプリケーションに於いてros masterが稼働中のシステムで落ちてしまうとシステム全体が機能不全になる可能性があります.
 単一障害点の排除は長期間運用されるアプリケーションに於いては非常に重要な課題の1つです.
 ros masterの挙動に関する日本語ドキュメントは<a href="http://wiki.ros.org/ja/Master">こちら</a>にあります.</p>
-<h3 id="_3">効率的なデータ転送<a class="headerlink" href="#_3" title="Permanent link">⚓︎</a></h3>
+<h3 id="_3">効率的なデータ転送<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
 <p>ROS1時代に存在した<a href="http://wiki.ros.org/nodelet">nodelet</a>という仕組みをご存知でしょうか？
 nodeletは通常TCP/IPパケット通信により実現されるROSのトピック通信を共有ポインタを用いたゼロコピー通信に置き換えます.
 この際、nodeletはnodelet_managerにロードされる共有ライブラリとして実装されます.
 この仕組みをROS2向けに再設計したのが後述するROS2におけるコンポーネント指向であり、これを使用することで非常に高速にデータ通信が可能です.
 <img alt="" src="../images/nodelet.png"/></p>
-<h3 id="windows">Windows対応<a class="headerlink" href="#windows" title="Permanent link">⚓︎</a></h3>
+<h3 id="windows">Windows対応<a class="headerlink" href="#windows" title="Permanent link">#</a></h3>
 <p>ROS1はLinuxにかなり依存しており、Windowsで動かすにはWSLを使ったりと工夫が必要でした.
 研究開発や、スタンドアローンなロボットであればROS1のLinux依存の強さも全く問題にはならなかったのですが、
 商用アプリケーションを開発するときに一般のご家庭で動いているPCのOSとして圧倒的なシェアを持っているWindowsでアプリケーションが作れないのは問題になります.
@@ -499,8 +498,8 @@ ROS1時代にはWindowsとROS1アプリケーションの通信は<a href="https
 <a href="https://github.com/RethinkRobotics-opensource/rosnodejs">nodejsのROSクライアント</a>くらいしかなかったので嬉しい人には嬉しい仕様かもしれません.</p>
 <blockquote class="embedly-card"><h4><a href="https://ros.org/reps/rep-2000.html#humble-hawksbill-may-2022-may-2027">REP 2000 -- ROS 2 Releases and Target Platforms (ROS.org)</a></h4><p>Note The following applies to ROS 2 releases after Foxy. Prior to Foxy, releases were made more frequently but with shorter support due to the fact that many foundational parts of ROS 2 were still being heavily developed. New ROS 2 releases will be published in a time based fashion every 12 months.</p></blockquote>
 <script async="" charset="UTF-8" src="//cdn.embedly.com/widgets/platform.js"></script>
-<h2 id="ros1ros2_1">ROS1とROS2の違い<a class="headerlink" href="#ros1ros2_1" title="Permanent link">⚓︎</a></h2>
-<h3 id="dds">DDSの採用<a class="headerlink" href="#dds" title="Permanent link">⚓︎</a></h3>
+<h2 id="ros1ros2_1">ROS1とROS2の違い<a class="headerlink" href="#ros1ros2_1" title="Permanent link">#</a></h2>
+<h3 id="dds">DDSの採用<a class="headerlink" href="#dds" title="Permanent link">#</a></h3>
 <p>DDSとは、OMGという団体が規格を策定したPub/Sub型のデータ通信システムです.
 ROSと同じようにデータのスキーマも定義することが可能です.
 DDSはUDPで通信を行い、ブロードキャストパケットを用いて自動的に通信相手を探索して接続することが可能です.
@@ -515,14 +514,14 @@ DDSはUDPで通信を行い、ブロードキャストパケットを用いて�
 <blockquote class="embedly-card"><h4><a href="https://github.com/eProsima/Fast-DDS">GitHub - eProsima/Fast-DDS: The most complete DDS - Proven: Plenty of success cases.</a></h4><p>eprosima Fast DDS (formerly Fast RTPS) is a C++ implementation of the DDS (Data Distribution Service) standard of the OMG (Object Management Group). eProsima Fast DDS implements the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium.</p></blockquote>
 <script async="" charset="UTF-8" src="//cdn.embedly.com/widgets/platform.js"></script>
 <p>ROS2では以下のようにDDSをインストールし、環境変数を設定することで簡単にDDSの実装を切り替えることが可能です.</p>
-<p><strong>Fast DDSを採用する場合</strong></p>
-<pre><code class="language-bash">sudo apt install ros-$ROS_DISTRO-rmw-fastrtps-cpp
-export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-</code></pre>
-<p><strong>Cyclone DDSを採用する場合</strong></p>
-<pre><code class="language-bash">sudo apt install ros-$ROS_DISTRO-rmw-cyclonedds-cpp
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-</code></pre>
+<p><strong>Fast DDSを採用する場合</strong>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="nv">$ROS_DISTRO</span>-rmw-fastrtps-cpp
+<span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_fastrtps_cpp
+</code></pre></div></p>
+<p><strong>Cyclone DDSを採用する場合</strong>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="nv">$ROS_DISTRO</span>-rmw-cyclonedds-cpp
+<span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_cyclonedds_cpp
+</code></pre></div></p>
 <p>ROBOSYM 2020にfuRoの原先生が出された各種ロボットミドルウェア性能評価に関する発表[1]によると、Cyclone DDSが最も性能が良さそうであることが示されています.</p>
 <blockquote class="embedly-card"><h4><a href="https://twitter.com/ystk_hara/status/1206904096545886208?s=20">Yoshitaka HARA on Twitter: "ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です.赤字は問題箇所.ROS (TCP_NODELAY) と Ignition の性能が良い.プロットしたグラフなど、詳細は ROBOSYM2020 で発表します.ROS2 は概念.使用する DDS 実装によって、性能が大きく異なるようです.#rosjp pic.twitter.com/ir7TWUs6Wu / Twitter"</a></h4><p>ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です.赤字は問題箇所.ROS (TCP_NODELAY) と Ignition の性能が良い.プロットしたグラフなど、詳細は ROBOSYM2020 で発表します.ROS2 は概念.使用する DDS 実装によって、性能が大きく異なるようです.#rosjp pic.twitter.com/ir7TWUs6Wu</p></blockquote>
 <script async="" charset="UTF-8" src="//cdn.embedly.com/widgets/platform.js"></script>
@@ -530,33 +529,33 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 Cyclone DDSやFast DDS以外にもIce Oryxといった共有メモリ転送による高速転送機能を持ったDDSが存在したりと、光る独自機能を持ったDDSも存在します.</p>
 <blockquote class="embedly-card"><h4><a href="https://github.com/eclipse-iceoryx/iceoryx">GitHub - eclipse-iceoryx/iceoryx: Eclipse iceoryx™ - true zero-copy inter-process-communication</a></h4><p>Great that you've made it to this neat Eclipse project! Let's get you started by providing a quick background tour, introducing the project scope and all you need for installation and a first running example. So first off: What is iceoryx?</p></blockquote>
 <script async="" charset="UTF-8" src="//cdn.embedly.com/widgets/platform.js"></script>
-<h3 id="nodeexecutor">NodeとExecutor<a class="headerlink" href="#nodeexecutor" title="Permanent link">⚓︎</a></h3>
+<h3 id="nodeexecutor">NodeとExecutor<a class="headerlink" href="#nodeexecutor" title="Permanent link">#</a></h3>
 <p>Executorは<a href="#_3">効率的なデータ転送</a>の項目で紹介した
 ROS2（C++）ではnodeはrclcpp::Node型を継承したクラスとして実装されます.</p>
-<pre><code class="language-cpp">namespace pcl_apps
-{
-class CropBoxFilterComponent : public rclcpp::Node
-{
-public:
-   PCL_APPS_CROP_BOX_FILTER_PUBLIC
-   explicit CropBoxFilterComponent(const rclcpp::NodeOptions &amp; options);
-}
-} // namespace pcl_spps
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span><span class="w"> </span><span class="nn">pcl_apps</span>
+<span class="p">{</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CropBoxFilterComponent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">   </span><span class="n">PCL_APPS_CROP_BOX_FILTER_PUBLIC</span>
+<span class="w">   </span><span class="k">explicit</span><span class="w"> </span><span class="n">CropBoxFilterComponent</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">options</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace pcl_spps</span>
+</code></pre></div>
 <p>ソースコードの出典は<a href="https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/include/pcl_apps/filter/crop_box_filter/crop_box_filter_component.hpp#L60-L66">こちら</a>になります.</p>
 <p><code>PCL_APPS_CROP_BOX_FILTER_PUBLIC</code>はWindows/Linuxといった等マルチプラットフォームに対応したcomponentを作るための書式です.
 詳細は<a href="https://gcc.gnu.org/wiki/Visibility">こちら</a>を参照してください.</p>
 <p>rclcpp::NodeクラスはROS2 Node実装に必要な機能が全て実装されており、publisher/subscriberを作ったり</p>
-<pre><code class="language-cpp">   pub_ = create_publisher&lt;sensor_msgs::msg::PointCloud2&gt;("~/points_filtered", 1);
-   sub_ = create_subscription&lt;sensor_msgs::msg::PointCloud2&gt;(
-      "~/points", 1, std::bind(&amp;CropBoxFilterComponent::pointsCallback, this, std::placeholders::_1));
-</code></pre>
-<p>ソースコードの出典は<a href="https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L45-L47">こちら</a>になります.</p>
+<p><div class="highlight"><pre><span></span><code><span class="w">   </span><span class="n">pub_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_publisher</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"~/points_filtered"</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">sub_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_subscription</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">      </span><span class="s">"~/points"</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">CropBoxFilterComponent</span><span class="o">::</span><span class="n">pointsCallback</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">placeholders</span><span class="o">::</span><span class="n">_1</span><span class="p">));</span>
+</code></pre></div>
+ソースコードの出典は<a href="https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L45-L47">こちら</a>になります.</p>
 <p>rosparamを定義、取得したりすることが可能です.</p>
-<pre><code class="language-cpp">   declare_parameter("max_x", 1.0);
-   get_parameter("max_x", max_x_);
-</code></pre>
-<p>ソースコードの出典は<a href="https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L29-L30">こちら</a></p>
+<p><div class="highlight"><pre><span></span><code><span class="w">   </span><span class="n">declare_parameter</span><span class="p">(</span><span class="s">"max_x"</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">   </span><span class="n">get_parameter</span><span class="p">(</span><span class="s">"max_x"</span><span class="p">,</span><span class="w"> </span><span class="n">max_x_</span><span class="p">);</span>
+</code></pre></div>
+ソースコードの出典は<a href="https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L29-L30">こちら</a></p>
 <p>このrclcpp::Node型を継承して作られた自作ノードを複数読み込み、複数のノードを1つのプロセスで実現するためのクラスをExecutorと呼びます.</p>
 <p><img alt="" src="https://docs.ros.org/en/foxy/_images/executors_basic_principle.png"/></p>
 <p>詳細なドキュメントは<a href="https://docs.ros.org/en/foxy/Concepts/About-Executors.html#">こちらのドキュメント</a>で確認できます.
@@ -569,70 +568,70 @@ Subscriberを生成する時等に登録された関数はコールバック関�
 <script async="" charset="UTF-8" src="//cdn.embedly.com/widgets/platform.js"></script>
 <p>非圧縮の画像データ(sensor_msgs/Image型)のデータを746msで送信することが実現できており、圧縮する時間よりも同じExecutorに載せて通信してしまうのが早いということが伺えます.</p>
 <p>自作のROS2 NodeをExecutorに乗せる際には以下のようなコードを記述すれば可能です.</p>
-<pre><code class="language-cpp">int main(int argc, char * argv[])
-{
-   rclcpp::init(argc, argv);
-   rclcpp::executors::MultiThreadedExecutor exec;
-   rclcpp::NodeOptions options;
-   auto hermite_path_planner =
-      std::make_shared&lt;hermite_path_planner::HermitePathPlannerComponent&gt;(options);
-   auto pure_pursuit_planner =
-      std::make_shared&lt;pure_pursuit_planner::PurePursuitPlannerComponent&gt;(options);
-   auto curve_planner = std::make_shared&lt;velocity_planner::CurvePlannerComponent&gt;(options);
-   auto obstacle_planner = std::make_shared&lt;velocity_planner::ObstaclePlannerComponent&gt;(options);
-   auto velocity_planner = std::make_shared&lt;velocity_planner::VelocityPlannerComponent&gt;(options);
-   auto stop_planner = std::make_shared&lt;velocity_planner::StopPlannerComponent&gt;(options);
-   auto planner_concatenator =
-      std::make_shared&lt;velocity_planner::PlannerConcatenatorComponent&gt;(options);
-   auto local_waypoint_server =
-      std::make_shared&lt;local_waypoint_server::LocalWaypointServerComponent&gt;(options);
-   exec.add_node(hermite_path_planner);
-   exec.add_node(pure_pursuit_planner);
-   exec.add_node(curve_planner);
-   exec.add_node(obstacle_planner);
-   exec.add_node(velocity_planner);
-   exec.add_node(stop_planner);
-   exec.add_node(planner_concatenator);
-   exec.add_node(local_waypoint_server);
-   exec.spin();
-   rclcpp::shutdown();
-   return 0;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="w">   </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">executors</span><span class="o">::</span><span class="n">MultiThreadedExecutor</span><span class="w"> </span><span class="n">exec</span><span class="p">;</span>
+<span class="w">   </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="w"> </span><span class="n">options</span><span class="p">;</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">hermite_path_planner</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">hermite_path_planner</span><span class="o">::</span><span class="n">HermitePathPlannerComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">pure_pursuit_planner</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pure_pursuit_planner</span><span class="o">::</span><span class="n">PurePursuitPlannerComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">curve_planner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">velocity_planner</span><span class="o">::</span><span class="n">CurvePlannerComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">obstacle_planner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">velocity_planner</span><span class="o">::</span><span class="n">ObstaclePlannerComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">velocity_planner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">velocity_planner</span><span class="o">::</span><span class="n">VelocityPlannerComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">stop_planner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">velocity_planner</span><span class="o">::</span><span class="n">StopPlannerComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">planner_concatenator</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">velocity_planner</span><span class="o">::</span><span class="n">PlannerConcatenatorComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">local_waypoint_server</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">local_waypoint_server</span><span class="o">::</span><span class="n">LocalWaypointServerComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">   </span><span class="n">exec</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">hermite_path_planner</span><span class="p">);</span>
+<span class="w">   </span><span class="n">exec</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">pure_pursuit_planner</span><span class="p">);</span>
+<span class="w">   </span><span class="n">exec</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">curve_planner</span><span class="p">);</span>
+<span class="w">   </span><span class="n">exec</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">obstacle_planner</span><span class="p">);</span>
+<span class="w">   </span><span class="n">exec</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">velocity_planner</span><span class="p">);</span>
+<span class="w">   </span><span class="n">exec</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">stop_planner</span><span class="p">);</span>
+<span class="w">   </span><span class="n">exec</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">planner_concatenator</span><span class="p">);</span>
+<span class="w">   </span><span class="n">exec</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">local_waypoint_server</span><span class="p">);</span>
+<span class="w">   </span><span class="n">exec</span><span class="p">.</span><span class="n">spin</span><span class="p">();</span>
+<span class="w">   </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>上記のコードの出典は<a href="https://github.com/OUXT-Polaris/hermite_path_planner/blob/d5fc4d06a54bc4b2fe282a9c1cc38b49c71bb76e/hermite_path_planner_bringup/src/hermite_path_planner_bringup.cpp#L32-L57">こちら</a>になります.</p>
 <p>ちなみに、明示的にExecutorを使用しないこのような記載方法もありますが、</p>
-<pre><code class="language-cpp">int main(int argc, char * argv[])
-{
-   rclcpp::init(argc, argv);
-   rclcpp::NodeOptions options;
-   auto component = std::make_shared&lt;pcl_apps::CropBoxFilterComponent&gt;(options);
-   rclcpp::spin(component);
-   rclcpp::shutdown();
-   return 0;
-}
-</code></pre>
-<pre><code class="language-cpp">rclcpp::spin(component);
-</code></pre>
-<p><a href="https://github.com/ros2/rclcpp/blob/33dae5d679751b603205008fcb31755986bcee1c/rclcpp/src/rclcpp/executors.cpp#L30-L37">関数の実装を追いかける</a>とひとつだけNodeを読み込んだExecutorをインスタンス化し、spinを回していることがわかります.
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="w">   </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="w"> </span><span class="n">options</span><span class="p">;</span>
+<span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pcl_apps</span><span class="o">::</span><span class="n">CropBoxFilterComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">   </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">spin</span><span class="p">(</span><span class="n">component</span><span class="p">);</span>
+<span class="w">   </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><span class="n">rclcpp</span><span class="o">::</span><span class="n">spin</span><span class="p">(</span><span class="n">component</span><span class="p">);</span>
+</code></pre></div>
+<a href="https://github.com/ros2/rclcpp/blob/33dae5d679751b603205008fcb31755986bcee1c/rclcpp/src/rclcpp/executors.cpp#L30-L37">関数の実装を追いかける</a>とひとつだけNodeを読み込んだExecutorをインスタンス化し、spinを回していることがわかります.
 つまり、rclcppを使った場合全てのノードはExecutorの上で動いています.</p>
-<h3 id="_4">コンポーネント指向<a class="headerlink" href="#_4" title="Permanent link">⚓︎</a></h3>
+<h3 id="_4">コンポーネント指向<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
 <p><a href="https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor">前の章</a>で紹介した通り、Executorは複数のノードを１つのプロセスで起動することができますが、
 <a href="https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor">前の章</a>の書き方ではコンパイル時に全てのノード構成を決めておかなければなりません.
 つまり、バイナリ配布したパッケージのノード構成を実行時に切り替えたりすることができません.
 動的にExecutorにコンポーネントを読み込ませるのを可能にする修法がコンポーネント指向です.
 コンポーネント指向のノードを記述するには<a href="https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor">前の章</a>で記述したとおりにrclcpp::Node型を継承してのノードのクラスを実装した後、</p>
-<pre><code class="language-cpp">#include &lt;rclcpp_components/register_node_macro.hpp&gt;
-RCLCPP_COMPONENTS_REGISTER_NODE(scan_segmentation::ScanSegmentationComponent)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp_components/register_node_macro.hpp&gt;</span>
+<span class="n">RCLCPP_COMPONENTS_REGISTER_NODE</span><span class="p">(</span><span class="n">scan_segmentation</span><span class="o">::</span><span class="n">ScanSegmentationComponent</span><span class="p">)</span>
+</code></pre></div>
 <p>のマクロを使用して「このクラスはコンポーネントである」という情報をマクロで記録し、</p>
-<pre><code class="language-cmake">rclcpp_components_register_nodes(scan_segmentation_component
-  "scan_segmentation::ScanSegmentationComponent")
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">rclcpp_components_register_nodes</span><span class="p">(</span><span class="s">scan_segmentation_component</span>
+<span class="w">  </span><span class="s2">"scan_segmentation::ScanSegmentationComponent"</span><span class="p">)</span>
+</code></pre></div>
 <p>CMakeLists.txtに上記の変更を加えament_cmakeのシステムにC++のマクロで登録したクラスがどの共有ライブラリに入っているかという情報を記録します.</p>
 <p>サンプルコードは<a href="https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/src/scan_segmentation_component.cpp#L349">こちら</a>と
 <a href="https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/CMakeLists.txt#L44-L45">こちら</a>に有ります.</p>
 <p>出来上がったコンポーネントは後述する<a href="https://hakuturu583.github.io/ros_rsj_seminar/ros2/#ros2-launch">ros2 launch</a>を使用して動的に立ち上げることができます.</p>
-<h3 id="ros2-launch">ros2 launchによるより柔軟な起動手段の提供<a class="headerlink" href="#ros2-launch" title="Permanent link">⚓︎</a></h3>
+<h3 id="ros2-launch">ros2 launchによるより柔軟な起動手段の提供<a class="headerlink" href="#ros2-launch" title="Permanent link">#</a></h3>
 <p>ROS2ではlaunchファイルがPythonになるという言説が有りますが、筆者はこれは誤りであると考えます.
 ROS2のPython形式のlaunchファイルはあくまでROS1時代にあったroslaunch APIの後継であり
 xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchファイルの後継であると考えます.</p>
@@ -641,54 +640,54 @@ xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchフ
 - あるノードを立ち上げて準備ができてから次のノードを立ち上げる
 といった複雑な起動シーケンスもlaunchファイルで記述できるようになりました.</p>
 <p>様々なケースがあるので、詳細は省きますが、最も一般的なros2 componentを読み込むlaunchファイルのサンプルを示しておきます.</p>
-<pre><code class="language-python">def generate_launch_description():
-      container = ComposableNodeContainer(
-         name='preception_bringup_container',
-         namespace='perception',
-         package='rclcpp_components',
-         executable='component_container_mt',
-         composable_node_descriptions=[
-            # getImageDecompressorComponent('front_camera'),
-            # getImageRectifyComponent('front_camera'),
-            getScanSgementationComponent(),
-            getCropHullFilterComponent(),
-            getPointCloudToLaserScanComponent(),
-            getRadiusOutlierRemovalComponent('front_lidar'),
-            getRadiusOutlierRemovalComponent('rear_lidar'),
-            getRadiusOutlierRemovalComponent('right_lidar'),
-            getRadiusOutlierRemovalComponent('left_lidar'),
-            getPointsTransformComponent('front_lidar'),
-            getPointsTransformComponent('rear_lidar'),
-            getPointsTransformComponent('right_lidar'),
-            getPointsTransformComponent('left_lidar'),
-            getPointsConcatenateComponent(),
-            getCostmapCalculatorComponent(),
-            getCostmapfilterComponent(),
-            getCostmapinterpolationComponent()                
-         ],
-         output='screen'
-      )
-      return launch.LaunchDescription([
-         container
-      ])
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+      <span class="n">container</span> <span class="o">=</span> <span class="n">ComposableNodeContainer</span><span class="p">(</span>
+         <span class="n">name</span><span class="o">=</span><span class="s1">'preception_bringup_container'</span><span class="p">,</span>
+         <span class="n">namespace</span><span class="o">=</span><span class="s1">'perception'</span><span class="p">,</span>
+         <span class="n">package</span><span class="o">=</span><span class="s1">'rclcpp_components'</span><span class="p">,</span>
+         <span class="n">executable</span><span class="o">=</span><span class="s1">'component_container_mt'</span><span class="p">,</span>
+         <span class="n">composable_node_descriptions</span><span class="o">=</span><span class="p">[</span>
+            <span class="c1"># getImageDecompressorComponent('front_camera'),</span>
+            <span class="c1"># getImageRectifyComponent('front_camera'),</span>
+            <span class="n">getScanSgementationComponent</span><span class="p">(),</span>
+            <span class="n">getCropHullFilterComponent</span><span class="p">(),</span>
+            <span class="n">getPointCloudToLaserScanComponent</span><span class="p">(),</span>
+            <span class="n">getRadiusOutlierRemovalComponent</span><span class="p">(</span><span class="s1">'front_lidar'</span><span class="p">),</span>
+            <span class="n">getRadiusOutlierRemovalComponent</span><span class="p">(</span><span class="s1">'rear_lidar'</span><span class="p">),</span>
+            <span class="n">getRadiusOutlierRemovalComponent</span><span class="p">(</span><span class="s1">'right_lidar'</span><span class="p">),</span>
+            <span class="n">getRadiusOutlierRemovalComponent</span><span class="p">(</span><span class="s1">'left_lidar'</span><span class="p">),</span>
+            <span class="n">getPointsTransformComponent</span><span class="p">(</span><span class="s1">'front_lidar'</span><span class="p">),</span>
+            <span class="n">getPointsTransformComponent</span><span class="p">(</span><span class="s1">'rear_lidar'</span><span class="p">),</span>
+            <span class="n">getPointsTransformComponent</span><span class="p">(</span><span class="s1">'right_lidar'</span><span class="p">),</span>
+            <span class="n">getPointsTransformComponent</span><span class="p">(</span><span class="s1">'left_lidar'</span><span class="p">),</span>
+            <span class="n">getPointsConcatenateComponent</span><span class="p">(),</span>
+            <span class="n">getCostmapCalculatorComponent</span><span class="p">(),</span>
+            <span class="n">getCostmapfilterComponent</span><span class="p">(),</span>
+            <span class="n">getCostmapinterpolationComponent</span><span class="p">()</span>                
+         <span class="p">],</span>
+         <span class="n">output</span><span class="o">=</span><span class="s1">'screen'</span>
+      <span class="p">)</span>
+      <span class="k">return</span> <span class="n">launch</span><span class="o">.</span><span class="n">LaunchDescription</span><span class="p">([</span>
+         <span class="n">container</span>
+      <span class="p">])</span>
 
 
-def getPointsTransformComponent(lidar_name):
-   config_directory = os.path.join(
-      ament_index_python.packages.get_package_share_directory('perception_bringup'),
-      'config')
-   param_config = os.path.join(config_directory, lidar_name+'_points_transform.yaml')
-   with open(param_config, 'r') as f:
-      params = yaml.safe_load(f)[lidar_name + '_points_transform_node']['ros__parameters']
-   component = ComposableNode(
-      package='pcl_apps',
-      plugin='pcl_apps::PointsTransformComponent',
-      namespace='/perception/'+lidar_name,
-      name='points_transform_node',
-      remappings=[('input', lidar_name+'/points_raw'), ('output', 'points_raw/transformed')],
-      parameters=[params])
-   return component
-</code></pre>
+<span class="k">def</span> <span class="nf">getPointsTransformComponent</span><span class="p">(</span><span class="n">lidar_name</span><span class="p">):</span>
+   <span class="n">config_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+      <span class="n">ament_index_python</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">'perception_bringup'</span><span class="p">),</span>
+      <span class="s1">'config'</span><span class="p">)</span>
+   <span class="n">param_config</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config_directory</span><span class="p">,</span> <span class="n">lidar_name</span><span class="o">+</span><span class="s1">'_points_transform.yaml'</span><span class="p">)</span>
+   <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">param_config</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">params</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)[</span><span class="n">lidar_name</span> <span class="o">+</span> <span class="s1">'_points_transform_node'</span><span class="p">][</span><span class="s1">'ros__parameters'</span><span class="p">]</span>
+   <span class="n">component</span> <span class="o">=</span> <span class="n">ComposableNode</span><span class="p">(</span>
+      <span class="n">package</span><span class="o">=</span><span class="s1">'pcl_apps'</span><span class="p">,</span>
+      <span class="n">plugin</span><span class="o">=</span><span class="s1">'pcl_apps::PointsTransformComponent'</span><span class="p">,</span>
+      <span class="n">namespace</span><span class="o">=</span><span class="s1">'/perception/'</span><span class="o">+</span><span class="n">lidar_name</span><span class="p">,</span>
+      <span class="n">name</span><span class="o">=</span><span class="s1">'points_transform_node'</span><span class="p">,</span>
+      <span class="n">remappings</span><span class="o">=</span><span class="p">[(</span><span class="s1">'input'</span><span class="p">,</span> <span class="n">lidar_name</span><span class="o">+</span><span class="s1">'/points_raw'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'output'</span><span class="p">,</span> <span class="s1">'points_raw/transformed'</span><span class="p">)],</span>
+      <span class="n">parameters</span><span class="o">=</span><span class="p">[</span><span class="n">params</span><span class="p">])</span>
+   <span class="k">return</span> <span class="n">component</span>
+</code></pre></div>
 <p>こちらのサンプルコードの出典は<a href="https://github.com/OUXT-Polaris/perception_bringup/blob/master/launch/perception_bringup.launch.py">こちら</a>になります
 上記のようなコードを記述することで、自作のComponentを読み込ませてROS2 Applicationを立ち上げることが可能になります.</p>
 </article>
