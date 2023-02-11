@@ -52,6 +52,8 @@ VNCが立ち上がるので、ブラウザからDocker Conteinerにアクセス�
 
 今回はこの環境使ってハンズオンを進めていこうとおもいます。
 
-## VScodeのインストール（こちらはマストではありませんが、あれば非常に楽です）
+## VScodeのインストール
 
-今回のハンズオンでは基本的にVNC上で操作は完結しますが、Docker Containerに接続しデータをコピーしたりすることができるため、[VSCode](https://azure.microsoft.com/ja-jp/products/visual-studio-code)および[DevContainerプラグイン](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)はあったほうが何かと便利かと思われます。
+こちらはマストではありませんが、あれば非常に楽です。  
+今回のハンズオンでは基本的にVNC上で操作は完結しますが、Docker Containerに接続しデータをコピーしたりすることができるため、[VSCode](https://azure.microsoft.com/ja-jp/products/visual-studio-code)
+および[DevContainerプラグイン](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)はあったほうが何かと便利かと思われます。
