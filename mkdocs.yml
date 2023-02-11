@@ -89,3 +89,4 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Setup: how_to_setup.md
