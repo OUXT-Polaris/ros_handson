@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://ouxt-polaris.github.io/ros_handson/appendix/</loc>
+         <lastmod>2023-02-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/how_to_setup/</loc>
          <lastmod>2023-02-11</lastmod>
          <changefreq>daily</changefreq>
