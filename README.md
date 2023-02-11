@@ -2,16 +2,13 @@
 
 Just run
 ```
-sh setup.sh
+docker build -t ros_handson .
 ```
 
 # Run docker image
-## Nviia GPUがある場合
-```
-rocker --nvidia --x11 ros_handson rviz2
+
+```bash
+docker run --rm -p 6080:80 --shm-size=512m --security-opt seccomp=unconfined ros_handson
 ```
 
-## Nviia GPUがない場合
-```
-rocker --x11 ros_handson ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
-```
+Browse [http://127.0.0.1:6080/](http://127.0.0.1:6080/)
