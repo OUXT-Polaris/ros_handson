@@ -74,9 +74,11 @@ extra_css:
 extra_javascript:
   - https://unpkg.com/mermaid/dist/mermaid.min.js
   - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
 
 # Extensions
 markdown_extensions:
+  - pymdownx.highlight
   - mdx_math:
       enable_dollar_delimiter: true
   - fontawesome_markdown
