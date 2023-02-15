@@ -190,6 +190,11 @@
     操作手順
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    遠隔操作の仕組み
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -233,6 +238,41 @@ space<span class="w"> </span>key,<span class="w"> </span>s<span class="w"> </spa
 </code></pre></div>
 <p>w/xを押すとTurtlebot3が加減速、a/dを押すと左右旋回します。sを押すと緊急停止します。</p>
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="720" src="https://www.youtube.com/embed/CWrNiMq1AWo" title="YouTube video player" width="1280"></iframe>
+<h2 id="_3">遠隔操作の仕組み<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<p>さて、今画面の中のTurtlebot3を操作することができましたがこのときなぜTurtlebot3を遠隔操作することができたのでしょう？<br/>
+ROS2ではrqt_graphコマンドを使うことでノードのつながりを可視化することができます。  </p>
+<div class="highlight"><pre><span></span><code>rqt_graph
+</code></pre></div>
+<p><img alt="Not Found" src="../images/rqt_graph_teleop.png"/></p>
+<p><code>cmd_vel</code>トピックによって<code>teleop_keyboard</code>というノードと<code>turtlebot3_diff_drive</code>というノードがつながっていますね！<br/>
+<code>turtlebot3_diff_drive</code>ノードはgazeboのプラグインで、gazeboの世界に速度司令を送り込む役割を果たしています。<br/>
+<code>teleop_keyboard</code>ノードはROS2ノードでキー入力をもとに速度司令データを生成し、<code>cmd_vel</code>トピックを介して速度司令を送っています。</p>
+<p>次に、<code>cmd_vel</code>トピックにどんなデータが流れているのか観察してみましょう。</p>
+<p>ハンズオン環境でもう一つターミナルを立ち上げて、</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/cmd_vel
+</code></pre></div>
+<p>と入力してみてください。</p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="720" src="https://www.youtube.com/embed/QopHoVg2i3A" title="YouTube video player" width="1280"></iframe>
+<p>これで<code>cmd_vel</code>トピックにどのようなデータが流れているのかがわかりました。<br/>
+しかし、これではデータがどのように時系列で変化したかという情報はわかりません。<br/>
+rosにはそのような要望に答えるGUIツールがあります。</p>
+<p>ハンズオン環境でもう一つターミナルを立ち上げて、</p>
+<div class="highlight"><pre><span></span><code>rqt
+</code></pre></div>
+<p>と打ち込んでください。<br/>
+するとGUIが開きますので、plugins -&gt; visualization -&gt; plotの順番に選択します。<br/>
+グラフのような画面が出てきたら、topic欄に</p>
+<div class="highlight"><pre><span></span><code>/cmd_vel/linear/x
+</code></pre></div>
+<p>と打ち込んで<code>+</code>をクリック、</p>
+<div class="highlight"><pre><span></span><code>/cmd_vel/angular/z
+</code></pre></div>
+<p>と打ち込んで<code>+</code>をクリック、してください。</p>
+<p><code>/cmd_vel</code>のあとについてくる<code>/linear/x</code>や<code>/angular/z</code>ってなんだよ？と思われるかと思いますが、それは<code>cmd_vel</code>トピックが<code>geometry_msgs/msg/Twist</code>型という型を持っているからです。<br/>
+<code>geometry_msgs/msg/Twist</code>型は<a href="https://github.com/ros2/common_interfaces/blob/rolling/geometry_msgs/msg/Twist.msg">ここ</a>で構造が定義されており、この構造に従ったデータしか受け付けません。<br/>
+つまり<code>/cmd_vel/x</code>という値は存在しませんのでそこに値をsetしたりgetすることはできません。<br/>
+これによってROSを使うと他の人と共同開発する際の意思疎通の失敗により結合ができなくなるリスクを大きく下げることができます。  </p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="720" src="https://www.youtube.com/embed/mh2JlbrpQic" title="YouTube video player" width="1280"></iframe>
 </article>
 </div>
 </div>
