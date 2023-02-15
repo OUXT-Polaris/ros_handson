@@ -8,7 +8,13 @@
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ11gd0tPfWhOa652w0bt01zgib3Y7R5WjTVRF-rQGdXBkQADehGDdyCpI8DRWFNnW7isL6yjMQMlUS/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
+本教材に付随する動画資料はこちらの再生リストにアップロードしています。
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLA4Amxy1u54lbV2EbswBcVWUSNDWjle55" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## 執筆者
 ### 片岡　大哉
 OUXT Polarisで自律航行ソフトを書いて遊んでる人、お仕事は自動運転のCI/CDをやってるらしい、[ツイ廃](https://twitter.com/hakuturu583)  
 質問事項は本リポジトリにIssueを立ててもらっても構いませんが、TwitterでDMやリプ飛ばすのが一番早いです。  
+M1のインターンのときにROS1を使い始め、robocup / RobotX / 修論の研究はROSでシステムを作りました。  
+ROS歴は7年くらい？
