@@ -7,7 +7,7 @@ Dockerのインストール手順は[こちら](https://docs.docker.com/engine/i
 
 !!! note
     Dockerはインストール直後だとsudoをつけないと動かないです。
-    インストール後必ず以下のコマンドを実行し、パソコンの再起動を行ってください
+    インストール後必ず以下のコマンドを実行し、パソコンの再起動を行なってください
     
     ```
     sudo gpasswd -a $USER docker

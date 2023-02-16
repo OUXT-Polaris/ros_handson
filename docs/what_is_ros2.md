@@ -29,7 +29,7 @@ ROS1時代はBSDライセンス等でコアライブラリが提供されてき�
 商用アプリケーション開発に於いてはこれは大きな法的問題に発生しうる可能性があり、1からROS2を開発する大きな要員の1つになりました。
 
 ROS2からは[Apache 2.0ライセンス](https://licenses.opensource.jp/Apache-2.0/Apache-2.0.html)が採用され、それに準拠するようにコアライブラリ
-の開発工程が管理されているため安心して商用利用することが可能です。
+の開発工程が管理されているため安心して商用利用が可能です。
 
 <details>
 <summary>Apache 2.0 License</summary>
@@ -266,7 +266,7 @@ nodeletは通常TCP/IPパケット通信により実現されるROSのトピッ�
 ### Windows対応
 ROS1はLinuxにかなり依存しており、Windowsで動かすにはWSLを使ったりと工夫が必要でした。
 研究開発や、スタンドアローンなロボットであればROS1のLinux依存の強さも全く問題にはならなかったのですが、
-商用アプリケーションを開発するときに一般のご家庭で動いているPCのOSとして圧倒的なシェアを持っているWindowsでアプリケーションが作れないのは問題になります。
+商用アプリケーションを開発するときに一般のご家庭で動いているパソコンOSとして圧倒的なシェアを持っているWindowsでアプリケーションが作れないのは問題になります。
 そこでROS2からはWindowsにも対応し、(一応Macにも対応はしています。)Windows上でもロボットアプリケーション開発が可能になっています。
 ROS1時代にはWindowsとROS1アプリケーションの通信は[rosbridge protocol](https://github.com/biobotus/rosbridge_suite/blob/master/ROSBRIDGE_PROTOCOL.md)か
 [nodejsのROSクライアント](https://github.com/RethinkRobotics-opensource/rosnodejs)くらいしかなかったので嬉しい人には嬉しい仕様かもしれません。
@@ -278,8 +278,8 @@ ROS1時代にはWindowsとROS1アプリケーションの通信は[rosbridge pro
 
 ### DDSの採用
 DDSとは、OMGという団体が規格を策定したPub/Sub型のデータ通信システムです。
-ROSと同じようにデータのスキーマも定義することが可能です。
-DDSはUDPで通信を行ない、ブロードキャストパケットを用いて自動的に通信相手を探索して接続することが可能です。
+ROSと同じようにデータのスキーマも定義が可能です。
+DDSはUDPで通信を行ない、ブロードキャストパケットを用いて自動的に通信相手を探索して接続が可能です。
 それによってROS1時代に存在したros masterという単一障害点がなくなりました。
 (ros2daemonというros masterの類似プログラムは存在しますが、居ると通信接続が早くなるだけで時間をかければros2daemonが無くても通信相手の探索は可能です。)
 
@@ -351,7 +351,7 @@ rclcpp::NodeクラスはROS2 Node実装に必要な機能がすべて実装さ�
 ```
 ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L45-L47)になります。
 
-rosparamを定義、取得したりすることが可能です。
+rosparamを定義、取得したりが可能です。
 
 ```cpp
    declare_parameter("max_x", 1.0);
