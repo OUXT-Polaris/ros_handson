@@ -62,7 +62,7 @@ jobs:
       - name: Install dependent module
         run: npm install
       - name: Execute textlint
-        run: npx textlint "docs/**/*.md"
+        run: npx textlint "docs/**/*.md" >> ./.textlint.log
       - name: comment linter error
         if: ${{ failure() }}
         run: gh pr comment --body-file ./.textlint.log "${URL}"
