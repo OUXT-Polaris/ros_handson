@@ -59,6 +59,9 @@ mcapを使うためには`rosbag2_storage_mcap`パッケージのインストー
 ros2 bag record -a --storage mcap
 ```
 
-もうロギングはいいかな、となったところで`ctrl+C`でrecordを終了してください。
+もうロギングはいいかな、となったところで`ctrl+C`でrecordを終了してください。  
+すると、rosbag2_(日付、時刻)というような名前のディレクトリができているはずです。  
+そのディレクトリ内部にある.mcapファイルがrosbagデータの本体です。  
+このファイルの中に何時何分何秒にこのようなデータがpublishされたという記録が残っており、それによって過去の実験データを再生することができます。  
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/XHF1vQSpPuo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
