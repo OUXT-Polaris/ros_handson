@@ -8,7 +8,8 @@ ROS2でノードを実装する際にはmain文があるnodeとロジックだ�
 ROS1でも同じように[こちらのサンプル](https://github.com/OUXT-Polaris/nmea_to_geopose/tree/master/src)
 にあるようにmain文とロジックを実装したクラスを分けておくと、コンポーネント指向なノードにポーティングする際に非常に楽です。
 
-そして、ロジックを実装するクラスのコンストラクタでは、ROS2のコンポーネントと同じようにコンストラクタで
+そして、ロジックを実装するクラスのコンストラクタでは、下記のようにROS2のコンポーネントと同じようにコンストラクタでの内部でpublisher/subscriberを作成しておくとさらにポーティングが容易になります。
+
 ```cpp
 NmeaToGeoPose::NmeaToGeoPose(ros::NodeHandle nh,ros::NodeHandle pnh)
 {
@@ -19,7 +20,7 @@ NmeaToGeoPose::NmeaToGeoPose(ros::NodeHandle nh,ros::NodeHandle pnh)
    geopose_pub_ = pnh_.advertise<geographic_msgs::GeoPoseStamped>("geopose",1);
 }
 ```
-publisher/subscriberを作成しておくとさらにポーティングが容易になります。
+
 上記のコードは[こちら](https://github.com/OUXT-Polaris/nmea_to_geopose/blob/2564e99b65418ab9ba216b5664601e51ca53e6ec/src/nmea_to_geopose.cpp#L3-L10)
 にサンプルがあります。
 
@@ -73,7 +74,7 @@ ROS1時代には通信層を交換できずほとんどチューニングでき�
 
 ちなみに、参考までに筆者の開発環境では以下のような設定をしています。
 
-/opt/masaya/cyclonedds_config.xmlに以下のxmlを保存
+/opt/masaya/cyclonedds_config.xmlに以下のxmlを保存します。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -89,7 +90,8 @@ ROS1時代には通信層を交換できずほとんどチューニングでき�
 </CycloneDDS>
 ```
 
-起動時に毎回このスクリプトを実行
+起動時に毎回このスクリプトを実行します。
+
 ```bash
 export CYCLONEDDS_URI=file:///opt/masaya/cyclonedds_config.xml
 sudo sysctl -w net.core.rmem_max=2147483647 # 受信用ウィンドウサイズの上限値を指定

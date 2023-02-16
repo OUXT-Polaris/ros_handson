@@ -7,7 +7,7 @@ Dockerのインストール手順は[こちら](https://docs.docker.com/engine/i
 
 !!! note
     Dockerはインストール直後だとsudoをつけないと動かないです。
-    インストール後必ず以下のコマンドを実行し、パソコンの再起動を行なってください
+    インストール後必ず以下のコマンドを実行し、パソコンの再起動を行なってください。
     
     ```
     sudo gpasswd -a $USER docker
@@ -49,13 +49,13 @@ VNCが立ち上がるので、ブラウザからDocker Conteiner内部の環境�
 
 ![Not Found](images/desktop.png)
 
-こちらの環境にはすでに必要なソフトウェアがインストールされていますので、vnc上でシェルを立ち上げ、
+こちらの環境にはすでに必要なソフトウェアがインストールされていますので、vnc上でシェルを立ち上げます。
 
 ```bash
 gazebo
 ```
 
-と入力するとgazeboが立ち上がります。
+立ち上げたターミナルに上記のコマンドを入力してみてください、するとgazeboが立ち上がります。
 
 ![Not Found](images/launch_gazebo.png)
 
