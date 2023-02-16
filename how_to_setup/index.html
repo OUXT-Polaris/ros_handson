@@ -217,25 +217,23 @@
 <p>本教材では、トラブルを避けるためDockerで環境構築を行います。
 そのため、事前にDockerのインストールを済ませておいてください。</p>
 <p>Dockerのインストール手順は<a href="https://docs.docker.com/engine/install/ubuntu/">こちら</a></p>
-<p>!!! note
-    Dockerはインストール直後だとsudoをつけないと動かないです。
-    インストール後必ず以下のコマンドを実行し、PCの再起動を行ってください</p>
-<div class="codehilite"><pre><span></span><code>```
-sudo gpasswd -a $USER docker
-```
-
-以下のコマンドを入力して
-
-```
-docker run hello-world
-```
-
-`Hello from Docker!`を含む出力が得られていればDockerのインストールは正常に完了しています。
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Dockerはインストール直後だとsudoをつけないと動かないです。
+インストール後必ず以下のコマンドを実行し、PCの再起動を行ってください</p>
+<div class="highlight"><pre><span></span><code>sudo gpasswd -a $USER docker
 </code></pre></div>
-<p>!!! warning
-    本教材を執筆するにあたって筆者が使用している環境は<code>Ubuntu22.04</code>です。<br/>
-    Dockerが動けば他のOSでも動く可能性はあるとは思います。<br/>
-    ただしM1 Macなどの非x86系CPUの上だと多分動かないです。  </p>
+<p>以下のコマンドを入力して</p>
+<div class="highlight"><pre><span></span><code>docker run hello-world
+</code></pre></div>
+<p><code>Hello from Docker!</code>を含む出力が得られていればDockerのインストールは正常に完了しています。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>本教材を執筆するにあたって筆者が使用している環境は<code>Ubuntu22.04</code>です。<br/>
+Dockerが動けば他のOSでも動く可能性はあるとは思います。<br/>
+ただしM1 Macなどの非x86系CPUの上だと多分動かないです。  </p>
+</div>
 <p>Dockerはソフトウェアの動作似必要なライブラリ群を一つにまとめ、共有できる仕組みです。<br/>
 あたかも仮想マシンのように(厳密にはコンテナ仮想化といいます)振る舞い、<code>docker pulll</code>や<code>docker run</code>といったコマンドを叩くだけでかんたんに環境を再現することができます。　　
 このとき、動作環境に必要なファイルを一つにまとめたものを「Docker Image」、そのファイルから作られた動作環境のことを「Docker Container」といいます。
@@ -255,8 +253,10 @@ VNCが立ち上がるので、ブラウザからDocker Conteiner内部の環境�
 </code></pre></div>
 <p>と入力するとgazeboが立ち上がります。</p>
 <p><img alt="Not Found" src="../images/launch_gazebo.png"/></p>
-<p>!!! warning
-    円滑な開催のため、ハンズオン会場に来られる前にここまでは必ず動作確認をお願いします。  </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>円滑な開催のため、ハンズオン会場に来られる前にここまでは必ず動作確認をお願いします。  </p>
+</div>
 <p>今回はこの環境使ってハンズオンを進めていこうとおもいます。</p>
 <h2 id="vscode">VScodeのインストール<a class="headerlink" href="#vscode" title="Permanent link">#</a></h2>
 <p>こちらはマストではありませんが、あれば非常に楽です。<br/>
