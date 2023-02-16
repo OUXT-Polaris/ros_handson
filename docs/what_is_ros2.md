@@ -433,9 +433,9 @@ rclcpp::spin(component);
 つまり、rclcppを使った場合すべてのノードはExecutorの上で動いています。
 
 ### コンポーネント指向
-[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で紹介した通り、Executorは複数のノードを１つのプロセスで起動できますが、
+[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で紹介したように、Executorは複数のノードを１つのプロセスで起動できますが、
 [前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)の書き方ではコンパイル時にすべてのノード構成を決めておかなければなりません。
-つまり、バイナリ配布したパッケージのノード構成を実行時に切り替えたりすることができません。
+つまり、バイナリ配布したパッケージのノード構成をプログラム実行時に切り替えたりできません。
 動的にExecutorにコンポーネントを読み込ませるのを可能にする修法がコンポーネント指向です。
 コンポーネント指向のノードを記述するには[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で記述したとおりにrclcpp::Node型を継承してのノードのクラスを実装した後、
 
