@@ -63,3 +63,9 @@ jobs:
         run: npm install
       - name: Execute textlint
         run: npx textlint "docs/**/*.md"
+      - name: comment linter error
+        if: ${{ failure() }}
+        run: gh pr comment --body-file ./.textlint.log "${URL}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          URL: ${{ github.event.pull_request.html_url }}
