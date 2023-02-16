@@ -91,7 +91,7 @@ rqt
 
 `/cmd_vel`のあとについてくる`/linear/x`や`/angular/z`ってなんだよ？と思われるかと思いますが、それは`cmd_vel`トピックが`geometry_msgs/msg/Twist`型という型を持っているからです。  
 `geometry_msgs/msg/Twist`型は[ここ](https://github.com/ros2/common_interfaces/blob/rolling/geometry_msgs/msg/Twist.msg)で構造が定義されており、この構造に従ったデータしか受け付けません。  
-つまり`/cmd_vel/x`という値は存在しませんのでそこに値をsetしたりgetすることはできません。  
+つまり`/cmd_vel/x`という値は存在しませんのでそこに値をsetしたりgetできません。  
 これによってROSを使うと他の人と共同開発する際の意思疎通の失敗により結合ができなくなるリスクを大きく下げることができます。  
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/mh2JlbrpQic" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
