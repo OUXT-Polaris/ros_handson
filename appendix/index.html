@@ -253,10 +253,10 @@
 <h1 id="_1">付録<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
 <h2 id="ros1">ポーティングしやすいROS1ノード実装方法<a class="headerlink" href="#ros1" title="Permanent link">#</a></h2>
 <h3 id="main">main文とロジックを分離する<a class="headerlink" href="#main" title="Permanent link">#</a></h3>
-<p>ROS2でノードを実装する際にはmain文があるnodeとロジックだけを実装するコンポーネントに分けておくと、コンポーネント指向でROS2システムをつくることが簡単にできます.
+<p>ROS2でノードを実装する際にはmain文があるnodeとロジックだけを実装するコンポーネントに分けておくと、コンポーネント指向でROS2システムをつくることが簡単にできます。
 ROS1でも同じように<a href="https://github.com/OUXT-Polaris/nmea_to_geopose/tree/master/src">こちらのサンプル</a>
-にあるようにmain文とロジックを実装したクラスを分けておくと、コンポーネント指向なノードにポーティングする際に非常に楽です.</p>
-<p>そして、ロジックを実装するクラスのコンストラクタでは、ROS2のコンポーネントと同じようにコンストラクタで
+にあるようにmain文とロジックを実装したクラスを分けておくと、コンポーネント指向なノードにポーティングする際に非常に楽です。</p>
+<p>そして、ロジックを実装するクラスのコンストラクタでは、下記のようにROS2のコンポーネントと同じようにコンストラクタでの内部でpublisher/subscriberを作成しておくとさらにポーティングが容易になります。</p>
 <div class="highlight"><pre><span></span><code><span class="n">NmeaToGeoPose</span><span class="o">::</span><span class="n">NmeaToGeoPose</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span><span class="w"> </span><span class="n">nh</span><span class="p">,</span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span><span class="w"> </span><span class="n">pnh</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">   </span><span class="n">nh_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">;</span>
@@ -266,16 +266,15 @@ ROS1でも同じように<a href="https://github.com/OUXT-Polaris/nmea_to_geopos
 <span class="w">   </span><span class="n">geopose_pub_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pnh_</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">geographic_msgs</span><span class="o">::</span><span class="n">GeoPoseStamped</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"geopose"</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-publisher/subscriberを作成しておくとさらにポーティングが容易になります.
-上記のコードは<a href="https://github.com/OUXT-Polaris/nmea_to_geopose/blob/2564e99b65418ab9ba216b5664601e51ca53e6ec/src/nmea_to_geopose.cpp#L3-L10">こちら</a>
-にサンプルがあります.</p>
+<p>上記のコードは<a href="https://github.com/OUXT-Polaris/nmea_to_geopose/blob/2564e99b65418ab9ba216b5664601e51ca53e6ec/src/nmea_to_geopose.cpp#L3-L10">こちら</a>
+にサンプルがあります。</p>
 <h3 id="_2">メッセージのパッケージは独立させておく<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
 <p>ROS1ではロボットのアプリケーションロジックを含むパッケージに.msgファイルを置いておいても全く問題なかったのですが、
-ROS2においてはメッセージパッケージを分けないとビルドができなくなるケースがあります.
-そのため、ROS1でもメッセージのパッケージを分離しておくとROS2に移住する際に楽かと思います.</p>
+ROS2においてはメッセージパッケージを分けないとビルドができなくなるケースがあります。
+そのため、ROS1でもメッセージのパッケージを分離しておくとROS2に移住する際に楽かと思います。</p>
 <h3 id="executor">Executorが使える言語で実装しておく<a class="headerlink" href="#executor" title="Permanent link">#</a></h3>
-<p>現在いくつかのROS2クライアントには様々な種類が存在しています.
-しかし、その中でExecutorが実装されて居るのは一部のみです.</p>
+<p>現在いくつかのROS2クライアントにはさまざまな種類が存在しています。
+しかし、そのなかでExecutorが実装されて居るのは一部のみです。</p>
 <table>
 <thead>
 <tr>
@@ -324,28 +323,28 @@ ROS2においてはメッセージパッケージを分けないとビルドが�
 </tr>
 </tbody>
 </table>
-<p>開発者がROS2公式に近いクライアントではあらかたexecutorの実装は行われていますが、それ以外のクライアントではあまり実装されていないなという印象です.
+<p>開発者がROS2公式に近いクライアントではあらかたexecutorの実装は行なわれていますが、それ以外のクライアントではあまり実装されていないなという印象です。
 実装に使用したい言語でROS2クライアントがあるかどうか、そのクライアントにExecutor実装があるかを事前に調査して置くとパフォーマンスの高いROS2アプリケーションを
-実装することが可能です.</p>
+実装が可能です。</p>
 <h2 id="_3">パフォーマンスを上げるには<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
-<p>ロボットはいわゆるリアルタイムシステムであり、事前に設計した時間までに処理を終わらせていかなければなりません.
-そのためにはパフォーマンスを出せるように意識しながらシステム全体を設計していくことが必要です.</p>
+<p>ロボットはいわゆるリアルタイムシステムであり、事前に設計した時間までに処理を終わらせていかなければなりません。
+そのためにはパフォーマンスを出せるように意識しながらシステム全体を設計していくことが必要です。</p>
 <h3 id="executor_1">どのExecutorの上でどのノードが動いているかを意識する<a class="headerlink" href="#executor_1" title="Permanent link">#</a></h3>
 <p><a href="https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor">以前の章</a>で示したようにExecutor間で画像や点群といった大容量のデータを通信してしまうと
-大きなレイテンシの原因になりますし、参考文献[1]の発表の図表を見るとComponentを使わなければROS1よりパフォーマンスが劣化してしまう可能性があります.
-そのため、ROS2でシステムを設計する際には広い通信帯域が必要なトピックを同じExecutorに乗せるのを意識することが重要です.
-特に分散計算機環境に於いては、「どの計算機でどの処理を行うのか」「どうExecutorに乗せると通信待機の消費が少なくなるか」をよく考えながらシステム全体を設計していく必要があります.</p>
+大きなレイテンシの原因になりますし、参考文献[1]の発表の図表を見るとComponentを使わなければROS1よりパフォーマンスが劣化してしまう可能性があります。
+そのため、ROS2でシステムを設計する際には広い通信帯域が必要なトピックを同じExecutorに乗せるのを意識することが重要です。
+特に分散計算機環境に於いては、「どの計算機でどの処理を行なうのか」「どうExecutorに乗せると通信待機の消費が少なくなるか」をよく考えながらシステム全体を設計していく必要があります。</p>
 <h3 id="_4">実装する言語を揃える<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
-<p>Pythonで実装されているノードとC++で実装されているノードを同じExecutor上で実行することは原理的に不可能です.
-そのため、実装する言語をある程度揃えておかないとそこがボトルネックになりシステム全体のパフォーマンスに悪影響を及ぼします.</p>
+<p>Pythonで実装されているノードとC++で実装されているノードを同じExecutor上で実行することは原理的に不可能です。
+そのため、実装する言語をある程度揃えておかないとそこがボトルネックになりシステム全体のパフォーマンスに悪影響を及ぼします。</p>
 <h3 id="dds">DDSを選定し、設定を工夫する<a class="headerlink" href="#dds" title="Permanent link">#</a></h3>
-<p>ROS2には様々なDDSが存在します.
-ROS1時代には通信層を交換することができずほとんどチューニングできませんでしたが、ROS2からは
-自分のアプリーケーションに合わせてDDSを選定したり、DDSの設定を見直すだけで大きくパフォーマンスは向上します.</p>
-<p>例えば、固定長配列しか用いない、かつ一台のマシンでシステムが完結するのであればzero-copy転送をうたうIceOryxは非常に強力な選択肢になります.
-自分の計算機環境に合わせて適切なDDSを選定し、DDSのドキュメントを読んで適切な設定をしてみましょう.</p>
-<p>ちなみに、参考までに筆者の開発環境では以下のような設定をしています.</p>
-<p>/opt/masaya/cyclonedds_config.xmlに以下のxmlを保存</p>
+<p>ROS2にはさまざまなDDSが存在します。
+ROS1時代には通信層を交換できずほとんどチューニングできませんでしたが、ROS2からは
+自分のアプリーケーションに合わせてDDSを選定したり、DDSの設定を見直すだけで大きくパフォーマンスは向上します。</p>
+<p>例えば、固定長配列しか用いない、かつ一台のマシンでシステムが完結するのであればzero-copy転送をうたうIceOryxは非常に強力な選択肢になります。
+自分の計算機環境に合わせて適切なDDSを選定し、DDSのドキュメントを読んで適切な設定をしてみましょう。</p>
+<p>ちなみに、参考までに筆者の開発環境では以下のような設定をしています。</p>
+<p>/opt/masaya/cyclonedds_config.xmlに以下のxmlを保存します。</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="nt">&lt;CycloneDDS</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"https://cdds.io/config"</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="w"> </span><span class="na">xsi:schemaLocation=</span><span class="s">"https://cdds.io/config https://raw.githubusercontent.com/eclipse-cyclonedds/cyclonedds/master/etc/cyclonedds.xsd"</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nt">&lt;Domain</span><span class="w"> </span><span class="na">id=</span><span class="s">"any"</span><span class="nt">&gt;</span>
@@ -358,11 +357,11 @@ ROS1時代には通信層を交換することができずほとんどチュー�
 <span class="w">  </span><span class="nt">&lt;/Domain&gt;</span>
 <span class="nt">&lt;/CycloneDDS&gt;</span>
 </code></pre></div>
-<p>起動時に毎回このスクリプトを実行
+<p>起動時に毎回このスクリプトを実行します。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CYCLONEDDS_URI</span><span class="o">=</span>file:///opt/masaya/cyclonedds_config.xml
 sudo<span class="w"> </span>sysctl<span class="w"> </span>-w<span class="w"> </span>net.core.rmem_max<span class="o">=</span><span class="m">2147483647</span><span class="w"> </span><span class="c1"># 受信用ウィンドウサイズの上限値を指定</span>
 sudo<span class="w"> </span>ifconfig<span class="w"> </span>lo<span class="w"> </span>multicast<span class="w"> </span><span class="c1"># マルチキャストをローカルネットワークで有効化</span>
-</code></pre></div></p>
+</code></pre></div>
 </article>
 </div>
 </div>
