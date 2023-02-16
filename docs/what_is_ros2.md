@@ -311,7 +311,7 @@ sudo apt install ros-$ROS_DISTRO-rmw-cyclonedds-cpp
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ```
 
-ROBOSYM 2020にfuRoの原先生が出された各種ロボットミドルウェア性能評価に関する発表(原 祥尭ら、"ロボティクスミドルウェアROS、ROS2、Ignition、Isaacの機能比較と通信評価"、ROBOSYM 2020.)によると、Cyclone DDSが最も性能が良さそうであることが示されています。
+ROBOSYM 2020にfuRoの原先生が出された各種ロボットミドルウェア性能評価に関する発表(原祥尭ら、"ロボティクスミドルウェアROS、ROS2、Ignition、Isaacの機能比較と通信評価"、ROBOSYM 2020.)によると、Cyclone DDSが最も性能が良さそうであることが示されています。
 
 <blockquote class="embedly-card"><h4><a href="https://twitter.com/ystk_hara/status/1206904096545886208?s=20">Yoshitaka HARA on Twitter: "ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です。赤字は問題箇所。ROS (TCP_NODELAY) と Ignition の性能が良い。プロットしたグラフなど、詳細は ROBOSYM2020 で発表します。ROS2 は概念。使用する DDS 実装によって、性能が大きく異なるようです。#rosjp pic.twitter.com/ir7TWUs6Wu / Twitter"</a></h4><p>ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です。赤字は問題箇所、ROS (TCP_NODELAY) と Ignition の性能が良い。プロットしたグラフなど、詳細は ROBOSYM2020 で発表します。ROS2 は概念。使用する DDS 実装によって、性能が大きく異なるようです。#rosjp pic.twitter.com/ir7TWUs6Wu</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
