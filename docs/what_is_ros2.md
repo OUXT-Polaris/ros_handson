@@ -465,10 +465,9 @@ ROS2ではlaunchファイルがPythonになるという言説が有りますが�
 ROS2のPython形式のlaunchファイルはあくまでROS1時代にあったroslaunch APIの後継であり
 xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchファイルの後継であると考えます。
 
-python形式でlaunchファイルが記述できるようになったことでros2 launchは
+python形式でlaunchファイルが記述できるようになったことでros2 launchでは下記のような複雑な起動シーケンスもlaunchファイルで記述できるようになりました。
 - 10秒後にあるノードを落とす
 - あるノードを立ち上げて準備ができてから次のノードを立ち上げる
-といった複雑な起動シーケンスもlaunchファイルで記述できるようになりました。
 
 さまざまなケースがあるので、詳細は省きますが、最も一般的なros2 componentを読み込むlaunchファイルのサンプルを示しておきます。
 
@@ -524,3 +523,6 @@ def getPointsTransformComponent(lidar_name):
 
 こちらのサンプルコードの出典は[こちら](https://github.com/OUXT-Polaris/perception_bringup/blob/master/launch/perception_bringup.launch.py)になります
 上記のようなコードを記述することで、自作のComponentを読み込ませてROS2 Applicationを立ち上げることが可能になります。
+
+!!! note
+    Galactic/Humbleのあたりからかなりxmlのlaunchも機能が整ってきたので、今後はかなりのケースがxmlでもカバーできると思われます。
