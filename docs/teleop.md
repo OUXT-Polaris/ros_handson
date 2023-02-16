@@ -53,13 +53,13 @@ rqt_graph
 
 次に、`cmd_vel`トピックにどんなデータが流れているのか観察してみましょう。
 
-ハンズオン環境でもう1つターミナルを立ち上げて、
+ハンズオン環境でもう1つターミナルを立ち上げます。
 
 ```bash
 ros2 topic echo /cmd_vel
 ```
 
-と入力してみてください。
+立ち上げたターミナルに上記のコマンドを入力してみてください。
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/QopHoVg2i3A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -67,13 +67,13 @@ ros2 topic echo /cmd_vel
 しかし、これではデータがどのように時系列で変化したかという情報はわかりません。  
 rosにはそのような要望に答えるGUIツールがあります。
 
-ハンズオン環境でもう1つターミナルを立ち上げて、
+ハンズオン環境でもう1つターミナルを立ち上げます。
 
 ```bash
 rqt
 ```
 
-と打ち込んでください。  
+立ち上げたターミナルに上記のコマンドを入力してみてください。
 するとGUIが開きますので、plugins -> visualization -> plotの順番に選択します。  
 グラフのような画面が出てきたら、topic欄に
 

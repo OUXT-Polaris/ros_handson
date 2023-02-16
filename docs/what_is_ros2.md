@@ -364,11 +364,11 @@ rosparamを定義、取得したりが可能です。
 ![](https://docs.ros.org/en/foxy/_images/executors_basic_principle.png)
 
 詳細なドキュメントは[こちらのドキュメント](https://docs.ros.org/en/foxy/Concepts/About-Executors.html#)で確認できます。
-Subscriberを生成する時等に登録された関数はコールバック関数としてExecutorに登録され、
+Subscriberを生成するときに登録された関数はコールバック関数としてExecutorに登録され、
 「新しいデータが届いた」等のイベントをキャッチしてそれに対応するコールバック関数を呼び出すことで複数のノードを1つのプロセス上で動作させることを実現しています。
 こうすることによって複数のノードで同じメモリ領域を共有できるようになり、同じExecutor上で動作しているノード間でトピックをやり取りする際には
 メモリでデータをやり取りするため非常に高速で通信が可能です。
-どの程度早くなるかというと、こちらの記事の計測結果を参考にすると
+どの程度早くなるかというと、こちらの記事の計測結果が参考になりました。
 
 <blockquote class="embedly-card"><h4><a href="https://qiita.com/Ke_N_551/items/d8637ddc806f94260ba8">ROS2で同一デバイス内画像通信の遅延について知りたくて色々試した話 - Qiita</a></h4><p>単一デバイス（Ultra96）内でROS2通信を利用して画像を送受信した場合、 画像のサイズ、圧縮するか否か、使用するDDS、などを変えて画像の送受信にかかる時間を測定・評価しました。どちらかというと通信遅延そのものについての評価というより、画像を送信する際にかかる時間の評価です。ですので、圧縮画像送信の際には画像の圧縮にかかる時間も遅延時間に含んでいたりします。</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
@@ -411,7 +411,7 @@ int main(int argc, char * argv[])
 
 上記のコードの出典は[こちら](https://github.com/OUXT-Polaris/hermite_path_planner/blob/d5fc4d06a54bc4b2fe282a9c1cc38b49c71bb76e/hermite_path_planner_bringup/src/hermite_path_planner_bringup.cpp#L32-L57)になります。
 
-ちなみに、明示的にExecutorを使用しないこのような記載方法もありますが、
+ちなみに、明示的にExecutorを使用しないこのような記載方法もあります。
 
 ```cpp
 int main(int argc, char * argv[])
@@ -428,7 +428,8 @@ int main(int argc, char * argv[])
 ```cpp
 rclcpp::spin(component);
 ```
-[関数の実装を追いかける](https://github.com/ros2/rclcpp/blob/33dae5d679751b603205008fcb31755986bcee1c/rclcpp/src/rclcpp/executors.cpp#L30-L37)と1つだけNodeを読み込んだExecutorをインスタンス化し、spinを回していることがわかります。
+
+しかし、[rclcpp::spin() 関数の実装を追いかける](https://github.com/ros2/rclcpp/blob/33dae5d679751b603205008fcb31755986bcee1c/rclcpp/src/rclcpp/executors.cpp#L30-L37)と1つだけNodeを読み込んだExecutorをインスタンス化し、spinを回していることがわかります。
 つまり、rclcppを使った場合すべてのノードはExecutorの上で動いています。
 
 ### コンポーネント指向
