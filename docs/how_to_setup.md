@@ -7,7 +7,7 @@ Dockerのインストール手順は[こちら](https://docs.docker.com/engine/i
 
 !!! note
     Dockerはインストール直後だとsudoをつけないと動かないです。
-    インストール後必ず以下のコマンドを実行し、PCの再起動を行ってください
+    インストール後必ず以下のコマンドを実行し、パソコンの再起動を行ってください
     
     ```
     sudo gpasswd -a $USER docker
@@ -38,7 +38,7 @@ Docker Imageが本体、Docker Containerが分身という関係性あると考�
 
 Docker Imageはgithub actionsというツールを使用して自動的にビルドされgithub container registryにおいてあります。
 そのためビルドする必要はありません。
-github actionsはgithubで開発を行うときに使用できる非常に強力なCI/CDツールで皆さんの競技活動、研究活動を大きく効率化してくれますので、付録に使い方を載せておきます。
+github actionsはgithubで開発を行なうときに使用できる非常に強力なCI/CDツールで皆さんの競技活動、研究活動を大きく効率化してくれますので、付録に使い方を載せておきます。
 
 ```bash
 docker run --rm -p 6080:80 --shm-size=4096m --security-opt seccomp=unconfined ghcr.io/ouxt-polaris/ros_handson/ros_handson:latest

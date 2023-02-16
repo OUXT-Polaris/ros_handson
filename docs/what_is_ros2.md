@@ -288,7 +288,7 @@ DDSはUDPで通信を行い、ブロードキャストパケットを用いて�
 
 図表出典：https://www.openrtm.org/openrtm/ja/doc/developersguide/advanced_rt_system_programming/dds_comm_use
 
-DDSは規格であるため、DDSにはFast DDS / Cyclone DDSといった様々な実装が存在します。
+DDSは規格であるため、DDSにはFast DDS / Cyclone DDSといったさまざまな実装が存在します。
 
 <blockquote class="embedly-card"><h4><a href="https://github.com/eclipse-cyclonedds/cyclonedds">GitHub - eclipse-cyclonedds/cyclonedds: Eclipse Cyclone DDS project</a></h4><p>Eclipse Cyclone DDS is a very performant and robust open-source implementation of the OMG DDS specification. Cyclone DDS is developed completely in the open as an Eclipse IoT project (see eclipse-cyclone-dds) with a growing list of adopters (if you're one of them, please add your logo).</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
@@ -468,7 +468,7 @@ python形式でlaunchファイルが記述できるようになったことでro
 - あるノードを立ち上げて準備ができてから次のノードを立ち上げる
 といった複雑な起動シーケンスもlaunchファイルで記述できるようになりました。
 
-様々なケースがあるので、詳細は省きますが、最も一般的なros2 componentを読み込むlaunchファイルのサンプルを示しておきます。
+さまざまなケースがあるので、詳細は省きますが、最も一般的なros2 componentを読み込むlaunchファイルのサンプルを示しておきます。
 
 ```python
 def generate_launch_description():
