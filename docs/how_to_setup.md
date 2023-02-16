@@ -1,6 +1,6 @@
 # セットアップ方法
 
-本教材では、トラブルを避けるためDockerで環境構築を行います。
+本教材では、トラブルを避けるためDockerで環境構築を行ないます。
 そのため、事前にDockerのインストールを済ませておいてください。
 
 Dockerのインストール手順は[こちら](https://docs.docker.com/engine/install/ubuntu/)
@@ -29,7 +29,7 @@ Dockerのインストール手順は[こちら](https://docs.docker.com/engine/i
 
 
 Dockerはソフトウェアの動作似必要なライブラリ群を一つにまとめ、共有できる仕組みです。  
-あたかも仮想マシンのように(厳密にはコンテナ仮想化といいます)振る舞い、`docker pulll`や`docker run`といったコマンドを叩くだけでかんたんに環境を再現することができます。　　
+あたかも仮想マシンのように(厳密にはコンテナ仮想化といいます)振る舞い、`docker pulll`や`docker run`といったコマンドを叩くだけでかんたんに環境を再現できます。　　
 このとき、動作環境に必要なファイルを一つにまとめたものを「Docker Image」、そのファイルから作られた動作環境のことを「Docker Container」といいます。
 一つのDocker Imageから複数のDocker Containerを作って同時に動かすことも可能です。
 Docker Imageが本体、Docker Containerが分身という関係性あると考えるとわかりやすいかもしれません。
@@ -45,11 +45,11 @@ docker run --rm -p 6080:80 --shm-size=4096m --security-opt seccomp=unconfined gh
 ```
 
 ブラウザで以下のURLを開いてください [http://127.0.0.1:6080/](http://127.0.0.1:6080/)
-VNCが立ち上がるので、ブラウザからDocker Conteiner内部の環境にアクセスすることができます。
+VNCが立ち上がるので、ブラウザからDocker Conteiner内部の環境にアクセスできます。
 
 ![Not Found](images/desktop.png)
 
-こちらの環境にはすでに必要なソフトウェアがインストールされていますので、vnc上でシェルを立ち上げて
+こちらの環境にはすでに必要なソフトウェアがインストールされていますので、vnc上でシェルを立ち上げ、
 
 ```bash
 gazebo

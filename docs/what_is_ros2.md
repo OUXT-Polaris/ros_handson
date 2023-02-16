@@ -279,7 +279,7 @@ ROS1時代にはWindowsとROS1アプリケーションの通信は[rosbridge pro
 ### DDSの採用
 DDSとは、OMGという団体が規格を策定したPub/Sub型のデータ通信システムです。
 ROSと同じようにデータのスキーマも定義することが可能です。
-DDSはUDPで通信を行い、ブロードキャストパケットを用いて自動的に通信相手を探索して接続することが可能です。
+DDSはUDPで通信を行ない、ブロードキャストパケットを用いて自動的に通信相手を探索して接続することが可能です。
 それによってROS1時代に存在したros masterという単一障害点がなくなりました。
 (ros2daemonというros masterの類似プログラムは存在しますが、居ると通信接続が早くなるだけで時間をかければros2daemonが無くても通信相手の探索は可能です。)
 
@@ -432,7 +432,7 @@ rclcpp::spin(component);
 つまり、rclcppを使った場合全てのノードはExecutorの上で動いています。
 
 ### コンポーネント指向
-[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で紹介した通り、Executorは複数のノードを１つのプロセスで起動することができますが、
+[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で紹介した通り、Executorは複数のノードを１つのプロセスで起動できますが、
 [前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)の書き方ではコンパイル時に全てのノード構成を決めておかなければなりません。
 つまり、バイナリ配布したパッケージのノード構成を実行時に切り替えたりすることができません。
 動的にExecutorにコンポーネントを読み込ませるのを可能にする修法がコンポーネント指向です。
