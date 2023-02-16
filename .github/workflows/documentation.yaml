@@ -34,6 +34,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: site
+
   link_checker:
     runs-on: ubuntu-latest
     steps:
@@ -46,3 +47,25 @@ jobs:
           args: "--verbose --no-progress './**/*.md' './**/*.html' --timeout 1000 --max-concurrency 32 -T 1 --retry-wait-time 10"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  textlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - name: Install textlint
+        run: >
+          npm install --save-dev
+          textlint
+          textlint-rule-preset-smarthr
+          textlint-filter-rule-allowlist
+      - name: Install dependent module
+        run: npm install
+      - name: Execute textlint
+        run: npx textlint "docs/**/*.md" >> ./.textlint.log
+      - name: comment linter error
+        if: ${{ failure() }}
+        run: gh pr comment --body-file ./.textlint.log "${URL}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          URL: ${{ github.event.pull_request.html_url }}

@@ -1,0 +1,15 @@
+{
+    "rules": {
+        "preset-smarthr": {
+            "sentence-length": {
+                "max": 200
+            }
+        }
+   },
+    "filters": {
+        "allowlist": {
+            "allow": [
+            ]
+        }
+    }
+}

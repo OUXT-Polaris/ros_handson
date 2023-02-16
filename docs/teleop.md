@@ -10,7 +10,7 @@ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
 
 すると、gazeboのワールドが立ち上がります。
-そしてもう一つのターミナルを立ち上げ以下のコマンドを入力します。
+そしてもう1つのターミナルを立ち上げ以下のコマンドを入力します。
 
 ```bash
 ros2 run turtlebot3_teleop teleop_keyboard
@@ -38,8 +38,8 @@ w/xを押すとTurtlebot3が加減速、a/dを押すと左右旋回します。s
 
 ## 遠隔操作の仕組み
 
-さて、今画面の中のTurtlebot3を操作することができましたがこのときなぜTurtlebot3を遠隔操作することができたのでしょう？  
-ROS2ではrqt_graphコマンドを使うことでノードのつながりを可視化することができます。  
+さて、今画面の中のTurtlebot3を操作できましたがこのときなぜTurtlebot3を遠隔操作できたのでしょう？  
+ROS2ではrqt_graphコマンドを使うことでノードのつながりを可視化できます。  
 
 ```bash
 rqt_graph
@@ -53,13 +53,13 @@ rqt_graph
 
 次に、`cmd_vel`トピックにどんなデータが流れているのか観察してみましょう。
 
-ハンズオン環境でもう一つターミナルを立ち上げて、
+ハンズオン環境でもう1つターミナルを立ち上げます。
 
 ```bash
 ros2 topic echo /cmd_vel
 ```
 
-と入力してみてください。
+立ち上げたターミナルに上記のコマンドを入力してみてください。
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/QopHoVg2i3A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -67,31 +67,32 @@ ros2 topic echo /cmd_vel
 しかし、これではデータがどのように時系列で変化したかという情報はわかりません。  
 rosにはそのような要望に答えるGUIツールがあります。
 
-ハンズオン環境でもう一つターミナルを立ち上げて、
+ハンズオン環境でもう1つターミナルを立ち上げます。
 
 ```bash
 rqt
 ```
 
-と打ち込んでください。  
+立ち上げたターミナルに上記のコマンドを入力してみてください。
 するとGUIが開きますので、plugins -> visualization -> plotの順番に選択します。  
-グラフのような画面が出てきたら、topic欄に
+グラフのような画面が出てきたら、topic欄に下記の文字列を入力します。
 
 ```
 /cmd_vel/linear/x
 ```
 
-と打ち込んで`+`をクリック、
+その後、`+`ボタンをクリックします。
+さらにtopic欄に下記の文字列を入力します。
 
 ```
 /cmd_vel/angular/z
 ```
 
-と打ち込んで`+`をクリック、してください。
+入力が終わったら`+`をクリックしてください。
 
 `/cmd_vel`のあとについてくる`/linear/x`や`/angular/z`ってなんだよ？と思われるかと思いますが、それは`cmd_vel`トピックが`geometry_msgs/msg/Twist`型という型を持っているからです。  
 `geometry_msgs/msg/Twist`型は[ここ](https://github.com/ros2/common_interfaces/blob/rolling/geometry_msgs/msg/Twist.msg)で構造が定義されており、この構造に従ったデータしか受け付けません。  
-つまり`/cmd_vel/x`という値は存在しませんのでそこに値をsetしたりgetすることはできません。  
+つまり`/cmd_vel/x`という値は存在しませんのでそこに値をsetしたりgetできません。  
 これによってROSを使うと他の人と共同開発する際の意思疎通の失敗により結合ができなくなるリスクを大きく下げることができます。  
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/mh2JlbrpQic" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

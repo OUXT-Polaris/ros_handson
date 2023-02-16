@@ -1,20 +1,21 @@
 # ROS2とは？
 
 ## ROS1とROS2の関係性
-まず、ROSとはなにか？ということについてわかりやすい資料がこちら
+まず、ROSとはなにか？ということについてわかりやすい資料がこちらになります。
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQvX8nOOldvSrj9L7rbCSRcZuO4d4oCj_-KuVAo85D8urMcMmoIJIpqZDmme514_nvCcb4uaGTKdiut/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-ロボットのソフトウェアは
+ロボットのソフトウェアはには以下の性質があります。
 
 - 密結合になりがち（ちゃんと動くシステムを作ろうとすると数万行になるのは当たり前）
 - イベントドリブンになりがち（〇〇のセンサーに反応があったら〇〇する）という
 
-性質があります。ROSを使うことによって、使いやすいロボットソフトウェアを作ることができます。  
-具体的なメリットを上げておくと
+ROSを使うことによって、使いやすいロボットソフトウェアを作ることができます。  
+以下に具体的なメリットを上げておきます。
 
-- 同じハードウェアを使っている人がいた場合、開発期間が短縮できて本質的な研究活動に時間を使える
-- 部品化ができるので「伝わる秘伝のタレ」化しにくい
+- 同じハードウェアやアルゴリズムを使っている人がいた場合、開発期間が短縮できて本質的な研究開発活動に時間を使える
+- 部品化ができるので「代々伝わる秘伝のタレ」化しにくい
+- 大量のコードを読まなくてもロボットをとりあえず動く状態まで持っていける
 - 部品のデバッグをしっかりしておけばデバッグ工数が削減できる
 
 しかし、ROS1にはその延長線上で開発を続けていては解決困難な問題があり、それを解決するべく1から再開発されたのがROS2です。  
@@ -23,13 +24,13 @@ ROSの最後のディストリビューションであるNoeticは[2025年にサ
 ## ROS2が作られた理由
 
 ### ライセンス問題
-ROS1時代はBSDライセンス等でコアライブラリが提供されてきました.
+ROS1時代はBSDライセンス等でコアライブラリが提供されてきました。
 しかし、コアライブラリの一部にコピーレフトなライセンスに依存する可能性のあるものが含まれていたり、初期の開発過程がトレースされていなかったことによりライセンスに関して
-不明瞭な部分が存在しました.
-商用アプリケーション開発に於いてはこれは大きな法的問題に発生しうる可能性があり、1からROS2を開発する大きな要員の1つになりました.
+不明瞭な部分が存在しました。
+商用アプリケーション開発に於いてはこれは大きな法的問題に発生しうる可能性があり、1からROS2を開発する大きな要員の1つになりました。
 
 ROS2からは[Apache 2.0ライセンス](https://licenses.opensource.jp/Apache-2.0/Apache-2.0.html)が採用され、それに準拠するようにコアライブラリ
-の開発工程が管理されているため安心して商用利用することが可能です.
+の開発工程が管理されているため安心して商用利用が可能です。
 
 <details>
 <summary>Apache 2.0 License</summary>
@@ -242,7 +243,7 @@ ROS2からは[Apache 2.0ライセンス](https://licenses.opensource.jp/Apache-2
 </details>
 
 ### 単一障害点の排除
-ROS1時代にはros masterというプロセスがrosparamの管理、新規ノードの発見やトピック間の接続という重要な仕事を担っていました.
+ROS1時代にはros masterというプロセスがrosparamの管理、新規ノードの発見やトピック間の接続という重要な仕事を担っていました。
 
 **ros masterの役割の一例、TalkerとListenerノードの接続**
 ![](images/ros_master_0.png)
@@ -252,24 +253,24 @@ ROS1時代にはros masterというプロセスがrosparamの管理、新規ノ�
 ![](images/ros_master_4.png)
 ![](images/ros_master_5.png)
 
-そのため、ROS1アプリケーションに於いてros masterが稼働中のシステムで落ちてしまうとシステム全体が機能不全になる可能性があります.
-単一障害点の排除は長期間運用されるアプリケーションに於いては非常に重要な課題の1つです.
-ros masterの挙動に関する日本語ドキュメントは[こちら](http://wiki.ros.org/ja/Master)にあります.
+そのため、ROS1アプリケーションに於いてros masterが稼働中のシステムで落ちてしまうとシステム全体が機能不全になる可能性があります。
+単一障害点の排除は長期間運用されるアプリケーションに於いては非常に重要な課題の1つです。
+ros masterの挙動に関する日本語ドキュメントは[こちら](http://wiki.ros.org/ja/Master)にあります。
 
 ### 効率的なデータ転送
-ROS1時代に存在した[nodelet](http://wiki.ros.org/nodelet)という仕組みをご存知でしょうか？
-nodeletは通常TCP/IPパケット通信により実現されるROSのトピック通信を共有ポインタを用いたゼロコピー通信に置き換えます.
-この際、nodeletはnodelet_managerにロードされる共有ライブラリとして実装されます.
-この仕組みをROS2向けに再設計したのが後述するROS2におけるコンポーネント指向であり、これを使用することで非常に高速にデータ通信が可能です.
+ROS1時代に存在した[nodelet](http://wiki.ros.org/nodelet)という仕組みをご存じでしょうか？
+nodeletは通常TCP/IPパケット通信により実現されるROSのトピック通信を共有ポインタを用いたゼロコピー通信に置き換えます。
+この際、nodeletはnodelet_managerにロードされる共有ライブラリとして実装されます。
+この仕組みをROS2向けに再設計したのが後述するROS2におけるコンポーネント指向であり、これを使用することで非常に高速にデータ通信が可能です。
 ![](images/nodelet.png)
 
 ### Windows対応
-ROS1はLinuxにかなり依存しており、Windowsで動かすにはWSLを使ったりと工夫が必要でした.
+ROS1はLinuxにかなり依存しており、Windowsで動かすにはWSLを使ったりと工夫が必要でした。
 研究開発や、スタンドアローンなロボットであればROS1のLinux依存の強さも全く問題にはならなかったのですが、
-商用アプリケーションを開発するときに一般のご家庭で動いているPCのOSとして圧倒的なシェアを持っているWindowsでアプリケーションが作れないのは問題になります.
-そこでROS2からはWindowsにも対応し、(一応Macにも対応はしています.)Windows上でもロボットアプリケーション開発が可能になっています.
+商用アプリケーションを開発するときに一般のご家庭で動いているパソコンOSとして圧倒的なシェアを持っているWindowsでアプリケーションが作れないのは問題になります。
+そこでROS2からはWindowsにも対応し、(一応Macにも対応はしています。)Windows上でもロボットアプリケーション開発が可能になっています。
 ROS1時代にはWindowsとROS1アプリケーションの通信は[rosbridge protocol](https://github.com/biobotus/rosbridge_suite/blob/master/ROSBRIDGE_PROTOCOL.md)か
-[nodejsのROSクライアント](https://github.com/RethinkRobotics-opensource/rosnodejs)くらいしかなかったので嬉しい人には嬉しい仕様かもしれません.
+[nodejsのROSクライアント](https://github.com/RethinkRobotics-opensource/rosnodejs)くらいしかなかったので嬉しい人には嬉しい仕様かもしれません。
 
 <blockquote class="embedly-card"><h4><a href="https://ros.org/reps/rep-2000.html#humble-hawksbill-may-2022-may-2027">REP 2000 -- ROS 2 Releases and Target Platforms (ROS.org)</a></h4><p>Note The following applies to ROS 2 releases after Foxy. Prior to Foxy, releases were made more frequently but with shorter support due to the fact that many foundational parts of ROS 2 were still being heavily developed. New ROS 2 releases will be published in a time based fashion every 12 months.</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
@@ -277,18 +278,18 @@ ROS1時代にはWindowsとROS1アプリケーションの通信は[rosbridge pro
 ## ROS1とROS2の違い
 
 ### DDSの採用
-DDSとは、OMGという団体が規格を策定したPub/Sub型のデータ通信システムです.
-ROSと同じようにデータのスキーマも定義することが可能です.
-DDSはUDPで通信を行い、ブロードキャストパケットを用いて自動的に通信相手を探索して接続することが可能です.
-それによってROS1時代に存在したros masterという単一障害点がなくなりました.
-(ros2daemonというros masterの類似プログラムは存在しますが、居ると通信接続が早くなるだけで時間をかければros2daemonが無くても通信相手の探索は可能です.)
+DDSとは、OMGという団体が規格を策定したPub/Sub型のデータ通信システムです。
+ROSと同じようにデータのスキーマも定義が可能です。
+DDSはUDPで通信を行ない、ブロードキャストパケットを用いて自動的に通信相手を探索して接続が可能です。
+それによってROS1時代に存在したros masterという単一障害点がなくなりました。
+(ros2daemonというros masterの類似プログラムは存在しますが、居ると通信接続が早くなるだけで時間をかければros2daemonが無くても通信相手の探索は可能です。)
 
 ![](https://www.openrtm.org/openrtm/sites/default/files/6582/dds1.png)
 ![](https://www.openrtm.org/openrtm/sites/default/files/6582/dds2.png)
 
 図表出典：https://www.openrtm.org/openrtm/ja/doc/developersguide/advanced_rt_system_programming/dds_comm_use
 
-DDSは規格であるため、DDSにはFast DDS / Cyclone DDSといった様々な実装が存在します.
+DDSは規格であるため、DDSにはFast DDS / Cyclone DDSといったさまざまな実装が存在します。
 
 <blockquote class="embedly-card"><h4><a href="https://github.com/eclipse-cyclonedds/cyclonedds">GitHub - eclipse-cyclonedds/cyclonedds: Eclipse Cyclone DDS project</a></h4><p>Eclipse Cyclone DDS is a very performant and robust open-source implementation of the OMG DDS specification. Cyclone DDS is developed completely in the open as an Eclipse IoT project (see eclipse-cyclone-dds) with a growing list of adopters (if you're one of them, please add your logo).</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
@@ -296,7 +297,7 @@ DDSは規格であるため、DDSにはFast DDS / Cyclone DDSといった様々�
 <blockquote class="embedly-card"><h4><a href="https://github.com/eProsima/Fast-DDS">GitHub - eProsima/Fast-DDS: The most complete DDS - Proven: Plenty of success cases.</a></h4><p>eprosima Fast DDS (formerly Fast RTPS) is a C++ implementation of the DDS (Data Distribution Service) standard of the OMG (Object Management Group). eProsima Fast DDS implements the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium.</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
 
-ROS2では以下のようにDDSをインストールし、環境変数を設定することで簡単にDDSの実装を切り替えることが可能です.
+ROS2では以下のようにDDSをインストールし、環境変数を設定することで簡単にDDSの実装を切り替えることが可能です。
 
 **Fast DDSを採用する場合**
 ```bash
@@ -310,20 +311,20 @@ sudo apt install ros-$ROS_DISTRO-rmw-cyclonedds-cpp
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ```
 
-ROBOSYM 2020にfuRoの原先生が出された各種ロボットミドルウェア性能評価に関する発表[1]によると、Cyclone DDSが最も性能が良さそうであることが示されています.
+ROBOSYM 2020にfuRoの原先生が出された各種ロボットミドルウェア性能評価に関する発表(原祥尭ら、"ロボティクスミドルウェアROS、ROS2、Ignition、Isaacの機能比較と通信評価"、ROBOSYM 2020.)によると、Cyclone DDSが最も性能が良さそうであることが示されています。
 
-<blockquote class="embedly-card"><h4><a href="https://twitter.com/ystk_hara/status/1206904096545886208?s=20">Yoshitaka HARA on Twitter: "ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です.赤字は問題箇所.ROS (TCP_NODELAY) と Ignition の性能が良い.プロットしたグラフなど、詳細は ROBOSYM2020 で発表します.ROS2 は概念.使用する DDS 実装によって、性能が大きく異なるようです.#rosjp pic.twitter.com/ir7TWUs6Wu / Twitter"</a></h4><p>ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です.赤字は問題箇所.ROS (TCP_NODELAY) と Ignition の性能が良い.プロットしたグラフなど、詳細は ROBOSYM2020 で発表します.ROS2 は概念.使用する DDS 実装によって、性能が大きく異なるようです.#rosjp pic.twitter.com/ir7TWUs6Wu</p></blockquote>
+<blockquote class="embedly-card"><h4><a href="https://twitter.com/ystk_hara/status/1206904096545886208?s=20">Yoshitaka HARA on Twitter: "ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です。赤字は問題箇所。ROS (TCP_NODELAY) と Ignition の性能が良い。プロットしたグラフなど、詳細は ROBOSYM2020 で発表します。ROS2 は概念。使用する DDS 実装によって、性能が大きく異なるようです。#rosjp pic.twitter.com/ir7TWUs6Wu / Twitter"</a></h4><p>ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です。赤字は問題箇所、ROS (TCP_NODELAY) と Ignition の性能が良い。プロットしたグラフなど、詳細は ROBOSYM2020 で発表します。ROS2 は概念。使用する DDS 実装によって、性能が大きく異なるようです。#rosjp pic.twitter.com/ir7TWUs6Wu</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
 
-このデータは少し古いバージョンのものになりますが、筆者も複数のDDSを使ったところCyclone DDSが最も安定していると考えています.
-Cyclone DDSやFast DDS以外にもIce Oryxといった共有メモリ転送による高速転送機能を持ったDDSが存在したりと、光る独自機能を持ったDDSも存在します.
+このデータは少し古いバージョンのものになりますが、筆者も複数のDDSを使ったところCyclone DDSが最も安定していると考えています。
+Cyclone DDSやFast DDS以外にもIce Oryxといった共有メモリ転送による高速転送機能を持ったDDSが存在したりと、光る独自機能を持ったDDSも存在します。
 
 <blockquote class="embedly-card"><h4><a href="https://github.com/eclipse-iceoryx/iceoryx">GitHub - eclipse-iceoryx/iceoryx: Eclipse iceoryx™ - true zero-copy inter-process-communication</a></h4><p>Great that you've made it to this neat Eclipse project! Let's get you started by providing a quick background tour, introducing the project scope and all you need for installation and a first running example. So first off: What is iceoryx?</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
 
 ### NodeとExecutor
 Executorは[効率的なデータ転送](#_3)の項目で紹介した
-ROS2（C++）ではnodeはrclcpp::Node型を継承したクラスとして実装されます.
+ROS2（C++）ではnodeはrclcpp::Node型を継承したクラスとして実装されます。
 
 ```cpp
 namespace pcl_apps
@@ -337,45 +338,46 @@ public:
 } // namespace pcl_spps
 ```
 
-ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/include/pcl_apps/filter/crop_box_filter/crop_box_filter_component.hpp#L60-L66)になります.
+上記ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/include/pcl_apps/filter/crop_box_filter/crop_box_filter_component.hpp#L60-L66)になります。
 
-`PCL_APPS_CROP_BOX_FILTER_PUBLIC`はWindows/Linuxといった等マルチプラットフォームに対応したcomponentを作るための書式です.
-詳細は[こちら](https://gcc.gnu.org/wiki/Visibility)を参照してください.
+`PCL_APPS_CROP_BOX_FILTER_PUBLIC`はWindows/Linuxといった等マルチプラットフォームに対応したcomponentを作るための書式です。
+詳細は[こちら](https://gcc.gnu.org/wiki/Visibility)を参照してください。
 
-rclcpp::NodeクラスはROS2 Node実装に必要な機能が全て実装されており、publisher/subscriberを作ったり
+rclcpp::NodeクラスはROS2 Node実装に必要な機能がすべて実装されています。
+
+具体的なサンプルコードを示しますと、下記のようにrclcpp::Nodeクラスに実装されているcreate_subscription/create_publisher関数を使えばpublisher/subsceriberを作ることができます。
 
 ```cpp
    pub_ = create_publisher<sensor_msgs::msg::PointCloud2>("~/points_filtered", 1);
    sub_ = create_subscription<sensor_msgs::msg::PointCloud2>(
       "~/points", 1, std::bind(&CropBoxFilterComponent::pointsCallback, this, std::placeholders::_1));
 ```
-ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L45-L47)になります.
+上記ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L45-L47)になります。
 
-rosparamを定義、取得したりすることが可能です.
+その他にも、rosparamを定義、取得したりも可能です。
 
 ```cpp
    declare_parameter("max_x", 1.0);
    get_parameter("max_x", max_x_);
 ```
-ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L29-L30)
+上記ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L29-L30)
 
-このrclcpp::Node型を継承して作られた自作ノードを複数読み込み、複数のノードを1つのプロセスで実現するためのクラスをExecutorと呼びます.
+このrclcpp::Node型を継承して作られた自作ノードを複数読み込み、複数のノードを1つのプロセスで実現するためのクラスをExecutorと呼びます。
 
 ![](https://docs.ros.org/en/foxy/_images/executors_basic_principle.png)
 
-詳細なドキュメントは[こちらのドキュメント](https://docs.ros.org/en/foxy/Concepts/About-Executors.html#)で確認できます.
-Subscriberを生成する時等に登録された関数はコールバック関数としてExecutorに登録され、
-「新しいデータが届いた」等のイベントをキャッチしてそれに対応するコールバック関数を呼び出すことで複数のノードを1つのプロセス上で動作させることを実現しています.
-こうすることによって複数のノードで同じメモリ領域を共有できるようになり、同じExecutor上で動作しているノード間でトピックをやり取りする際には
-メモリでデータをやり取りするため非常に高速で通信が可能です.
-どの程度早くなるかというと、こちらの記事の計測結果を参考にすると
+詳細なドキュメントは[こちらのドキュメント](https://docs.ros.org/en/foxy/Concepts/About-Executors.html#)で確認できます。
+Subscriberを生成するときに登録された関数はコールバック関数としてExecutorに登録され、
+「新しいデータが届いた」などのイベントをキャッチしてそれに対応するコールバック関数を呼び出すことで複数のノードを1つのプロセス上で動作させることを実現しています。
+こうすることによって複数のノードで同じメモリ領域を共有できるようになり、同じExecutor上で動作しているノード間でトピックをやり取りする際にはメモリでデータをやり取りするため非常に高速で通信が可能です。
+どの程度早くなるかというと、こちらの記事の計測結果が参考になりました。
 
-<blockquote class="embedly-card"><h4><a href="https://qiita.com/Ke_N_551/items/d8637ddc806f94260ba8">ROS2で同一デバイス内画像通信の遅延について知りたくて色々試した話 - Qiita</a></h4><p>単一デバイス（Ultra96）内でROS2通信を利用して画像を送受信した場合、 画像のサイズ、圧縮するか否か、使用するDDS、などを変えて画像の送受信にかかる時間を測定・評価しました. どちらかというと通信遅延そのものについての評価というより、画像を送信する際にかかる時間の評価です.ですので、圧縮画像送信の際には画像の圧縮にかかる時間も遅延時間に含んでいたりします. ...</p></blockquote>
+<blockquote class="embedly-card"><h4><a href="https://qiita.com/Ke_N_551/items/d8637ddc806f94260ba8">ROS2で同一デバイス内画像通信の遅延について知りたくて色々試した話 - Qiita</a></h4><p>単一デバイス（Ultra96）内でROS2通信を利用して画像を送受信した場合、 画像のサイズ、圧縮するか否か、使用するDDS、などを変えて画像の送受信にかかる時間を測定・評価しました。どちらかというと通信遅延そのものについての評価というより、画像を送信する際にかかる時間の評価です。ですので、圧縮画像送信の際には画像の圧縮にかかる時間も遅延時間に含んでいたりします。</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
 
-非圧縮の画像データ(sensor_msgs/Image型)のデータを746msで送信することが実現できており、圧縮する時間よりも同じExecutorに載せて通信してしまうのが早いということが伺えます.
+非圧縮の画像データ(sensor_msgs/Image型)のデータを746msで送信することが実現できており、圧縮する時間よりも同じExecutorに載せて通信してしまうのが早いということが伺えます。
 
-自作のROS2 NodeをExecutorに乗せる際には以下のようなコードを記述すれば可能です.
+自作のROS2 NodeをExecutorに乗せる際には以下のようなコードを記述すれば可能です。
 
 ```cpp
 int main(int argc, char * argv[])
@@ -409,9 +411,9 @@ int main(int argc, char * argv[])
 }
 ```
 
-上記のコードの出典は[こちら](https://github.com/OUXT-Polaris/hermite_path_planner/blob/d5fc4d06a54bc4b2fe282a9c1cc38b49c71bb76e/hermite_path_planner_bringup/src/hermite_path_planner_bringup.cpp#L32-L57)になります.
+上記のコードの出典は[こちら](https://github.com/OUXT-Polaris/hermite_path_planner/blob/d5fc4d06a54bc4b2fe282a9c1cc38b49c71bb76e/hermite_path_planner_bringup/src/hermite_path_planner_bringup.cpp#L32-L57)になります。
 
-ちなみに、明示的にExecutorを使用しないこのような記載方法もありますが、
+ちなみに、明示的にExecutorを使用しないこのような記載方法もあります。
 
 ```cpp
 int main(int argc, char * argv[])
@@ -428,47 +430,46 @@ int main(int argc, char * argv[])
 ```cpp
 rclcpp::spin(component);
 ```
-[関数の実装を追いかける](https://github.com/ros2/rclcpp/blob/33dae5d679751b603205008fcb31755986bcee1c/rclcpp/src/rclcpp/executors.cpp#L30-L37)とひとつだけNodeを読み込んだExecutorをインスタンス化し、spinを回していることがわかります.
-つまり、rclcppを使った場合全てのノードはExecutorの上で動いています.
+
+しかし、[rclcpp::spin() 関数の実装を追いかける](https://github.com/ros2/rclcpp/blob/33dae5d679751b603205008fcb31755986bcee1c/rclcpp/src/rclcpp/executors.cpp#L30-L37)と1つだけNodeを読み込んだExecutorをインスタンス化し、spinを回していることがわかります。
+つまり、rclcppを使った場合すべてのノードはExecutorの上で動いています。
 
 ### コンポーネント指向
-[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で紹介した通り、Executorは複数のノードを１つのプロセスで起動することができますが、
-[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)の書き方ではコンパイル時に全てのノード構成を決めておかなければなりません.
-つまり、バイナリ配布したパッケージのノード構成を実行時に切り替えたりすることができません.
-動的にExecutorにコンポーネントを読み込ませるのを可能にする修法がコンポーネント指向です.
-コンポーネント指向のノードを記述するには[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で記述したとおりにrclcpp::Node型を継承してのノードのクラスを実装した後、
+[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で紹介したように、Executorは複数のノードを１つのプロセスで起動できますが、
+[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)の書き方ではコンパイル時にすべてのノード構成を決めておかなければなりません。
+つまり、バイナリ配布したパッケージのノード構成をプログラム実行時に切り替えたりできません。
+動的にExecutorにコンポーネントを読み込ませるのを可能にする修法がコンポーネント指向です。
+コンポーネント指向のノードを記述するには[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で記述したとおりにrclcpp::Node型を継承してのノードのクラスを実装します。
+それに加えて`RCLCPP_COMPONENTS_REGISTER_NODE`マクロを使用して「このクラスはコンポーネントである」という情報をマクロで記録します。
 
 ```cpp
 #include <rclcpp_components/register_node_macro.hpp>
 RCLCPP_COMPONENTS_REGISTER_NODE(scan_segmentation::ScanSegmentationComponent)
 ```
 
-のマクロを使用して「このクラスはコンポーネントである」という情報をマクロで記録し、
+さらに、CMakeLists.txtに下記の変更を加えament_cmakeのシステムにC++のマクロで登録したクラスがどの共有ライブラリに入っているかという情報を記録します。
 
 ```cmake
 rclcpp_components_register_nodes(scan_segmentation_component
   "scan_segmentation::ScanSegmentationComponent")
 ```
 
-CMakeLists.txtに上記の変更を加えament_cmakeのシステムにC++のマクロで登録したクラスがどの共有ライブラリに入っているかという情報を記録します.
-
 サンプルコードは[こちら](https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/src/scan_segmentation_component.cpp#L349)と
-[こちら](https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/CMakeLists.txt#L44-L45)に有ります.
+[こちら](https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/CMakeLists.txt#L44-L45)に有ります。
 
-出来上がったコンポーネントは後述する[ros2 launch](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#ros2-launch)を使用して動的に立ち上げることができます.
+出来上がったコンポーネントは後述する[ros2 launch](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#ros2-launch)を使用して動的に立ち上げることができます。
 
 ### ros2 launchによるより柔軟な起動手段の提供
 
-ROS2ではlaunchファイルがPythonになるという言説が有りますが、筆者はこれは誤りであると考えます.
+ROS2ではlaunchファイルがPythonになるという言説が有りますが、筆者はこれは誤りであると考えます。
 ROS2のPython形式のlaunchファイルはあくまでROS1時代にあったroslaunch APIの後継であり
-xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchファイルの後継であると考えます.
+xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchファイルの後継であると考えます。
 
-python形式でlaunchファイルが記述できるようになったことでros2 launchは
+python形式でlaunchファイルが記述できるようになったことでros2 launchでは下記のような複雑な起動シーケンスもlaunchファイルで記述できるようになりました。
 - 10秒後にあるノードを落とす
 - あるノードを立ち上げて準備ができてから次のノードを立ち上げる
-といった複雑な起動シーケンスもlaunchファイルで記述できるようになりました.
 
-様々なケースがあるので、詳細は省きますが、最も一般的なros2 componentを読み込むlaunchファイルのサンプルを示しておきます.
+さまざまなケースがあるので、詳細は省きますが、最も一般的なros2 componentを読み込むlaunchファイルのサンプルを示しておきます。
 
 ```python
 def generate_launch_description():
@@ -521,7 +522,7 @@ def getPointsTransformComponent(lidar_name):
 ```
 
 こちらのサンプルコードの出典は[こちら](https://github.com/OUXT-Polaris/perception_bringup/blob/master/launch/perception_bringup.launch.py)になります
-上記のようなコードを記述することで、自作のComponentを読み込ませてROS2 Applicationを立ち上げることが可能になります.
+上記のようなコードを記述することで、自作のComponentを読み込ませてROS2 Applicationを立ち上げることが可能になります。
 
-# 参考文献
-[1]:原 祥尭+, "ロボティクスミドルウェア ROS, ROS2, Ignition, Isaac の機能比較と通信評価", ROBOSYM 2020. 
+!!! note
+    Galactic/Humbleのあたりからかなりxmlのlaunchも機能が整ってきたので、今後はかなりのケースがxmlでもカバーできると思われます。
