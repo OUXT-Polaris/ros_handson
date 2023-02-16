@@ -78,6 +78,7 @@ extra_javascript:
 
 # Extensions
 markdown_extensions:
+  - admonition
   - attr_list
   - codehilite: { guess_lang: false }
   - fontawesome_markdown
