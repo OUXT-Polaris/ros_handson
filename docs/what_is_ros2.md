@@ -342,7 +342,7 @@ public:
 `PCL_APPS_CROP_BOX_FILTER_PUBLIC`はWindows/Linuxといった等マルチプラットフォームに対応したcomponentを作るための書式です。
 詳細は[こちら](https://gcc.gnu.org/wiki/Visibility)を参照してください。
 
-rclcpp::NodeクラスはROS2 Node実装に必要な機能が全て実装されており、publisher/subscriberを作ったり
+rclcpp::NodeクラスはROS2 Node実装に必要な機能がすべて実装されており、publisher/subscriberを作ったり
 
 ```cpp
    pub_ = create_publisher<sensor_msgs::msg::PointCloud2>("~/points_filtered", 1);
@@ -428,12 +428,12 @@ int main(int argc, char * argv[])
 ```cpp
 rclcpp::spin(component);
 ```
-[関数の実装を追いかける](https://github.com/ros2/rclcpp/blob/33dae5d679751b603205008fcb31755986bcee1c/rclcpp/src/rclcpp/executors.cpp#L30-L37)とひとつだけNodeを読み込んだExecutorをインスタンス化し、spinを回していることがわかります。
-つまり、rclcppを使った場合全てのノードはExecutorの上で動いています。
+[関数の実装を追いかける](https://github.com/ros2/rclcpp/blob/33dae5d679751b603205008fcb31755986bcee1c/rclcpp/src/rclcpp/executors.cpp#L30-L37)と1つだけNodeを読み込んだExecutorをインスタンス化し、spinを回していることがわかります。
+つまり、rclcppを使った場合すべてのノードはExecutorの上で動いています。
 
 ### コンポーネント指向
 [前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で紹介した通り、Executorは複数のノードを１つのプロセスで起動できますが、
-[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)の書き方ではコンパイル時に全てのノード構成を決めておかなければなりません。
+[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)の書き方ではコンパイル時にすべてのノード構成を決めておかなければなりません。
 つまり、バイナリ配布したパッケージのノード構成を実行時に切り替えたりすることができません。
 動的にExecutorにコンポーネントを読み込ませるのを可能にする修法がコンポーネント指向です。
 コンポーネント指向のノードを記述するには[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で記述したとおりにrclcpp::Node型を継承してのノードのクラスを実装した後、

@@ -10,7 +10,7 @@ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
 
 すると、gazeboのワールドが立ち上がります。
-そしてもう一つのターミナルを立ち上げ以下のコマンドを入力します。
+そしてもう1つのターミナルを立ち上げ以下のコマンドを入力します。
 
 ```bash
 ros2 run turtlebot3_teleop teleop_keyboard
@@ -53,7 +53,7 @@ rqt_graph
 
 次に、`cmd_vel`トピックにどんなデータが流れているのか観察してみましょう。
 
-ハンズオン環境でもう一つターミナルを立ち上げて、
+ハンズオン環境でもう1つターミナルを立ち上げて、
 
 ```bash
 ros2 topic echo /cmd_vel
@@ -67,7 +67,7 @@ ros2 topic echo /cmd_vel
 しかし、これではデータがどのように時系列で変化したかという情報はわかりません。  
 rosにはそのような要望に答えるGUIツールがあります。
 
-ハンズオン環境でもう一つターミナルを立ち上げて、
+ハンズオン環境でもう1つターミナルを立ち上げて、
 
 ```bash
 rqt
