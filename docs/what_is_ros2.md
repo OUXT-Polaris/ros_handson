@@ -311,7 +311,7 @@ sudo apt install ros-$ROS_DISTRO-rmw-cyclonedds-cpp
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ```
 
-ROBOSYM 2020にfuRoの原先生が出された各種ロボットミドルウェア性能評価に関する発表(原 祥尭+,"ロボティクスミドルウェアROS,ROS2,Ignition,Isaacの機能比較と通信評価", ROBOSYM 2020.)によると、Cyclone DDSが最も性能が良さそうであることが示されています。
+ROBOSYM 2020にfuRoの原先生が出された各種ロボットミドルウェア性能評価に関する発表(原 祥尭ら、"ロボティクスミドルウェアROS、ROS2、Ignition、Isaacの機能比較と通信評価"、ROBOSYM 2020.)によると、Cyclone DDSが最も性能が良さそうであることが示されています。
 
 <blockquote class="embedly-card"><h4><a href="https://twitter.com/ystk_hara/status/1206904096545886208?s=20">Yoshitaka HARA on Twitter: "ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です。赤字は問題箇所。ROS (TCP_NODELAY) と Ignition の性能が良い。プロットしたグラフなど、詳細は ROBOSYM2020 で発表します。ROS2 は概念。使用する DDS 実装によって、性能が大きく異なるようです。#rosjp pic.twitter.com/ir7TWUs6Wu / Twitter"</a></h4><p>ROS、ROS2、Ignition、Isaac のメッセージ通信の遅延と受信抜けを評価した結果です。赤字は問題箇所、ROS (TCP_NODELAY) と Ignition の性能が良い。プロットしたグラフなど、詳細は ROBOSYM2020 で発表します。ROS2 は概念。使用する DDS 実装によって、性能が大きく異なるようです。#rosjp pic.twitter.com/ir7TWUs6Wu</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
@@ -338,27 +338,29 @@ public:
 } // namespace pcl_spps
 ```
 
-ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/include/pcl_apps/filter/crop_box_filter/crop_box_filter_component.hpp#L60-L66)になります。
+上記ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/include/pcl_apps/filter/crop_box_filter/crop_box_filter_component.hpp#L60-L66)になります。
 
 `PCL_APPS_CROP_BOX_FILTER_PUBLIC`はWindows/Linuxといった等マルチプラットフォームに対応したcomponentを作るための書式です。
 詳細は[こちら](https://gcc.gnu.org/wiki/Visibility)を参照してください。
 
-rclcpp::NodeクラスはROS2 Node実装に必要な機能がすべて実装されており、publisher/subscriberを作ったり
+rclcpp::NodeクラスはROS2 Node実装に必要な機能がすべて実装されています。
+
+具体的なサンプルコードを示しますと、下記のようにrclcpp::Nodeクラスに実装されているcreate_subscription/create_publisher関数を使えばpublisher/subsceriberを作ることができます。
 
 ```cpp
    pub_ = create_publisher<sensor_msgs::msg::PointCloud2>("~/points_filtered", 1);
    sub_ = create_subscription<sensor_msgs::msg::PointCloud2>(
       "~/points", 1, std::bind(&CropBoxFilterComponent::pointsCallback, this, std::placeholders::_1));
 ```
-ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L45-L47)になります。
+上記ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L45-L47)になります。
 
-rosparamを定義、取得したりが可能です。
+その他にも、rosparamを定義、取得したりも可能です。
 
 ```cpp
    declare_parameter("max_x", 1.0);
    get_parameter("max_x", max_x_);
 ```
-ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L29-L30)
+上記ソースコードの出典は[こちら](https://github.com/OUXT-Polaris/pcl_apps/blob/720d6cfc3562137a353f5d67f3e0f42b122025ed/pcl_apps/src/filter/crop_box_filter/crop_box_filter_component.cpp#L29-L30)
 
 このrclcpp::Node型を継承して作られた自作ノードを複数読み込み、複数のノードを1つのプロセスで実現するためのクラスをExecutorと呼びます。
 
@@ -367,8 +369,7 @@ rosparamを定義、取得したりが可能です。
 詳細なドキュメントは[こちらのドキュメント](https://docs.ros.org/en/foxy/Concepts/About-Executors.html#)で確認できます。
 Subscriberを生成するときに登録された関数はコールバック関数としてExecutorに登録され、
 「新しいデータが届いた」などのイベントをキャッチしてそれに対応するコールバック関数を呼び出すことで複数のノードを1つのプロセス上で動作させることを実現しています。
-こうすることによって複数のノードで同じメモリ領域を共有できるようになり、同じExecutor上で動作しているノード間でトピックをやり取りする際には
-メモリでデータをやり取りするため非常に高速で通信が可能です。
+こうすることによって複数のノードで同じメモリ領域を共有できるようになり、同じExecutor上で動作しているノード間でトピックをやり取りする際にはメモリでデータをやり取りするため非常に高速で通信が可能です。
 どの程度早くなるかというと、こちらの記事の計測結果が参考になりました。
 
 <blockquote class="embedly-card"><h4><a href="https://qiita.com/Ke_N_551/items/d8637ddc806f94260ba8">ROS2で同一デバイス内画像通信の遅延について知りたくて色々試した話 - Qiita</a></h4><p>単一デバイス（Ultra96）内でROS2通信を利用して画像を送受信した場合、 画像のサイズ、圧縮するか否か、使用するDDS、などを変えて画像の送受信にかかる時間を測定・評価しました。どちらかというと通信遅延そのものについての評価というより、画像を送信する際にかかる時間の評価です。ですので、圧縮画像送信の際には画像の圧縮にかかる時間も遅延時間に含んでいたりします。</p></blockquote>
