@@ -17,7 +17,7 @@ on:
   release:
     types: [published]
 jobs:
-  job1:
+  build:
     name: Build Docker Image
     runs-on: ubuntu-20.04
     timeout-minutes: 180
