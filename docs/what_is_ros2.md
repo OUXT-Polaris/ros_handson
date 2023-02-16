@@ -439,21 +439,20 @@ rclcpp::spin(component);
 [前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)の書き方ではコンパイル時にすべてのノード構成を決めておかなければなりません。
 つまり、バイナリ配布したパッケージのノード構成をプログラム実行時に切り替えたりできません。
 動的にExecutorにコンポーネントを読み込ませるのを可能にする修法がコンポーネント指向です。
-コンポーネント指向のノードを記述するには[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で記述したとおりにrclcpp::Node型を継承してのノードのクラスを実装した後、
+コンポーネント指向のノードを記述するには[前の章](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor)で記述したとおりにrclcpp::Node型を継承してのノードのクラスを実装します。
+それに加えて`RCLCPP_COMPONENTS_REGISTER_NODE`マクロを使用して「このクラスはコンポーネントである」という情報をマクロで記録します。
 
 ```cpp
 #include <rclcpp_components/register_node_macro.hpp>
 RCLCPP_COMPONENTS_REGISTER_NODE(scan_segmentation::ScanSegmentationComponent)
 ```
 
-のマクロを使用して「このクラスはコンポーネントである」という情報をマクロで記録し、
+さらに、CMakeLists.txtに下記の変更を加えament_cmakeのシステムにC++のマクロで登録したクラスがどの共有ライブラリに入っているかという情報を記録します。
 
 ```cmake
 rclcpp_components_register_nodes(scan_segmentation_component
   "scan_segmentation::ScanSegmentationComponent")
 ```
-
-CMakeLists.txtに上記の変更を加えament_cmakeのシステムにC++のマクロで登録したクラスがどの共有ライブラリに入っているかという情報を記録します。
 
 サンプルコードは[こちら](https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/src/scan_segmentation_component.cpp#L349)と
 [こちら](https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/CMakeLists.txt#L44-L45)に有ります。
