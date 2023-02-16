@@ -75,19 +75,20 @@ rqt
 
 立ち上げたターミナルに上記のコマンドを入力してみてください。
 するとGUIが開きますので、plugins -> visualization -> plotの順番に選択します。  
-グラフのような画面が出てきたら、topic欄に
+グラフのような画面が出てきたら、topic欄に下記の文字列を入力します。
 
 ```
 /cmd_vel/linear/x
 ```
 
-と打ち込んで`+`をクリック、
+その後、`+`ボタンをクリックします。
+さらにtopic欄に下記の文字列を入力します。
 
 ```
 /cmd_vel/angular/z
 ```
 
-と打ち込んで`+`をクリック、してください。
+入力が終わったら`+`をクリックしてください。
 
 `/cmd_vel`のあとについてくる`/linear/x`や`/angular/z`ってなんだよ？と思われるかと思いますが、それは`cmd_vel`トピックが`geometry_msgs/msg/Twist`型という型を持っているからです。  
 `geometry_msgs/msg/Twist`型は[ここ](https://github.com/ros2/common_interfaces/blob/rolling/geometry_msgs/msg/Twist.msg)で構造が定義されており、この構造に従ったデータしか受け付けません。  
