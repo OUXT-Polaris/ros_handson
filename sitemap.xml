@@ -2,27 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/</loc>
-         <lastmod>2023-02-16</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/appendix/</loc>
-         <lastmod>2023-02-16</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/how_to_setup/</loc>
-         <lastmod>2023-02-16</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/teleop/</loc>
-         <lastmod>2023-02-16</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/what_is_ros2/</loc>
-         <lastmod>2023-02-16</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
