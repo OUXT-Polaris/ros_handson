@@ -38,7 +38,7 @@ ROS2には以下の3種類の時間ソースがあります。
 
 `slam:=True`オプションはSLAMアルゴリズムを使用して地図を作りながら自己位置推定を行なうオプションです。  
 これによって事前に地図を用意することなく自律移動を行なうことが可能です。
-デフォルトで使用されれる設定ファイルをみてみると以下のようになっていますので、
+デフォルトで使用されれる設定ファイルをみてみると以下のようになっています。
 
 <details>
 <summary>/opt/ros/humble/share/slam_toolbox/config/mapper_params_online_sync.yaml</summary>
@@ -120,8 +120,8 @@ slam_toolbox:
 ```
 </details>
 
-Ceres SolverというGoogle社が開発しているオープンソース非線型最小二乗問題ソルバーを用いたloop closingありの2D SLAMを使用するというのがデフォルトの設定になっています。
-この設定を上書きしたい場合は、自分で上記のyamlファイルをコピーし保存した上で[SLAM Toolboxの公式ドキュメント](https://github.com/SteveMacenski/slam_toolbox#configuration)を参照し必要なパラメータを書き換えた上で`ros2 launch`実行時の`slam_params_file`オプションにyamlファイルのパスを引き渡してください。
+上記のyamlファイルを確認すると、Ceres SolverというGoogle社が開発しているオープンソース非線型最小二乗問題ソルバーを用いたloop closingありの2D SLAMを使用するというのがデフォルトの設定になっています。
+もしこの設定を上書きしたい場合は、自分で上記のyamlファイルをコピーし保存したうえで[SLAM Toolboxの公式ドキュメント](https://github.com/SteveMacenski/slam_toolbox#configuration)を参照し必要なパラメータを書き換えた上で`ros2 launch`実行時の`slam_params_file`オプションにyamlファイルのパスを引き渡してください。
 
 ２つ目の`ros2 launch`コマンドを実行するとrviz2が立ち上がります。  
 rviz2上で2D Goal Poseボタンをおして緑の矢印でゴール姿勢を指定するとロボットが自動的に指定地点に向かいます。  
@@ -151,14 +151,14 @@ ros2 bag record -a --storage mcap
 rosbagを保存しながら、自律移動でturtlebot3をさまざまな場所に移動させてみてください。  
 もういいかな、となったら`ctrl+c`でロギングを終了します。  
 
-ロギングが完了したらrosbagを保存したディレクトリに移動し、以下のコマンドを実行します。　　
+ロギングが完了したらrosbagを保存したディレクトリに移動し、以下のコマンドを実行します。　
 
 ```bash
 foxglove-studio
 ```
 
 foxglove-studioが起動したら、Open Local Fileを選択し先ほど保存したrosbagを選択します。  
-次に、3D Panelの右側にある歯車マークをクリックし、次に３つの点が並んでいるボタンを選びます。  
+次に、3D Panelの右側にある歯車アイコンをクリックし、次に３つの点が並んでいるボタンを選びます。  
 すると、Impoer/Export Settingsという文字があるのでそれをして下記のJsonをペーストします。
 
 <details>
