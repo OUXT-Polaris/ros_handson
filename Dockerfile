@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     ros-humble-turtlebot3* \
     ros-humble-navigation* \
     ros-humble-rosbag2-storage-mcap \
+    htop \
     && rm -rf /var/lib/apt/lists/*
 ENV TURTLEBOT3_MODEL burger
 COPY asound.conf /etc/asound.conf
