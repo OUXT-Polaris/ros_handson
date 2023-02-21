@@ -102,4 +102,5 @@ nav:
     - ROS2とは?: what_is_ros2.md
     - 遠隔操作: teleop.md
     - 可視化とロギング: visualization.md
+    - navigation2による自律移動: navigation2.md
   - 付録: appendix.md
