@@ -52,8 +52,8 @@ rosbag2はデフォルトではsqlite3という形式でデータを保存しま
 mcapを使うためには`rosbag2_storage_mcap`パッケージのインストールが必要です。
 ハンズオン環境にはすでに入っていますので追加は不要ですが、もし今後お手元のロボットで使用するときは`rosbag2_storage_mcap`のインストールを忘れないようにしましょう。
 
-ハンズオン環境でgazeboの立ち上げを行った後、新たにターミナルを立ち上げ、以下のコマンドを実行してrosbagのデータを保存します。
-`--storage mcap`の指定を忘れるとデフォルトの形式であるsqlite3で保存が行われてしまうので気をつけましょう。
+ハンズオン環境でgazeboの立ち上げを行なった後、新たにターミナルを立ち上げ、以下のコマンドを実行してrosbagのデータを保存します。
+`--storage mcap`の指定を忘れるとデフォルトの形式であるsqlite3で保存が行なわれてしまうので気をつけましょう。
 
 ```bash
 ros2 bag record -a --storage mcap
@@ -62,7 +62,7 @@ ros2 bag record -a --storage mcap
 もうロギングはいいかな、となったところで`ctrl+C`でrecordを終了してください。  
 すると、rosbag2_(日付、時刻)というような名前のディレクトリができているはずです。  
 そのディレクトリ内部にある.mcapファイルがrosbagデータの本体です。  
-このファイルの中に何時何分何秒にこのようなデータがpublishされたという記録が残っており、それによって過去の実験データを再生することができます。  
+このファイルの中に何時何分何秒にこのようなデータがpublishされたという記録が残っており、それによって過去の実験データを再生できます。  
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/XHF1vQSpPuo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -97,7 +97,7 @@ Topic information: Topic: /clock | Type: rosgraph_msgs/msg/Clock | Count: 55 | S
 ```
 
 上記のような出力が得られました。  
-`ros2 bag info`コマンドを使えば、トピックのロギング漏れ等を確認することができます。  
+`ros2 bag info`コマンドを使えば、トピックのロギング漏れ等を確認できます。  
 
 `*.mcap`拡張子のファイルがあるディレクトリに存在するmetada.yamlにはTopicのQoSに関する情報などのメタデータが記録されています。  
 
@@ -111,13 +111,12 @@ rviz2 -d /home/ubuntu/.rviz2/rosbag_play.rviz
 
 `-d`オプションにはrvizの設定ファイルのパスを指定しますこれによってどのトピックの情報を可視化するかなどを毎回設定する必要がなくなります。
 
-次に、`ros2 bag info`コマンドを実行したときと同じディレクトリで
+次に、`ros2 bag info`コマンドを実行したときと同じディレクトリで下記のコマンドを実行します。
 
 ```bash
 ros2 bag play --storage mcap
 ```
 
-を実行します。
 するとrosbagが再生され記録されていたデータがrviz上に可視化されました。
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/KUFNgBE3uUc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
