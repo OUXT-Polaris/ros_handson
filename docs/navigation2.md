@@ -151,7 +151,7 @@ ros2 bag record -a --storage mcap
 rosbagを保存しながら、自律移動でturtlebot3をさまざまな場所に移動させてみてください。  
 もういいかな、となったら`ctrl+c`でロギングを終了します。  
 
-ロギングが完了したらrosbagを保存したディレクトリに移動し、以下のコマンドを実行します。　
+ロギングが完了したらrosbagを保存したディレクトリに移動し、以下のコマンドを実行します。
 
 ```bash
 foxglove-studio
