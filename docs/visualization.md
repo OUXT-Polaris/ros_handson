@@ -1,4 +1,4 @@
-# 可視化
+# 可視化とロギング
 
 ## laserscanの可視化
 
@@ -65,3 +65,40 @@ ros2 bag record -a --storage mcap
 このファイルの中に何時何分何秒にこのようなデータがpublishされたという記録が残っており、それによって過去の実験データを再生することができます。  
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/XHF1vQSpPuo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+recordが終わったら`*.mcap`拡張子のファイルがあるディレクトリにcdした後に以下のコマンドを実行して、どんなデータが記録されたか確認してみましょう。
+
+```bash
+ros2 bag info .
+```
+
+![Not Found](images/ros2_bag_info.png)
+
+```bash
+Files:             rosbag2_2023_02_21-12_21_13_0.mcap
+Bag size:          747.4 KiB
+Storage id:        mcap
+Duration:          5.467s
+Start:             Feb 21 2023 12:21:13.380 (1676982073.380)
+End:               Feb 21 2023 12:21:18.848 (1676982078.848)
+Messages:          1799
+Topic information: Topic: /clock | Type: rosgraph_msgs/msg/Clock | Count: 55 | Serialization Format: cdr
+                   Topic: /tf | Type: tf2_msgs/msg/TFMessage | Count: 265 | Serialization Format: cdr
+                   Topic: /events/write_split | Type: rosbag2_interfaces/msg/WriteSplitEvent | Count: 0 | Serialization Format: cdr
+                   Topic: /imu | Type: sensor_msgs/msg/Imu | Count: 1092 | Serialization Format: cdr
+                   Topic: /odom | Type: nav_msgs/msg/Odometry | Count: 160 | Serialization Format: cdr
+                   Topic: /rosout | Type: rcl_interfaces/msg/Log | Count: 10 | Serialization Format: cdr
+                   Topic: /joint_states | Type: sensor_msgs/msg/JointState | Count: 160 | Serialization Format: cdr
+                   Topic: /performance_metrics | Type: gazebo_msgs/msg/PerformanceMetrics | Count: 28 | Serialization Format: cdr
+                   Topic: /parameter_events | Type: rcl_interfaces/msg/ParameterEvent | Count: 0 | Serialization Format: cdr
+                   Topic: /robot_description | Type: std_msgs/msg/String | Count: 1 | Serialization Format: cdr
+                   Topic: /tf_static | Type: tf2_msgs/msg/TFMessage | Count: 1 | Serialization Format: cdr
+                   Topic: /scan | Type: sensor_msgs/msg/LaserScan | Count: 27 | Serialization Format: cdr
+```
+
+上記のような出力が得られました。  
+`ros2 bag info`コマンドを使えば、トピックのロギング漏れ等を確認することができます。  
+
+`*.mcap`拡張子のファイルがあるディレクトリに存在するmetada.yamlにはTopicのQoSに関する情報などのメタデータが記録されています。  
+
+

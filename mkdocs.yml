@@ -101,5 +101,5 @@ nav:
     - 環境構築: how_to_setup.md
     - ROS2とは?: what_is_ros2.md
     - 遠隔操作: teleop.md
-    - 可視化: visualization.md
+    - 可視化とロギング: visualization.md
   - 付録: appendix.md

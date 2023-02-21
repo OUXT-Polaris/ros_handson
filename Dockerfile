@@ -14,3 +14,4 @@ ENV LIBGL_ALWAYS_SOFTWARE 1
 RUN mkdir -p /home/ubuntu/Desktop/colcon_ws/src
 WORKDIR /home/ubuntu/Desktop/colcon_ws/src
 COPY workspace.repos /home/ubuntu/Desktop/colcon_ws/src/workspace.repos
+COPY rviz/rosbag_play.rviz /home/ubuntu/.rviz2/rosbag_play.rviz
