@@ -6,11 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Sanada Tatsuya" name="author"/>
-<link href="https://ouxt-polaris.github.io/ros_handson/appendix/" rel="canonical"/>
-<link href="../visualization/" rel="prev"/>
+<link href="https://ouxt-polaris.github.io/ros_handson/visualization/" rel="canonical"/>
+<link href="../teleop/" rel="prev"/>
+<link href="../appendix/" rel="next"/>
 <link href="../images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>付録 - ros_handson</title>
+<title>可視化とロギング - ros_handson</title>
 <link href="../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -49,7 +50,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              付録
+              可視化とロギング
             
           </span>
 </div>
@@ -107,12 +108,12 @@
     </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../how_to_setup/">
+<a class="md-tabs__link md-tabs__link--active" href="../how_to_setup/">
         ハンズオン資料
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="./">
+<a class="md-tabs__link" href="../appendix/">
       付録
     </a>
 </li>
@@ -147,13 +148,13 @@
         Home
       </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           ハンズオン資料
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
           ハンズオン資料
@@ -174,22 +175,14 @@
         遠隔操作
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../visualization/">
-        可視化とロギング
-      </a>
-</li>
-</ul>
-</nav>
-</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-          付録
+          可視化とロギング
           <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
-        付録
+        可視化とロギング
       </a>
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -198,48 +191,13 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#ros1">
-    ポーティングしやすいROS1ノード実装方法
-  </a>
-<nav aria-label="ポーティングしやすいROS1ノード実装方法" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#main">
-    main文とロジックを分離する
+<a class="md-nav__link" href="#laserscan">
+    laserscanの可視化
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_2">
-    メッセージのパッケージは独立させておく
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#executor">
-    Executorが使える言語で実装しておく
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-    パフォーマンスを上げるには
-  </a>
-<nav aria-label="パフォーマンスを上げるには" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#executor_1">
-    どのExecutorの上でどのノードが動いているかを意識する
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-    実装する言語を揃える
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#dds">
-    DDSを選定し、設定を工夫する
+    ログデータの可視化
   </a>
 </li>
 </ul>
@@ -247,6 +205,11 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../appendix/">
+        付録
+      </a>
 </li>
 </ul>
 </nav>
@@ -255,118 +218,87 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="_1">付録<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
-<h2 id="ros1">ポーティングしやすいROS1ノード実装方法<a class="headerlink" href="#ros1" title="Permanent link">#</a></h2>
-<h3 id="main">main文とロジックを分離する<a class="headerlink" href="#main" title="Permanent link">#</a></h3>
-<p>ROS2でノードを実装する際にはmain文があるnodeとロジックだけを実装するコンポーネントに分けておくと、コンポーネント指向でROS2システムをつくることが簡単にできます。
-ROS1でも同じように<a href="https://github.com/OUXT-Polaris/nmea_to_geopose/tree/master/src">こちらのサンプル</a>
-にあるようにmain文とロジックを実装したクラスを分けておくと、コンポーネント指向なノードにポーティングする際に非常に楽です。</p>
-<p>そして、ロジックを実装するクラスのコンストラクタでは、下記のようにROS2のコンポーネントと同じようにコンストラクタでの内部でpublisher/subscriberを作成しておくとさらにポーティングが容易になります。</p>
-<div class="highlight"><pre><span></span><code><span class="n">NmeaToGeoPose</span><span class="o">::</span><span class="n">NmeaToGeoPose</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span><span class="w"> </span><span class="n">nh</span><span class="p">,</span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span><span class="w"> </span><span class="n">pnh</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">   </span><span class="n">nh_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">;</span>
-<span class="w">   </span><span class="n">pnh_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pnh</span><span class="p">;</span>
-<span class="w">   </span><span class="n">pnh_</span><span class="p">.</span><span class="n">param</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"input_topic"</span><span class="p">,</span><span class="w"> </span><span class="n">input_topic_</span><span class="p">,</span><span class="w"> </span><span class="s">"/nmea_sentence"</span><span class="p">);</span>
-<span class="w">   </span><span class="n">nmea_sub_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh_</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">input_topic_</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="o">&amp;</span><span class="n">NmeaToGeoPose</span><span class="o">::</span><span class="n">nmeaSentenceCallback</span><span class="p">,</span><span class="k">this</span><span class="p">);</span>
-<span class="w">   </span><span class="n">geopose_pub_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pnh_</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">geographic_msgs</span><span class="o">::</span><span class="n">GeoPoseStamped</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"geopose"</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
+<h1 id="_1">可視化とロギング<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h2 id="laserscan">laserscanの可視化<a class="headerlink" href="#laserscan" title="Permanent link">#</a></h2>
+<p>遠隔操作でロボットを動かすことはできるようになりましたが、ここまで紹介した方法ではロボットからどういうセンサデータを受信しているかは<code>ros2 topic echo</code>などのコマンドを見るしかありません。
+しかし、それではカメラやLiDARといった高い次元数を持つデータを正しく送られているかを確認できません。
+そこで、<code>rviz2</code>という3Dビジュアライザを使ってgazeboによってシミュレートされたセンサ情報を表すトピックを可視化してみましょう。</p>
+<p>手順としては、まず以下のコマンドを実行し、gazeboを起動します。</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_gazebo<span class="w"> </span>turtlebot3_world.launch.py
 </code></pre></div>
-<p>上記のコードは<a href="https://github.com/OUXT-Polaris/nmea_to_geopose/blob/2564e99b65418ab9ba216b5664601e51ca53e6ec/src/nmea_to_geopose.cpp#L3-L10">こちら</a>
-にサンプルがあります。</p>
-<h3 id="_2">メッセージのパッケージは独立させておく<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
-<p>ROS1ではロボットのアプリケーションロジックを含むパッケージに.msgファイルを置いておいても全く問題なかったのですが、
-ROS2においてはメッセージパッケージを分けないとビルドができなくなるケースがあります。
-そのため、ROS1でもメッセージのパッケージを分離しておくとROS2に移住する際に楽かと思います。</p>
-<h3 id="executor">Executorが使える言語で実装しておく<a class="headerlink" href="#executor" title="Permanent link">#</a></h3>
-<p>現在いくつかのROS2クライアントにはさまざまな種類が存在しています。
-しかし、そのなかでExecutorが実装されて居るのは一部のみです。</p>
-<table>
-<thead>
-<tr>
-<th>クライアント名</th>
-<th>言語</th>
-<th>URL</th>
-<th>Executorの実装</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>rclcpp</td>
-<td>C++</td>
-<td>https://github.com/ros2/rclcpp</td>
-<td>あり</td>
-</tr>
-<tr>
-<td>rclpy</td>
-<td>python</td>
-<td>https://github.com/ros2/rclpy</td>
-<td>あり</td>
-</tr>
-<tr>
-<td>rclc</td>
-<td>C</td>
-<td>https://github.com/ros2/rclc</td>
-<td>あり</td>
-</tr>
-<tr>
-<td>rclnodejs</td>
-<td>nodejs</td>
-<td>https://github.com/RobotWebTools/rclnodejs</td>
-<td>なし</td>
-</tr>
-<tr>
-<td>rust</td>
-<td>rust</td>
-<td>https://github.com/ros2-rust/ros2_rust</td>
-<td>なし</td>
-</tr>
-<tr>
-<td>rclgp</td>
-<td>go</td>
-<td>https://github.com/juaruipav/rclgo</td>
-<td>なし</td>
-</tr>
-</tbody>
-</table>
-<p>開発者がROS2公式に近いクライアントではあらかたexecutorの実装は行なわれていますが、それ以外のクライアントではあまり実装されていないなという印象です。
-実装に使用したい言語でROS2クライアントがあるかどうか、そのクライアントにExecutor実装があるかを事前に調査して置くとパフォーマンスの高いROS2アプリケーションを
-実装が可能です。</p>
-<h2 id="_3">パフォーマンスを上げるには<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
-<p>ロボットはいわゆるリアルタイムシステムであり、事前に設計した時間までに処理を終わらせていかなければなりません。
-そのためにはパフォーマンスを出せるように意識しながらシステム全体を設計していくことが必要です。</p>
-<h3 id="executor_1">どのExecutorの上でどのノードが動いているかを意識する<a class="headerlink" href="#executor_1" title="Permanent link">#</a></h3>
-<p><a href="https://hakuturu583.github.io/ros_rsj_seminar/ros2/#nodeexecutor">以前の章</a>で示したようにExecutor間で画像や点群といった大容量のデータを通信してしまうと
-大きなレイテンシの原因になりますし、参考文献[1]の発表の図表を見るとComponentを使わなければROS1よりパフォーマンスが劣化してしまう可能性があります。
-そのため、ROS2でシステムを設計する際には広い通信帯域が必要なトピックを同じExecutorに乗せるのを意識することが重要です。
-特に分散計算機環境に於いては、「どの計算機でどの処理を行なうのか」「どうExecutorに乗せると通信待機の消費が少なくなるか」をよく考えながらシステム全体を設計していく必要があります。</p>
-<h3 id="_4">実装する言語を揃える<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
-<p>Pythonで実装されているノードとC++で実装されているノードを同じExecutor上で実行することは原理的に不可能です。
-そのため、実装する言語をある程度揃えておかないとそこがボトルネックになりシステム全体のパフォーマンスに悪影響を及ぼします。</p>
-<h3 id="dds">DDSを選定し、設定を工夫する<a class="headerlink" href="#dds" title="Permanent link">#</a></h3>
-<p>ROS2にはさまざまなDDSが存在します。
-ROS1時代には通信層を交換できずほとんどチューニングできませんでしたが、ROS2からは
-自分のアプリーケーションに合わせてDDSを選定したり、DDSの設定を見直すだけで大きくパフォーマンスは向上します。</p>
-<p>例えば、固定長配列しか用いない、かつ一台のマシンでシステムが完結するのであればzero-copy転送をうたうIceOryxは非常に強力な選択肢になります。
-自分の計算機環境に合わせて適切なDDSを選定し、DDSのドキュメントを読んで適切な設定をしてみましょう。</p>
-<p>ちなみに、参考までに筆者の開発環境では以下のような設定をしています。</p>
-<p>/opt/masaya/cyclonedds_config.xmlに以下のxmlを保存します。</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
-<span class="nt">&lt;CycloneDDS</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"https://cdds.io/config"</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="w"> </span><span class="na">xsi:schemaLocation=</span><span class="s">"https://cdds.io/config https://raw.githubusercontent.com/eclipse-cyclonedds/cyclonedds/master/etc/cyclonedds.xsd"</span><span class="nt">&gt;</span>
-<span class="w">  </span><span class="nt">&lt;Domain</span><span class="w"> </span><span class="na">id=</span><span class="s">"any"</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;General&gt;</span>
-<span class="w">      </span><span class="nt">&lt;NetworkInterfaceAddress&gt;</span>lo<span class="nt">&lt;/NetworkInterfaceAddress&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/General&gt;</span>
-<span class="w">    </span><span class="nt">&lt;Internal&gt;</span>
-<span class="w">      </span><span class="nt">&lt;MinimumSocketReceiveBufferSize&gt;</span>10MB<span class="nt">&lt;/MinimumSocketReceiveBufferSize&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/Internal&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/Domain&gt;</span>
-<span class="nt">&lt;/CycloneDDS&gt;</span>
+<p>つぎに以下のコマンドを実行し、<code>rviz2</code>を起動します。</p>
+<div class="highlight"><pre><span></span><code>rviz2
 </code></pre></div>
-<p>起動時に毎回このスクリプトを実行します。</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CYCLONEDDS_URI</span><span class="o">=</span>file:///opt/masaya/cyclonedds_config.xml
-sudo<span class="w"> </span>sysctl<span class="w"> </span>-w<span class="w"> </span>net.core.rmem_max<span class="o">=</span><span class="m">2147483647</span><span class="w"> </span><span class="c1"># 受信用ウィンドウサイズの上限値を指定</span>
-sudo<span class="w"> </span>ifconfig<span class="w"> </span>lo<span class="w"> </span>multicast<span class="w"> </span><span class="c1"># マルチキャストをローカルネットワークで有効化</span>
+<p>rviz2を起動すると、<code>Frame [map] does not exist</code>というエラーが赤字で表示されていると思います。
+いきなりエラーとは何事か？と思われるかもしれませんが、これは正常な動作です。
+rviz2の描画の基準になる座標系（Fixed Frame）はデフォルトでは<code>map</code>という名前になっていますが、まだ<code>map</code>座標系を計算するノードはありません。
+そのためこの状況はrviz2上ではエラーにはなっているものの、システムの挙動としては正常という状態になります。
+しかしエラー状態では何も描画できないので、Fixed Frameのドロップダウンリストから<code>base_link</code>の選択肢を選びます。</p>
+<p>次にDisplayパネルのAddをクリックし、By Topicパネルを開きます。
+するとそこには現在発行されているトピックとそれに対応する可視化プラグインの一覧があります。
+今回はLiDARのscanデータを可視化したいので、scanを選択してください。
+下の動画に示すような赤い点群が得られたら成功です。</p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="720" src="https://www.youtube.com/embed/NMMXNz6CXwQ" title="YouTube video player" width="1280"></iframe>
+<p>もし、赤い点群が得られたらDisplayパネルから可視化の設定をいじって点群の色を変えてみたり、大きさや描画方法を変更してみてください。</p>
+<p>さらに、<a href="../teleop/">前章</a>で示した遠隔操作ノードと組み合わせるとロボットの動きに合わせてLiDARの計測結果も変化しているのがわかります。</p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="720" src="https://www.youtube.com/embed/AjXtOwsTNlg" title="YouTube video player" width="1280"></iframe>
+<h2 id="_2">ログデータの可視化<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>ロボット、特に重量のある大型ロボットは試験が非常に大変です。
+例えば<a href="https://www.ouxt.jp/">OUXT Polaris</a>が競技に使用しているWAM-Vは組み立てに4人がかりで2~3時間程度必要です。
+そんなロボットを実験する機会というのは非常に貴重であり、開発スケジュールの遅れに繋がります。
+そこで重要な役割を担うのがロギングツールです。
+ROS2ではrosbag2というロギングツールが採用されています。</p>
+<blockquote class="embedly-card"><h4><a href="https://github.com/ros2/rosbag2">GitHub - ros2/rosbag2</a></h4><p>Repository for implementing rosbag2 as described in its corresponding design article. rosbag2 packages are available via debian packages and thus can be installed via $ export CHOOSE_ROS_DISTRO=crystal # rosbag2 is available starting from crystal $ sudo apt-get install ros-$CHOOSE_ROS_DISTRO-ros2bag ros-$CHOOSE_ROS_DISTRO-rosbag2* Note that the above command installs all packages related to rosbag2.</p></blockquote>
+<script async="" charset="UTF-8" src="//cdn.embedly.com/widgets/platform.js"></script>
+<p>rosbag2はデフォルトではsqlite3という形式でデータを保存しますが、性能やcdrに存在する非常につよい制約の関係上mcapという形式を推奨します。
+mcapを使うためには<code>rosbag2_storage_mcap</code>パッケージのインストールが必要です。
+ハンズオン環境にはすでに入っていますので追加は不要ですが、もし今後お手元のロボットで使用するときは<code>rosbag2_storage_mcap</code>のインストールを忘れないようにしましょう。</p>
+<p>ハンズオン環境でgazeboの立ち上げを行なった後、新たにターミナルを立ち上げ、以下のコマンドを実行してrosbagのデータを保存します。
+<code>--storage mcap</code>の指定を忘れるとデフォルトの形式であるsqlite3で保存が行なわれてしまうので気をつけましょう。</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>-a<span class="w"> </span>--storage<span class="w"> </span>mcap
 </code></pre></div>
+<p>もうロギングはいいかな、となったところで<code>ctrl+C</code>でrecordを終了してください。<br/>
+すると、rosbag2_(日付、時刻)というような名前のディレクトリができているはずです。<br/>
+そのディレクトリ内部にある.mcapファイルがrosbagデータの本体です。<br/>
+このファイルの中に何時何分何秒にこのようなデータがpublishされたという記録が残っており、それによって過去の実験データを再生できます。  </p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="720" src="https://www.youtube.com/embed/XHF1vQSpPuo" title="YouTube video player" width="1280"></iframe>
+<p>recordが終わったら<code>*.mcap</code>拡張子のファイルがあるディレクトリにcdした後に以下のコマンドを実行して、どんなデータが記録されたか確認してみましょう。</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>bag<span class="w"> </span>info<span class="w"> </span>.
+</code></pre></div>
+<p><img alt="Not Found" src="../images/ros2_bag_info.png"/></p>
+<div class="highlight"><pre><span></span><code>Files:<span class="w">             </span>rosbag2_2023_02_21-12_21_13_0.mcap
+Bag<span class="w"> </span>size:<span class="w">          </span><span class="m">747</span>.4<span class="w"> </span>KiB
+Storage<span class="w"> </span>id:<span class="w">        </span>mcap
+Duration:<span class="w">          </span><span class="m">5</span>.467s
+Start:<span class="w">             </span>Feb<span class="w"> </span><span class="m">21</span><span class="w"> </span><span class="m">2023</span><span class="w"> </span><span class="m">12</span>:21:13.380<span class="w"> </span><span class="o">(</span><span class="m">1676982073</span>.380<span class="o">)</span>
+End:<span class="w">               </span>Feb<span class="w"> </span><span class="m">21</span><span class="w"> </span><span class="m">2023</span><span class="w"> </span><span class="m">12</span>:21:18.848<span class="w"> </span><span class="o">(</span><span class="m">1676982078</span>.848<span class="o">)</span>
+Messages:<span class="w">          </span><span class="m">1799</span>
+Topic<span class="w"> </span>information:<span class="w"> </span>Topic:<span class="w"> </span>/clock<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>rosgraph_msgs/msg/Clock<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">55</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/tf<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>tf2_msgs/msg/TFMessage<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">265</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/events/write_split<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>rosbag2_interfaces/msg/WriteSplitEvent<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/imu<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>sensor_msgs/msg/Imu<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">1092</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/odom<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>nav_msgs/msg/Odometry<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">160</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/rosout<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>rcl_interfaces/msg/Log<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/joint_states<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>sensor_msgs/msg/JointState<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">160</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/performance_metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>gazebo_msgs/msg/PerformanceMetrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/parameter_events<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>rcl_interfaces/msg/ParameterEvent<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/robot_description<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/tf_static<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>tf2_msgs/msg/TFMessage<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+<span class="w">                   </span>Topic:<span class="w"> </span>/scan<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>sensor_msgs/msg/LaserScan<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+</code></pre></div>
+<p>上記のような出力が得られました。<br/>
+<code>ros2 bag info</code>コマンドを使えば、トピックのロギング漏れなどを確認できます。  </p>
+<p><code>*.mcap</code>拡張子のファイルがあるディレクトリに存在するmetada.yamlにはTopicのQoSに関する情報などのメタデータが記録されています。  </p>
+<p>では次に、<code>ros2 bag play</code>コマンドを使用してrosbagに記録されたデータを再生してみましょう。</p>
+<p>以下のコマンドでrvizを立ち上げます。</p>
+<div class="highlight"><pre><span></span><code>rviz2<span class="w"> </span>-d<span class="w"> </span>/home/ubuntu/.rviz2/rosbag_play.rviz
+</code></pre></div>
+<p><code>-d</code>オプションにはrvizの設定ファイルのパスを指定しますこれによってどのトピックの情報を可視化するかなどを毎回設定する必要がなくなります。</p>
+<p>次に、<code>ros2 bag info</code>コマンドを実行したときと同じディレクトリで下記のコマンドを実行します。</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>bag<span class="w"> </span>play<span class="w"> </span>--storage<span class="w"> </span>mcap
+</code></pre></div>
+<p>するとrosbagが再生され記録されていたデータがrviz上に可視化されました。</p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="720" src="https://www.youtube.com/embed/KUFNgBE3uUc" title="YouTube video player" width="1280"></iframe>
 </article>
 </div>
 </div>
