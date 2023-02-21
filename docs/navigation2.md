@@ -36,8 +36,8 @@ ROS2には以下の3種類の時間ソースがあります。
 シミュレータでros_clockを使用するには各ノードにuse_sim_timeパラメータをTrueに設定する必要があり、その設定を`ros2 launch`コマンド経由で引き渡せるのが`use_sim_time:=True`オプションです。
 逆に実機でnavigation2を使用する場合には`use_sim_time:=Flase`を設定する必要があります。
 
-`slam:=True`オプションはSLAMアルゴリズムを使用して地図を作りながら自己位置推定を行うオプションです。  
-これによって事前に地図を用意することなく自律移動を行うことが可能です。
+`slam:=True`オプションはSLAMアルゴリズムを使用して地図を作りながら自己位置推定を行なうオプションです。  
+これによって事前に地図を用意することなく自律移動を行なうことが可能です。
 デフォルトで使用されれる設定ファイルをみてみると以下のようになっていますので、
 
 <details>
@@ -130,8 +130,8 @@ rviz2上で2D Goal Poseボタンをおして緑の矢印でゴール姿勢を指
 
 ## foxgloveによるrosbag可視化
 
-navigation2を含むROS2ノードでは、一般的に`visualization_msgs/msg/MarkerArray`というrviz2にマーカー描画を行うための専用型にマーカーの姿勢情報などを詰めてROS2 topicとしてpublishしています。  
-この型を使ってデータをpublishしてそれをrosbagに記録しておけば[foxglove](https://foxglove.dev/)という極めて強力なツールを使用することができます。  
+navigation2を含むROS2ノードでは、一般的に`visualization_msgs/msg/MarkerArray`というrviz2にマーカー描画を行なうための専用型にマーカーの姿勢情報などを詰めてROS2 topicとしてpublishしています。  
+この型を使ってデータをpublishしてそれをrosbagに記録しておけば[foxglove](https://foxglove.dev/)という極めて強力なツールを使用できます。  
 [foxglove](https://foxglove.dev/)はもともと[webviz](https://github.com/cruise-automation/webviz)というプロジェクトのforkとしてスタートしました。  
 [foxglove](https://foxglove.dev/)を用いるとrosbagをコマ送りしたりしてロボットの挙動を確認できるので非常に便利です。  
 セットアップは下記のコマンドで完結します。  
@@ -148,7 +148,7 @@ sudo snap install foxglove-studio
 ros2 bag record -a --storage mcap
 ```
 
-rosbagを保存しながら、自律移動でturtlebot3を様々な場所に移動させてみてください。  
+rosbagを保存しながら、自律移動でturtlebot3をさまざまな場所に移動させてみてください。  
 もういいかな、となったら`ctrl+c`でロギングを終了します。  
 
 ロギングが完了したらrosbagを保存したディレクトリに移動し、以下のコマンドを実行します。　　
@@ -295,7 +295,7 @@ foxglove-studioが起動したら、Open Local Fileを選択し先ほど保存�
 ```
 </details>
 
-すると、下記動画のようにrosbagのデータを可視化することができました。
+すると、下記動画のようにrosbagのデータを可視化できました。
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/dbkO2k3_PrU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -303,4 +303,4 @@ foxglove-studioが起動したら、Open Local Fileを選択し先ほど保存�
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/M-lyLBgDjRM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-foxgloveには無料では5GBまでと言った制限はあるものの、データ共有機能などもあるので「研究中に取れた生データを共有して先生に見てもらう」「部室で取れたデータを自宅に帰って分析する」等の使い方ができるので生産性をより高めることができます。  
+foxgloveには無料では5GBまでと言った制限はあるものの、データ共有機能などもあるので「研究中に取れた生データを共有して先生に見てもらう」「部室で取れたデータを自宅に帰って分析する」などの使い方ができるので生産性をより高めることができます。  
