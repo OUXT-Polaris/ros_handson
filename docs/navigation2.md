@@ -139,3 +139,168 @@ navigation2を含むROS2ノードでは、一般的に`visualization_msgs/msg/Ma
 ```bash
 sudo snap install foxglove-studio
 ```
+
+ハンズオン環境にはすでに`foxglove-studio`をインストール済みですので、上記コマンドを実行する必要はありません。  
+
+では、navigation2およびgazeboを立ち上げた状態で新たにシェルを立ち上げて以下のコマンドを実行しrosbagにデータを記録してください。  
+
+```bash
+ros2 bag record -a --storage mcap
+```
+
+rosbagを保存しながら、自律移動でturtlebot3を様々な場所に移動させてみてください。  
+もういいかな、となったら`ctrl+c`でロギングを終了します。  
+
+ロギングが完了したらrosbagを保存したディレクトリに移動し、以下のコマンドを実行します。　　
+
+```bash
+foxglove-studio
+```
+
+foxglove-studioが起動したら、Open Local Fileを選択し先ほど保存したrosbagを選択します。  
+次に、3D Panelの右側にある歯車マークをクリックし、次に３つの点が並んでいるボタンを選びます。  
+すると、Impoer/Export Settingsという文字があるのでそれをして下記のJsonをペーストします。
+
+<details>
+<summary>turtlebot3_navigation.json</summary>
+```json
+{
+  "cameraState": {
+    "perspective": true,
+    "distance": 8.802533373035159,
+    "phi": 58.95409645554882,
+    "thetaOffset": 45,
+    "targetOffset": [
+      0,
+      0,
+      0
+    ],
+    "target": [
+      0,
+      0,
+      0
+    ],
+    "targetOrientation": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "fovy": 45,
+    "near": 0.5,
+    "far": 5000
+  },
+  "followMode": "follow-pose",
+  "followTf": "map",
+  "scene": {
+    "transforms": {
+      "enablePreloading": true,
+      "editable": false,
+      "showLabel": true,
+      "axisScale": 0.5,
+      "lineWidth": 0.5
+    },
+    "enableStats": false
+  },
+  "transforms": {
+    "frame:": {
+      "visible": false
+    },
+    "frame:base_link": {
+      "visible": true
+    },
+    "frame:wheel_left_link": {
+      "visible": false
+    },
+    "frame:wheel_right_link": {
+      "visible": false
+    },
+    "frame:imu_link": {
+      "visible": false
+    },
+    "frame:caster_back_link": {
+      "visible": false
+    },
+    "frame:base_scan": {
+      "visible": false
+    },
+    "frame:base_footprint": {
+      "visible": false
+    },
+    "frame:odom": {
+      "visible": false
+    }
+  },
+  "topics": {
+    "/global_costmap/costmap": {
+      "visible": true
+    },
+    "/global_costmap/clearing_endpoints": {
+      "visible": false,
+      "colorField": "x",
+      "colorMode": "colormap",
+      "colorMap": "turbo"
+    },
+    "/cost_cloud": {
+      "visible": true
+    },
+    "/slam_toolbox/scan_visualization": {
+      "visible": true
+    },
+    "/robot_description": {
+      "visible": false
+    },
+    "/transformed_global_plan": {
+      "visible": false
+    },
+    "/marker": {
+      "visible": false
+    },
+    "/scan": {
+      "visible": false,
+      "colorField": "intensity",
+      "colorMode": "colormap",
+      "colorMap": "turbo"
+    },
+    "/slam_toolbox/graph_visualization": {
+      "visible": false
+    },
+    "/waypoints": {
+      "visible": false
+    },
+    "/global_costmap/published_footprint": {
+      "visible": false
+    },
+    "/plan": {
+      "visible": false
+    },
+    "/local_plan": {
+      "visible": false
+    },
+    "/local_costmap/published_footprint": {
+      "visible": false
+    }
+  },
+  "layers": {},
+  "publish": {
+    "type": "point",
+    "poseTopic": "/move_base_simple/goal",
+    "pointTopic": "/clicked_point",
+    "poseEstimateTopic": "/initialpose",
+    "poseEstimateXDeviation": 0.5,
+    "poseEstimateYDeviation": 0.5,
+    "poseEstimateThetaDeviation": 0.26179939
+  }
+}
+```
+</details>
+
+すると、下記動画のようにrosbagのデータを可視化することができました。
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/dbkO2k3_PrU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+巻き戻しや早送りなどの操作が可能なので、これを使えばロボットのデバッグはかなり容易になります。  
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/M-lyLBgDjRM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+foxgloveには無料では5GBまでと言った制限はあるものの、データ共有機能などもあるので「研究中に取れた生データを共有して先生に見てもらう」「部室で取れたデータを自宅に帰って分析する」等の使い方ができるので生産性をより高めることができます。  
