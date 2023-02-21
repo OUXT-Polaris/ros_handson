@@ -6,10 +6,12 @@ WORKDIR /home/ubuntu/Desktop
 RUN apt-get update && apt-get install -y \
     ros-humble-turtlebot3* \
     ros-humble-navigation* \
+    ros-humble-rosbag2-storage-mcap \
     && rm -rf /var/lib/apt/lists/*
 ENV TURTLEBOT3_MODEL burger
 COPY asound.conf /etc/asound.conf
 ENV LIBGL_ALWAYS_SOFTWARE 1
 RUN mkdir -p /home/ubuntu/Desktop/colcon_ws/src
 WORKDIR /home/ubuntu/Desktop/colcon_ws/src
+COPY rviz/rosbag_play.rviz /home/ubuntu/.rviz2/rosbag_play.rviz
 COPY workspace.repos /home/ubuntu/Desktop/colcon_ws/src/workspace.repos
