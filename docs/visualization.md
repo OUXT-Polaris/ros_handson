@@ -40,7 +40,7 @@ rviz2の描画の基準になる座標系（Fixed Frame）はデフォルトで�
 ## ログデータの可視化
 
 ロボット、特に重量のある大型ロボットは試験が非常に大変です。
-例えばOUXT Polarisが競技に使用しているWAM-Vは組み立てに4人がかりで2~3時間程度必要です。
+例えば[OUXT Polaris](https://www.ouxt.jp/)が競技に使用しているWAM-Vは組み立てに4人がかりで2~3時間程度必要です。
 そんなロボットを実験する機会というのは非常に貴重であり、開発スケジュールの遅れに繋がります。
 そこで重要な役割を担うのがロギングツールです。
 ROS2ではrosbag2というロギングツールが採用されています。
@@ -101,4 +101,23 @@ Topic information: Topic: /clock | Type: rosgraph_msgs/msg/Clock | Count: 55 | S
 
 `*.mcap`拡張子のファイルがあるディレクトリに存在するmetada.yamlにはTopicのQoSに関する情報などのメタデータが記録されています。  
 
+では次に、`ros2 bag play`コマンドを使用してrosbagに記録されたデータを再生してみましょう。
 
+以下のコマンドでrvizを立ち上げます。
+
+```bash
+rviz2 -d /home/ubuntu/.rviz2/rosbag_play.rviz
+```
+
+`-d`オプションにはrvizの設定ファイルのパスを指定しますこれによってどのトピックの情報を可視化するかなどを毎回設定する必要がなくなります。
+
+次に、`ros2 bag info`コマンドを実行したときと同じディレクトリで
+
+```bash
+ros2 bag play --storage mcap
+```
+
+を実行します。
+するとrosbagが再生され記録されていたデータがrviz上に可視化されました。
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/KUFNgBE3uUc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
