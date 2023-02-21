@@ -96,4 +96,3 @@ rqt
 これによってROSを使うと他の人と共同開発する際の意思疎通の失敗により結合ができなくなるリスクを大きく下げることができます。  
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/mh2JlbrpQic" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
