@@ -2,6 +2,7 @@
 
 ## navigation2とは？
 navigation2は、ROS1時代に存在したnavigationパッケージの以下のような反省点を踏まえて再設計された自律移動のためのROS2パッケージ群です。  
+
 - Lifecycleによる決定的launch
 - 状態管理を有限状態機械からBehavior Treeに変更
 - より詳細な部品化（navigationではlocal planner/global planner/localization/recoveryくらいしか主要な部品がない）
