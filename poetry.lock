@@ -1,4 +1,15 @@
 [[package]]
+name = "babel"
+version = "2.11.0"
+description = "Internationalization utilities"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+pytz = ">=2015.7"
+
+[[package]]
 name = "beautifulsoup4"
 version = "4.11.2"
 description = "Screen-scraping library"
@@ -80,6 +91,28 @@ python-dateutil = ">=2.8.1"
 
 [package.extras]
 dev = ["twine", "markdown", "flake8", "wheel"]
+
+[[package]]
+name = "gitdb"
+version = "4.0.10"
+description = "Git Object Database"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+smmap = ">=3.0.1,<6"
+
+[[package]]
+name = "gitpython"
+version = "3.1.31"
+description = "GitPython is a Python library used to interact with Git repositories"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+gitdb = ">=4.0.1,<5"
 
 [[package]]
 name = "idna"
@@ -167,8 +200,21 @@ i18n = ["babel (>=2.9.0)"]
 min-versions = ["babel (==2.9.0)", "click (==7.0)", "colorama (==0.4)", "ghp-import (==1.0)", "importlib-metadata (==4.3)", "jinja2 (==2.11.1)", "markdown (==3.2.1)", "markupsafe (==2.0.1)", "mergedeep (==1.3.4)", "packaging (==20.5)", "pyyaml-env-tag (==0.1)", "pyyaml (==5.1)", "typing-extensions (==3.10)", "watchdog (==2.0)"]
 
 [[package]]
+name = "mkdocs-git-revision-date-localized-plugin"
+version = "1.1.0"
+description = "Mkdocs plugin that enables displaying the localized date of the last git modification of a markdown file."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+babel = ">=2.7.0"
+GitPython = "*"
+mkdocs = ">=1.0"
+
+[[package]]
 name = "mkdocs-material"
-version = "9.0.12"
+version = "9.0.13"
 description = "Documentation that simply works"
 category = "main"
 optional = false
@@ -276,6 +322,14 @@ python-versions = ">=3.6"
 Markdown = ">=3.0"
 
 [[package]]
+name = "pytz"
+version = "2022.7.1"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
@@ -329,12 +383,20 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
-name = "soupsieve"
-version = "2.3.2.post1"
-description = "A modern CSS selector implementation for Beautiful Soup."
+name = "smmap"
+version = "5.0.0"
+description = "A pure Python implementation of a sliding window memory map manager"
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[[package]]
+name = "soupsieve"
+version = "2.4"
+description = "A modern CSS selector implementation for Beautiful Soup."
+category = "main"
+optional = false
+python-versions = ">=3.7"
 
 [[package]]
 name = "urllib3"
@@ -363,9 +425,10 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "ff4833f4f3cb2b4c6d7d65420eee783e718b1d6bb8b7a6ece013bd7c5028c6ae"
+content-hash = "a53675d3d23a1260c09d74aaa65badba70c0122f4e29a4526f2dffbf95ac6812"
 
 [metadata.files]
+babel = []
 beautifulsoup4 = []
 certifi = []
 charset-normalizer = []
@@ -374,6 +437,8 @@ colorama = []
 editorconfig = []
 fontawesome-markdown = []
 ghp-import = []
+gitdb = []
+gitpython = []
 idna = []
 jinja2 = []
 jsbeautifier = []
@@ -381,6 +446,7 @@ markdown = []
 markupsafe = []
 mergedeep = []
 mkdocs = []
+mkdocs-git-revision-date-localized-plugin = []
 mkdocs-material = []
 mkdocs-material-extensions = []
 mkdocs-mermaid2-plugin = []
@@ -390,11 +456,13 @@ pygments = []
 pymdown-extensions = []
 python-dateutil = []
 python-markdown-math = []
+pytz = []
 pyyaml = []
 pyyaml-env-tag = []
 regex = []
 requests = []
 six = []
+smmap = []
 soupsieve = []
 urllib3 = []
 watchdog = []

@@ -1,9 +1,9 @@
 # Project information
 site_name: ros_handson
 site_url: https://ouxt-polaris.github.io/ros_handson/
-site_author: Sanada Tatsuya
+site_author: Masaya Kataoka
 site_description: ''
-copyright: Copyright &copy; 2021 - OUXT Polaris
+copyright: Copyright &copy; 2023 - OUXT Polaris
 
 # Repository
 repo_name: OUXT-Polarisros_handson
@@ -32,6 +32,7 @@ theme:
 
 # Plugins
 plugins:
+  - git-revision-date-localized
   - search
   - mermaid2:
       arguments:
