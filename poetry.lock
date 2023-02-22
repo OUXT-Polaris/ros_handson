@@ -1,4 +1,15 @@
 [[package]]
+name = "babel"
+version = "2.11.0"
+description = "Internationalization utilities"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+pytz = ">=2015.7"
+
+[[package]]
 name = "beautifulsoup4"
 version = "4.11.2"
 description = "Screen-scraping library"
@@ -189,17 +200,17 @@ i18n = ["babel (>=2.9.0)"]
 min-versions = ["babel (==2.9.0)", "click (==7.0)", "colorama (==0.4)", "ghp-import (==1.0)", "importlib-metadata (==4.3)", "jinja2 (==2.11.1)", "markdown (==3.2.1)", "markupsafe (==2.0.1)", "mergedeep (==1.3.4)", "packaging (==20.5)", "pyyaml-env-tag (==0.1)", "pyyaml (==5.1)", "typing-extensions (==3.10)", "watchdog (==2.0)"]
 
 [[package]]
-name = "mkdocs-git-revision-date-plugin"
-version = "0.3.2"
-description = "MkDocs plugin for setting revision date from git per markdown file."
+name = "mkdocs-git-revision-date-localized-plugin"
+version = "1.1.0"
+description = "Mkdocs plugin that enables displaying the localized date of the last git modification of a markdown file."
 category = "main"
 optional = false
-python-versions = ">=3.4"
+python-versions = ">=3.6"
 
 [package.dependencies]
+babel = ">=2.7.0"
 GitPython = "*"
-jinja2 = "*"
-mkdocs = ">=0.17"
+mkdocs = ">=1.0"
 
 [[package]]
 name = "mkdocs-material"
@@ -311,6 +322,14 @@ python-versions = ">=3.6"
 Markdown = ">=3.0"
 
 [[package]]
+name = "pytz"
+version = "2022.7.1"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
@@ -406,9 +425,10 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "a7f7a2598329e3d9ab9052706726bb5974d00e2fba358ab1e667ed1b9e87663c"
+content-hash = "a53675d3d23a1260c09d74aaa65badba70c0122f4e29a4526f2dffbf95ac6812"
 
 [metadata.files]
+babel = []
 beautifulsoup4 = []
 certifi = []
 charset-normalizer = []
@@ -426,7 +446,7 @@ markdown = []
 markupsafe = []
 mergedeep = []
 mkdocs = []
-mkdocs-git-revision-date-plugin = []
+mkdocs-git-revision-date-localized-plugin = []
 mkdocs-material = []
 mkdocs-material-extensions = []
 mkdocs-mermaid2-plugin = []
@@ -436,6 +456,7 @@ pygments = []
 pymdown-extensions = []
 python-dateutil = []
 python-markdown-math = []
+pytz = []
 pyyaml = []
 pyyaml-env-tag = []
 regex = []
