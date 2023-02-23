@@ -7,8 +7,8 @@ Dockerのインストール手順は[こちら](https://docs.docker.com/engine/i
 WindowsでのDockerのインストール手順は[こちら](docker_install_for_windows.md)
 
 !!! note
-Dockerはインストール直後だとsudoをつけないと動かないです。
-インストール後必ず以下のコマンドを実行し、パソコンの再起動を行なってください。
+    Dockerはインストール直後だとsudoをつけないと動かないです。
+    インストール後必ず以下のコマンドを実行し、パソコンの再起動を行なってください。
 
     ```
     sudo gpasswd -a $USER docker
@@ -23,9 +23,9 @@ Dockerはインストール直後だとsudoをつけないと動かないです�
     `Hello from Docker!`を含む出力が得られていればDockerのインストールは正常に完了しています。
 
 !!! warning
-本教材を執筆するにあたって筆者が使用している環境は`Ubuntu22.04`です。  
- Dockerが動けば他のOSでも動く可能性はあるとは思います。  
- ただしM1 Macなどの非x86系CPUの上だと多分動かないです。
+    本教材を執筆するにあたって筆者が使用している環境は`Ubuntu22.04`です。  
+    Dockerが動けば他のOSでも動く可能性はあるとは思います。  
+    ただしM1 Macなどの非x86系CPUの上だと多分動かないです。
 
 Dockerはソフトウェアの動作似必要なライブラリ群を1つにまとめ、共有できる仕組みです。  
 あたかも仮想マシンのように(厳密にはコンテナ仮想化といいます)振る舞い、`docker pulll`や`docker run`といったコマンドを叩くだけでかんたんに環境を再現できます。　　
@@ -33,7 +33,7 @@ Dockerはソフトウェアの動作似必要なライブラリ群を1つにま�
 1つのDocker Imageから複数のDocker Containerを作って同時に動かすことも可能です。
 Docker Imageが本体、Docker Containerが分身という関係性あると考えるとわかりやすいかもしれません。
 
-## Docker image の起動
+## Docker Imageの起動
 
 Docker Imageはgithub actionsというツールを使用して自動的にビルドされgithub container registryにおいてあります。
 そのためビルドする必要はありません。
@@ -59,7 +59,7 @@ gazebo
 ![Not Found](images/launch_gazebo.png)
 
 !!! warning
-円滑な開催のため、ハンズオン会場に来られる前にここまでは必ず動作確認をお願いします。
+    円滑な開催のため、ハンズオン会場に来られる前にここまでは必ず動作確認をお願いします。
 
 今回はこの環境使ってハンズオンを進めていこうとおもいます。
 
