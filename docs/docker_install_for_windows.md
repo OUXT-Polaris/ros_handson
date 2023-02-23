@@ -9,7 +9,7 @@ https://docs.docker.jp/docker-for-windows/install.html
 
 ![Docker docs](images/docker_install_for_windows/1.PNG)
 
-Docker Hubからダウンロードをクリック
+Docker Hubからダウンロードをクリックします。
 
 ![インストール先](images/docker_install_for_windows/2.PNG)
 
@@ -34,14 +34,12 @@ OKを押して進めましょう。
 ![同意画面](images/docker_install_for_windows/7.PNG)
 
 Acceptを押したら完了です。
-
-もしかしたらwslのアップデートをしてくれと言われる場合も有ります。そしたら、PowerShellに
+もしかしたらwslのアップデートをしてくれと言われる場合も有ります。そしたら、PowerShellに以下のコマンドを入力してアップデートしましょう。
 
 ```
 wsl --update
 ```
 
-を入力してアップデートしましょう。
 ![powershell](images/docker_install_for_windows/8.PNG)
 
 Docker Desktopが起動するとこんな感じの画面になります。
@@ -73,13 +71,11 @@ gazeboを起動するためのターミナルはここにあります。
 イメージをストップするにはDocker Desktopの画面で停止アイコンを押します。
 ![停止方法](images/docker_install_for_windows/17.PNG)
 
-もう一度起動するには再度PowerShellで
+もう一度起動するには再度PowerShellで以下のコマンド入力すれば良いです。起動にはちょっと時間がかかります。
 
 ```
 docker run --rm -p 6080:80 --shm-size=4096m --security-opt seccomp=unconfined ghcr.io/ouxt-polaris/ros_handson/ros_handson:latest
 ```
-
-を入力すれば良いです。起動にはちょっと時間がかかります。
 
 # 参考文献
 
