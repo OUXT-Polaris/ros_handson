@@ -177,12 +177,12 @@
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#docker-image">
-    Docker imageの起動
+    Docker image の起動
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#vscode">
-    VScodeのインストール
+    VScode のインストール
   </a>
 </li>
 </ul>
@@ -226,30 +226,37 @@
 <h1 id="_1">セットアップ方法<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
 <p>本教材では、トラブルを避けるためDockerで環境構築を行ないます。
 そのため、事前にDockerのインストールを済ませておいてください。</p>
-<p>Dockerのインストール手順は<a href="https://docs.docker.com/engine/install/ubuntu/">こちら</a></p>
+<p>Dockerのインストール手順は<a href="https://docs.docker.com/engine/install/ubuntu/">こちら</a>
+WindowsでのDockerのインストール手順は<a href="../docker_install_for_windows/">こちら</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+</div>
 <p>Dockerはインストール直後だとsudoをつけないと動かないです。
 インストール後必ず以下のコマンドを実行し、パソコンの再起動を行なってください。</p>
-<div class="highlight"><pre><span></span><code>sudo gpasswd -a $USER docker
+<div class="codehilite"><pre><span></span><code>```
+sudo gpasswd -a $USER docker
+```
+
+以下のコマンドを入力して
+
+```
+docker run hello-world
+```
+
+`Hello from Docker!`を含む出力が得られていればDockerのインストールは正常に完了しています。
 </code></pre></div>
-<p>以下のコマンドを入力して</p>
-<div class="highlight"><pre><span></span><code>docker run hello-world
-</code></pre></div>
-<p><code>Hello from Docker!</code>を含む出力が得られていればDockerのインストールは正常に完了しています。</p>
-</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>本教材を執筆するにあたって筆者が使用している環境は<code>Ubuntu22.04</code>です。<br/>
-Dockerが動けば他のOSでも動く可能性はあるとは思います。<br/>
-ただしM1 Macなどの非x86系CPUの上だと多分動かないです。  </p>
 </div>
+<p>本教材を執筆するにあたって筆者が使用している環境は<code>Ubuntu22.04</code>です。<br/>
+ Dockerが動けば他のOSでも動く可能性はあるとは思います。<br/>
+ ただしM1 Macなどの非x86系CPUの上だと多分動かないです。</p>
 <p>Dockerはソフトウェアの動作似必要なライブラリ群を1つにまとめ、共有できる仕組みです。<br/>
 あたかも仮想マシンのように(厳密にはコンテナ仮想化といいます)振る舞い、<code>docker pulll</code>や<code>docker run</code>といったコマンドを叩くだけでかんたんに環境を再現できます。　　
 このとき、動作環境に必要なファイルを1つにまとめたものを「Docker Image」、そのファイルから作られた動作環境のことを「Docker Container」といいます。
 1つのDocker Imageから複数のDocker Containerを作って同時に動かすことも可能です。
 Docker Imageが本体、Docker Containerが分身という関係性あると考えるとわかりやすいかもしれません。</p>
-<h2 id="docker-image">Docker imageの起動<a class="headerlink" href="#docker-image" title="Permanent link">#</a></h2>
+<h2 id="docker-image">Docker image の起動<a class="headerlink" href="#docker-image" title="Permanent link">#</a></h2>
 <p>Docker Imageはgithub actionsというツールを使用して自動的にビルドされgithub container registryにおいてあります。
 そのためビルドする必要はありません。
 github actionsはgithubで開発を行なうときに使用できる非常に強力なCI/CDツールで皆さんの競技活動、研究活動を大きく効率化してくれますので、付録に使い方を載せておきます。</p>
@@ -265,19 +272,19 @@ VNCが立ち上がるので、ブラウザからDocker Conteiner内部の環境�
 <p><img alt="Not Found" src="../images/launch_gazebo.png"/></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>円滑な開催のため、ハンズオン会場に来られる前にここまでは必ず動作確認をお願いします。  </p>
 </div>
+<p>円滑な開催のため、ハンズオン会場に来られる前にここまでは必ず動作確認をお願いします。</p>
 <p>今回はこの環境使ってハンズオンを進めていこうとおもいます。</p>
-<h2 id="vscode">VScodeのインストール<a class="headerlink" href="#vscode" title="Permanent link">#</a></h2>
+<h2 id="vscode">VScode のインストール<a class="headerlink" href="#vscode" title="Permanent link">#</a></h2>
 <p>こちらはマストではありませんが、あれば非常に楽です。<br/>
 今回のハンズオンでは基本的にVNC上で操作は完結しますが、Docker Containerに接続しデータをコピーしたりできるため、<a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code">VSCode</a>
-および<a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">DevContainerプラグイン</a>はあったほうが何かと便利かと思われます。</p>
+および<a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">DevContainer プラグイン</a>はあったほうが何かと便利かと思われます。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 22, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 23, 2023</span>
 </small>
 </div>
 </article>

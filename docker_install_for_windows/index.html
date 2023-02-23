@@ -6,26 +6,25 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Masaya Kataoka" name="author"/>
-<link href="https://ouxt-polaris.github.io/ros_handson/" rel="canonical"/>
-<link href="how_to_setup/" rel="next"/>
-<link href="images/favicon.png" rel="icon"/>
+<link href="https://ouxt-polaris.github.io/ros_handson/docker_install_for_windows/" rel="canonical"/>
+<link href="../images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.13" name="generator"/>
-<title>ros_handson</title>
-<link href="assets/stylesheets/main.ffa9267a.min.css" rel="stylesheet"/>
-<link href="assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<title>Windows での Docker のセットアップ - ros_handson</title>
+<link href="../assets/stylesheets/main.ffa9267a.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="stylesheets/extra.css" rel="stylesheet"/>
+<link href="../stylesheets/extra.css" rel="stylesheet"/>
 <link href="https://use.fontawesome.com/releases/v5.15.0/css/all.css" rel="stylesheet"/>
-<script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#_1">
+<a class="md-skip" href="#windows-docker">
           Skip to content
         </a>
 </div>
@@ -33,7 +32,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="ros_handson" class="md-header__button md-logo" data-md-component="logo" href="." title="ros_handson">
+<a aria-label="ros_handson" class="md-header__button md-logo" data-md-component="logo" href=".." title="ros_handson">
 <svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h120c39.8 0 72 32.2 72 72v272c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72h120V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256a40 40 0 1 0-80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -49,7 +48,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Home
+              Windows での Docker のセットアップ
             
           </span>
 </div>
@@ -102,17 +101,17 @@
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href=".">
+<a class="md-tabs__link" href="..">
       Home
     </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="how_to_setup/">
+<a class="md-tabs__link" href="../how_to_setup/">
         ハンズオン資料
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="appendix/">
+<a class="md-tabs__link" href="../appendix/">
       付録
     </a>
 </li>
@@ -126,7 +125,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="ros_handson" class="md-nav__button md-logo" data-md-component="logo" href="." title="ros_handson">
+<a aria-label="ros_handson" class="md-nav__button md-logo" data-md-component="logo" href=".." title="ros_handson">
 <svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h120c39.8 0 72 32.2 72 72v272c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72h120V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256a40 40 0 1 0-80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"></path></svg>
 </a>
     ros_handson
@@ -142,37 +141,10 @@
 </a>
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Home
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href=".">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
         Home
       </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    執筆者
-  </a>
-<nav aria-label="執筆者" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-    片岡　大哉
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
@@ -187,27 +159,27 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="how_to_setup/">
+<a class="md-nav__link" href="../how_to_setup/">
         環境構築
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="what_is_ros2/">
+<a class="md-nav__link" href="../what_is_ros2/">
         ROS2とは?
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="teleop/">
+<a class="md-nav__link" href="../teleop/">
         遠隔操作
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="visualization/">
+<a class="md-nav__link" href="../visualization/">
         可視化とロギング
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="navigation2/">
+<a class="md-nav__link" href="../navigation2/">
         navigation2による自律移動
       </a>
 </li>
@@ -215,7 +187,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="appendix/">
+<a class="md-nav__link" href="../appendix/">
         付録
       </a>
 </li>
@@ -226,22 +198,53 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
-<p>本教材は主にロボット競技参加者およびロボットの研究活動をROS2を使ってされたい方向けに執筆しています。
-本教材では、ROBOTIS社の<a href="https://e-shop.robotis.co.jp/list.php?c_id=93">Turtlebot3</a>をgazebo上でシミュレーションし、簡易なプランナーを動かします。
-環境構築などが容易、確実に行なえるように、Dockerを用いて本教材は作られています。</p>
-<p>本教材のライセンスはApache 2.0を採用しています。自由に改変、再配布大歓迎です。<br/>
-PRやstarが来ると泣いて喜びます。  </p>
-<p>本教材では主に自律移動ロボットを取り扱うため、自律移動ロボットの手法をざっくりまとめておいた資料をここにおいておきます。</p>
-<iframe allowfullscreen="true" frameborder="0" height="569" mozallowfullscreen="true" src="https://docs.google.com/presentation/d/e/2PACX-1vQ11gd0tPfWhOa652w0bt01zgib3Y7R5WjTVRF-rQGdXBkQADehGDdyCpI8DRWFNnW7isL6yjMQMlUS/embed?start=false&amp;loop=false&amp;delayms=3000" webkitallowfullscreen="true" width="960"></iframe>
-<p>本教材に付随する動画資料はこちらの再生リストにアップロードしています。</p>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/videoseries?list=PLA4Amxy1u54lbV2EbswBcVWUSNDWjle55" title="YouTube video player" width="560"></iframe>
-<h2 id="_2">執筆者<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
-<h3 id="_3">片岡　大哉<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
-<p>OUXT Polarisで自律航行ソフトを書いて遊んでる人、お仕事は自動運転のCI/CDをやってるらしい、<a href="https://twitter.com/hakuturu583">ツイ廃</a><br/>
-質問事項は本リポジトリにIssueを立ててもらっても構いませんが、TwitterでDMやリプ飛ばすのが一番早いです。<br/>
-M1のインターンのときにROS1を使い始め、robocup / RobotX / 修論の研究はROSでシステムを作りました。<br/>
-ROS歴は7年くらい？</p>
+<h1 id="windows-docker">Windows での Docker のセットアップ<a class="headerlink" href="#windows-docker" title="Permanent link">#</a></h1>
+<p>windows 10でのdockerのインストール方法についての簡単な説明です。</p>
+<h2 id="1-docker-desktop-for-windows">1. Docker Desktop for Windows のインストール<a class="headerlink" href="#1-docker-desktop-for-windows" title="Permanent link">#</a></h2>
+<p>https://docs.docker.jp/docker-for-windows/install.html
+を参照してDockerDesktopをインストールしましょう。</p>
+<p><img alt="Docker docs" src="../images/docker_install_for_windows/1.PNG"/></p>
+<p>Docker Hubからダウンロードをクリックします。</p>
+<p><img alt="インストール先" src="../images/docker_install_for_windows/2.PNG"/></p>
+<p>ダウンロードしたらこんな感じです
+。
+<img alt="ダウンロードしたフォルダ" src="../images/docker_install_for_windows/3.PNG"/></p>
+<p>Docker Desktop Installer.exeをクリックするとインストーラーが立ち上がります。</p>
+<p><img alt="インストーラー起動後" src="../images/docker_install_for_windows/4.PNG"/></p>
+<p>OKを押して進めましょう。</p>
+<p><img alt="インストール中" src="../images/docker_install_for_windows/5.PNG"/></p>
+<p><img alt="インストール終わり" src="../images/docker_install_for_windows/6.PNG"/></p>
+<p>ここまで来たら再起動しましょう。</p>
+<p>再起動後、こんな画面が出ると思います。</p>
+<p><img alt="同意画面" src="../images/docker_install_for_windows/7.PNG"/></p>
+<p>Acceptを押したら完了です。
+もしかしたらwslのアップデートをしてくれと言われる場合も有ります。そしたら、PowerShellに以下のコマンドを入力してアップデートしましょう。</p>
+<div class="highlight"><pre><span></span><code>wsl --update
+</code></pre></div>
+<p><img alt="powershell" src="../images/docker_install_for_windows/8.PNG"/></p>
+<p>Docker Desktopが起動するとこんな感じの画面になります。</p>
+<p><img alt="DockerDesktop" src="../images/docker_install_for_windows/10.PNG"/></p>
+<h1 id="_1">イメージのダウンロード<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<p>Docker imageをダウンロードします。</p>
+<div class="highlight"><pre><span></span><code>docker run --rm -p 6080:80 --shm-size=4096m --security-opt seccomp=unconfined ghcr.io/ouxt-polaris/ros_handson/ros_handson:latest
+</code></pre></div>
+<p>このコマンドをコピーしてPowerShellに入力してください。
+<img alt="Image" src="../images/docker_install_for_windows/11.PNG"/>
+<img alt="Powershell" src="../images/docker_install_for_windows/12.PNG"/></p>
+<p>ダウンロードが始まるとこんな感じです。
+<img alt="ダウンロード中" src="../images/docker_install_for_windows/13.PNG"/>
+<img alt="起動後" src="../images/docker_install_for_windows/14.PNG"/>
+ダウンロードが終わるとイメージが起動して、127.0.0.1:6080に接続できるようになります。</p>
+<p>gazeboを起動するためのターミナルはここにあります。
+<img alt="ターミナル" src="../images/docker_install_for_windows/16.PNG"/></p>
+<h1 id="_2">その他<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<p>イメージをストップするにはDocker Desktopの画面で停止アイコンを押します。
+<img alt="停止方法" src="../images/docker_install_for_windows/17.PNG"/></p>
+<p>もう一度起動するには再度PowerShellで以下のコマンド入力すれば良いです。起動にはちょっと時間がかかります。</p>
+<div class="highlight"><pre><span></span><code>docker run --rm -p 6080:80 --shm-size=4096m --security-opt seccomp=unconfined ghcr.io/ouxt-polaris/ros_handson/ros_handson:latest
+</code></pre></div>
+<h1 id="_3">参考文献<a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<p>https://github.com/AI-Robot-Book/chapter1/tree/main/docker</p>
 <hr/>
 <div class="md-source-file">
 <small>
@@ -287,8 +290,8 @@ ROS歴は7年くらい？</p>
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.expand", "navigation.top", "toc.integrate"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="assets/javascripts/bundle.2a6f1dda.min.js"></script>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.expand", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
 <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
