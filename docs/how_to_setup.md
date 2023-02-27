@@ -4,29 +4,28 @@
 そのため、事前にDockerのインストールを済ませておいてください。
 
 Dockerのインストール手順は[こちら](https://docs.docker.com/engine/install/ubuntu/)
+WindowsでのDockerのインストール手順は[こちら](docker_install_for_windows.md)
 
 !!! note
     Dockerはインストール直後だとsudoをつけないと動かないです。
     インストール後必ず以下のコマンドを実行し、パソコンの再起動を行なってください。
-    
+
     ```
     sudo gpasswd -a $USER docker
     ```
-    
+
     以下のコマンドを入力して
-    
+
     ```
     docker run hello-world
     ```
 
     `Hello from Docker!`を含む出力が得られていればDockerのインストールは正常に完了しています。
 
-
 !!! warning
     本教材を執筆するにあたって筆者が使用している環境は`Ubuntu22.04`です。  
     Dockerが動けば他のOSでも動く可能性はあるとは思います。  
-    ただしM1 Macなどの非x86系CPUの上だと多分動かないです。  
-
+    ただしM1 Macなどの非x86系CPUの上だと多分動かないです。
 
 Dockerはソフトウェアの動作似必要なライブラリ群を1つにまとめ、共有できる仕組みです。  
 あたかも仮想マシンのように(厳密にはコンテナ仮想化といいます)振る舞い、`docker pulll`や`docker run`といったコマンドを叩くだけでかんたんに環境を再現できます。　　
@@ -34,7 +33,7 @@ Dockerはソフトウェアの動作似必要なライブラリ群を1つにま�
 1つのDocker Imageから複数のDocker Containerを作って同時に動かすことも可能です。
 Docker Imageが本体、Docker Containerが分身という関係性あると考えるとわかりやすいかもしれません。
 
-## Docker imageの起動
+## Docker Imageの起動
 
 Docker Imageはgithub actionsというツールを使用して自動的にビルドされgithub container registryにおいてあります。
 そのためビルドする必要はありません。
@@ -60,12 +59,12 @@ gazebo
 ![Not Found](images/launch_gazebo.png)
 
 !!! warning
-    円滑な開催のため、ハンズオン会場に来られる前にここまでは必ず動作確認をお願いします。  
+    円滑な開催のため、ハンズオン会場に来られる前にここまでは必ず動作確認をお願いします。
 
 今回はこの環境使ってハンズオンを進めていこうとおもいます。
 
-## VScodeのインストール
+## VScode のインストール
 
 こちらはマストではありませんが、あれば非常に楽です。  
 今回のハンズオンでは基本的にVNC上で操作は完結しますが、Docker Containerに接続しデータをコピーしたりできるため、[VSCode](https://azure.microsoft.com/ja-jp/products/visual-studio-code)
-および[DevContainerプラグイン](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)はあったほうが何かと便利かと思われます。
+および[DevContainer プラグイン](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)はあったほうが何かと便利かと思われます。
