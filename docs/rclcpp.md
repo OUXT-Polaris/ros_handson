@@ -7,7 +7,7 @@
 `ros2 pkg create`コマンドを使用し、実際にパッケージを作ってみましょう。  
 
 ```bash
-ros2 pkg create tutorial --dependencies rclcpp ament_cmake_auto geometry_msgs --library-name publish --license Apache-2.0
+ros2 pkg create tutorial --dependencies rclcpp rclcpp_components ament_cmake_auto geometry_msgs --library-name publish --license Apache-2.0
 ```
 
 このコマンドを実行すると`tutorial`という名前のROS2パッケージが出来上がります。
@@ -29,47 +29,11 @@ ros2 pkg create tutorial --dependencies rclcpp ament_cmake_auto geometry_msgs --
 
 ## CMakeLists.txtの編集
 
-パッケージを作った段階では、ament_cmake_autoは使われていません、このままではとても記述が面倒なのでCMakeLists.txtを以下のように書き換え、ament_cmake_autoを使ってみましょう。
-
-<details>
-<summary>CMakeLists.txt</summary>
-```CMakeLists.txt
-cmake_minimum_required(VERSION 3.8)
-project(tutorial)
-
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
-
-# find dependencies
-find_package(ament_cmake_auto REQUIRED)
-ament_auto_find_build_dependencies()
-
-ament_auto_add_library(subscribe src/subscribe.cpp)
-ament_auto_add_library(publish src/publish.cpp)
-
-install(
-  DIRECTORY include/
-  DESTINATION include
-)
-
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  set(ament_cmake_copyright_FOUND TRUE)
-  set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
-
-ament_auto_package()
-```
-</details>
-
+パッケージを作った段階では、ament_cmake_autoは使われていません、このままではとても記述が面倒なのでCMakeLists.txtを[このファイル](https://github.com/OUXT-Polaris/ros_handson_packages/blob/master/tutorial/CMakeLists.txt)のように書き換え、ament_cmake_autoを使ってみましょう。
 だいぶスッキリしたかと思います。  
 では、次に共有ライブラリ側にPublisher/Subscriberを実装し、Pub/Sub通信をしていきたいと思います。  
 
 ## Publisher/Subscriberの実装
-tutorialパッケージのincludeディレクトリに以下のsubscriber.hppを置きます。  
-
-```C++
-
-```
+tutorialパッケージのincludeディレクトリに[subscribe.hpp](https://github.com/OUXT-Polaris/ros_handson_packages/blob/master/tutorial/include/tutorial/subscribe.hpp)と
+[publish.hpp](https://github.com/OUXT-Polaris/ros_handson_packages/blob/master/tutorial/include/tutorial/publish.hpp)をコピーします。  
+また、それとは別にマルチプラットフォーム対応マクロをまとめた[visibility_control.h](https://github.com/OUXT-Polaris/ros_handson_packages/blob/master/tutorial/include/tutorial/visibility_control.h)をコピーします。  
