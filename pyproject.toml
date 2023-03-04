@@ -15,6 +15,7 @@ pymdown-extensions = "*"
 plantuml-markdown = "*"
 python-markdown-math = "*"
 mkdocs-git-revision-date-localized-plugin = "*"
+mkdocs-gitsnippet-plugin = "*"
 
 [tool.poetry.dev-dependencies]
 

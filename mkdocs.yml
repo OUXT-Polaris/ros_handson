@@ -33,6 +33,7 @@ theme:
 # Plugins
 plugins:
   - git-revision-date-localized
+  - gitsnippet
   - search
   - mermaid2:
       arguments:
