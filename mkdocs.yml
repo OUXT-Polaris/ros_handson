@@ -105,5 +105,5 @@ nav:
     - 遠隔操作: teleop.md
     - 可視化とロギング: visualization.md
     - navigation2による自律移動: navigation2.md
-    - 自作ノードの作り方(C++): rclcpp.md
+    - C++によるpub/sub通信: rclcpp.md
   - 付録: appendix.md
