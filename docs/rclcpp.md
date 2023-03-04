@@ -33,7 +33,7 @@ ros2 pkg create tutorial --dependencies rclcpp rclcpp_components ament_cmake_aut
 
 パッケージを作った段階では、ament_cmake_autoは使われていません、このままではとても記述が面倒なのでCMakeLists.txtを[このファイル](https://github.com/OUXT-Polaris/ros_handson_packages/blob/master/tutorial/CMakeLists.txt)のように書き換え、ament_cmake_autoを使ってみましょう。
 だいぶスッキリしたかと思います。  
-では、次に共有ライブラリ側にPublisher/Subscriberを実装し、Pub/Sub通信をしていきたいと思います。  
+では、次に共有ライブラリにPublisher/Subscriberを実装し、Pub/Sub通信をしていきたいと思います。  
 
 ## Publisher/Subscriberの実装
 tutorialパッケージのincludeディレクトリに[subscribe.hpp](https://github.com/OUXT-Polaris/ros_handson_packages/blob/master/tutorial/include/tutorial/subscribe.hpp)と
@@ -44,7 +44,7 @@ tutorialパッケージのincludeディレクトリに[subscribe.hpp](https://gi
 
 ## コンパイル
 
-全てのコードのコピーが終了したら、次はコンパイルです。  
+すべてのコードのコピーが終了したら、次はコンパイルです。  
 コンパイルには`colcon build`コマンドを利用しますがその際にはワークスペースのルートディレクトリに移動する必要があります。  
 
 ```bash
@@ -52,7 +52,7 @@ cd /home/ubuntu/Desktop/colcon_ws
 colcon build --symlink-install
 ```
 
-colcon buildには様々なオプションがありますが、その中でも便利なものは[こちらの記事](https://qiita.com/seshimaru/items/ed344530ead80ab1733f)にまとめられています。
+colcon buildには様々なオプションがありますが、そのなかでも便利なものは[こちらの記事](https://qiita.com/seshimaru/items/ed344530ead80ab1733f)にまとめられています。
 
 ## 自作ノードの実行
 
@@ -63,13 +63,13 @@ source install/local_setup.bash
 ros2 run tutorial pub_sub_node
 ```
 
-ros2 runコマンドはビルドした実行ファイルを一つ実行するコマンドです。  
+ros2 runコマンドはビルドした実行ファイルを1つ実行するコマンドです。  
 
 ```bash
 ros2 run (パッケージ名) (実行ファイル名)
 ```
 
-という形で命令を行います。
+という形で命令を行ないます。
 
 ros2 run コマンドを実行すると以下のような出力が得られるはずです。  
 
@@ -119,19 +119,19 @@ ROS1時代は原則的に「1プロセス1ノード」でした、そのため1�
 しかし、上の画像を見ると確かに2つのノードが1回`ros2 run`コマンドを実行するだけで起動しています。  
 ここがROS1とROS2の大きな差です。  
 ROS2は「1プロセス1ノード」の原則はありません、1つのプロセスに好きなだけノードを乗せることができます。（ただし載せすぎると思わぬ副作用を生じさせてしまったりするので何でもかんでも1つにしたほうがいいというわけではないです。）　　
-同じプロセスに乗っているノードは計算機から見ると同じプロセスのプログラムなのでメモリアドレスの範囲を共有しており、ROS2はそれを利用して同じプロセスに乗っているノード間でのゼロコピー通信を行います。  
+同じプロセスに乗っているノードは計算機から見ると同じプロセスのプログラムなのでメモリアドレスの範囲を共有しており、ROS2はそれを利用して同じプロセスに乗っているノード間でのゼロコピー通信を行ないます。  
 
 このゼロコピー通信は非常に高速で画像を圧縮する時間よりも生画像をゼロコピー通信で送るほうが高速であるという結果が得られている程です。  
 
 <blockquote class="embedly-card"><h4><a href="https://qiita.com/Ke_N_551/items/d8637ddc806f94260ba8">ROS2で同一デバイス内画像通信の遅延について知りたくて色々試した話 - Qiita</a></h4><p>単一デバイス（Ultra96）内でROS2通信を利用して画像を送受信した場合、 画像のサイズ、圧縮するか否か、使用するDDS、などを変えて画像の送受信にかかる時間を測定・評価しました。どちらかというと通信遅延そのものについての評価というより、画像を送信する際にかかる時間の評価です。ですので、圧縮画像送信の際には画像の圧縮にかかる時間も遅延時間に含んでいたりします。</p></blockquote>
 <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
 
-ROS2で安定したシステムを構築するには「どのノードとどのノードが同じプロセスに乗っているか？」を意識してコーディングおよびシステム設計を行うことが重要です。  
+ROS2で安定したシステムを構築するには「どのノードとどのノードが同じプロセスに乗っているか？」を意識してコーディングおよびシステム設計を行なうことが重要です。  
 筆者は普段の開発では
 
 - 頻繁に大容量の通信をするノード同士は同じプロセスに乗せる
     - 特にLiDAR/Cameraのデータは重く、レートもそこそこ高い
-    - 認識後のデータは軽いので、センシング処理から認識処理までを一つのプロセスに固めることが多い
+    - 認識後のデータは軽いので、センシング処理から認識処理までを1つのプロセスに固めることが多い
 - トピックのドロップ率を下げたいノード同士は同じプロセスに乗せる
     - QoSによる再送機能はあるものの、パケット通信は確実に到達するわけではない
 
