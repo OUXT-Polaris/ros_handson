@@ -9,9 +9,9 @@
 <link href="https://ouxt-polaris.github.io/ros_handson/" rel="canonical"/>
 <link href="how_to_setup/" rel="next"/>
 <link href="images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.4.2, mkdocs-material-9.0.13" name="generator"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.0" name="generator"/>
 <title>ros_handson</title>
-<link href="assets/stylesheets/main.ffa9267a.min.css" rel="stylesheet"/>
+<link href="assets/stylesheets/main.402914a4.min.css" rel="stylesheet"/>
 <link href="assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -211,6 +211,11 @@
         navigation2による自律移動
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="rclcpp/">
+        C++によるpub/sub通信
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -236,6 +241,10 @@ PRやstarが来ると泣いて喜びます。  </p>
 <iframe allowfullscreen="true" frameborder="0" height="569" mozallowfullscreen="true" src="https://docs.google.com/presentation/d/e/2PACX-1vQ11gd0tPfWhOa652w0bt01zgib3Y7R5WjTVRF-rQGdXBkQADehGDdyCpI8DRWFNnW7isL6yjMQMlUS/embed?start=false&amp;loop=false&amp;delayms=3000" webkitallowfullscreen="true" width="960"></iframe>
 <p>本教材に付随する動画資料はこちらの再生リストにアップロードしています。</p>
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/videoseries?list=PLA4Amxy1u54lbV2EbswBcVWUSNDWjle55" title="YouTube video player" width="560"></iframe>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>円滑な開催のため、開催までに基礎的なlinuxの操作(cdやlsコマンド等)およびC++の基礎知識(継承を使ったかんたんなプログラミングができる程度とスマートポインタについて軽く知っているレベルで問題ありません。)の習得をお願いします。</p>
+</div>
 <h2 id="_2">執筆者<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
 <h3 id="_3">片岡　大哉<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
 <p>OUXT Polarisで自律航行ソフトを書いて遊んでる人、お仕事は自動運転のCI/CDをやってるらしい、<a href="https://twitter.com/hakuturu583">ツイ廃</a><br/>
@@ -247,7 +256,7 @@ ROS歴は7年くらい？</p>
 <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 23, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 5, 2023</span>
 </small>
 </div>
 </article>
@@ -288,7 +297,7 @@ ROS歴は7年くらい？</p>
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.expand", "navigation.top", "toc.integrate"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="assets/javascripts/bundle.2a6f1dda.min.js"></script>
+<script src="assets/javascripts/bundle.ce72ebac.min.js"></script>
 <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
