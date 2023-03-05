@@ -1,6 +1,7 @@
 FROM tiryoh/ros2-desktop-vnc:humble-amd64-20230115T1406
 ENV GAZEBO_MODEL_PATH /home/ubuntu/Desktop/gazebo_models
 WORKDIR /home/ubuntu/Desktop
+ADD https://api.github.com/repos/osrf/gazebo_models/git/refs/heads/master model_version.json
 RUN git clone https://github.com/osrf/gazebo_models.git
 WORKDIR /home/ubuntu/Desktop
 RUN apt-get update && apt-get install -y \

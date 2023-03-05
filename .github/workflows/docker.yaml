@@ -5,12 +5,6 @@ on:
   schedule:
     - cron: 0 0 * * *
   pull_request:
-    paths:
-      - '**'
-      - '!docs/**'
-      - '!README.md'
-      - '!.github/**'
-      - '.github/workflows/docker.yaml'
   push:
     branches:
       - master
@@ -37,3 +31,5 @@ jobs:
           tags: ghcr.io/ouxt-polaris/ros_handson/ros_handson:latest
           no-cache: true
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
