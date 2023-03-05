@@ -15,6 +15,9 @@ PRやstarが来ると泣いて喜びます。
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLA4Amxy1u54lbV2EbswBcVWUSNDWjle55" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+!!! warning
+    円滑な開催のため、開催までに基礎的なlinuxの操作(cdやlsコマンド等)およびC++の基礎知識(継承を使ったかんたんなプログラミングができる程度とスマートポインタについて軽く知っているレベルで問題ありません。)の習得をお願いします。
+
 ## 執筆者
 ### 片岡　大哉
 OUXT Polarisで自律航行ソフトを書いて遊んでる人、お仕事は自動運転のCI/CDをやってるらしい、[ツイ廃](https://twitter.com/hakuturu583)  
