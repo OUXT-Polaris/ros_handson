@@ -31,7 +31,7 @@ ros2 pkg create tutorial --dependencies rclcpp rclcpp_components ament_cmake_aut
 
 ## CMakeLists.txtの編集
 
-パッケージを作った段階では、ament_cmake_autoは使われていません、このままではとても記述が面倒なのでCMakeLists.txtを[このファイル](https://github.com/OUXT-Polaris/ros_handson_packages/blob/master/tutorial/CMakeLists.txt)のように書き換え、ament_cmake_autoを使ってみましょう。
+パッケージを作った段階では、ament_cmake_autoは使われていません、このままではとても記述が面倒なのでCMakeLists.txtを[このファイル](https://github.com/OUXT-Polaris/ros_handson_packages/blob/7f999bb0b8a75936acd005b375ddc2e40bc99640/tutorial/CMakeLists.txt)のように書き換え、ament_cmake_autoを使ってみましょう。
 だいぶスッキリしたかと思います。  
 では、次に共有ライブラリにPublisher/Subscriberを実装し、Pub/Sub通信をしていきたいと思います。  
 
@@ -134,3 +134,75 @@ ROS2で安定したシステムを構築するには「どのノードとどの�
     - 認識後のデータは軽いので、センシング処理から認識処理までを1つのプロセスに固めることが多い
 - トピックのドロップ率を下げたいノード同士は同じプロセスに乗せる
     - QoSによる再送機能はあるものの、パケット通信は確実に到達するわけではない
+
+## launchファイルによる複数ノードの同時実行
+
+ロボットシステムは非常に複雑で、1つの実行ファイルでロボットを動かそうとするのは困難です。  
+そこで、ROS2には`ros2 launch`コマンドというコマンドがあります。  
+
+前章で作った２つのノードを`ros2 launch`コマンドを使ってまとめて実行しましょう。
+
+それでは、CMakeLists.txtを[このファイル](https://github.com/OUXT-Polaris/ros_handson_packages/blob/master/tutorial/CMakeLists.txt)のように書き換えてみましょう。
+installという行が増えていると思いますが、これはROS2ではlaunchファイルや設定ファイルを使えるようにするにはinstallという作業をする必要があるからです。
+実行ファイル等も本来はinstallする必要があるのですが、これはament_cmake_autoがやってくれています。
+
+これが完了したら、もう一度colcon buildコマンドでビルドを行いましょう
+
+```bash
+cd /home/ubuntu/Desktop/colcon_ws
+colcon build --symlink-install
+```
+
+colcon buildコマンドでビルドが完了したらいよいよ実行です。
+下記のコマンドを実行してシステムを立ち上げてみてください。
+
+```bash
+ros2 launch tutorial pub_sub.launch.xml
+```
+
+すると以下のような出力が得られるはずです。
+
+```bash
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [component_container_mt-1]: process started with pid [3596261]
+[component_container_mt-1] [INFO] [1678104787.263613522] [pub_sub.pub_sub_container]: Load Library: /home/masaya-desktop/workspace/ros_handson_ws/install/tutorial/lib/libpublish.so
+[component_container_mt-1] [INFO] [1678104787.265101658] [pub_sub.pub_sub_container]: Found class: rclcpp_components::NodeFactoryTemplate<tutorial::Publish>
+[component_container_mt-1] [INFO] [1678104787.265137977] [pub_sub.pub_sub_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<tutorial::Publish>
+[component_container_mt-1] [INFO] [1678104787.270249971] [pub_node]: start initializing publisher
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/pub_node' in container '/pub_sub/pub_sub_container'
+[component_container_mt-1] [INFO] [1678104787.271713751] [pub_sub.pub_sub_container]: Load Library: /home/masaya-desktop/workspace/ros_handson_ws/install/tutorial/lib/libsubscribe.so
+[component_container_mt-1] [INFO] [1678104787.272387091] [pub_sub.pub_sub_container]: Found class: rclcpp_components::NodeFactoryTemplate<tutorial::Subscribe>
+[component_container_mt-1] [INFO] [1678104787.272424352] [pub_sub.pub_sub_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<tutorial::Subscribe>
+[component_container_mt-1] [INFO] [1678104787.278872627] [sub_node]: start initializing subscriber
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/sub_node' in container '/pub_sub/pub_sub_container'
+[component_container_mt-1] [INFO] [1678104787.371028786] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.371617488] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.471088200] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.471364157] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.571035671] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.571447180] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.671084154] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.671506773] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.770995355] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.771316282] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.871038601] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.871460026] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.971033180] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104787.971436789] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.071025164] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.071361172] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.171029467] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.171445897] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.271071987] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.271406651] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.371035315] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.371356692] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.471047626] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.471405888] [sub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.571115586] [pub_node]: Hello
+[component_container_mt-1] [INFO] [1678104788.571450181] [sub_node]: Hello
+```
+
+`ros2 run`コマンドで実行したときと同じような出力が得られていますね。  
+コンパイル時にExecutorに乗せるか実行時にExecutorに乗せるかの差になってくるので例外処理等を除いて２つのやり方に本質的な差はありません。  
+コンパイル時に固めたいか、実行時に柔軟に構成を変化させたいかでどちらを採用するか判断すると良いかなと思います。
