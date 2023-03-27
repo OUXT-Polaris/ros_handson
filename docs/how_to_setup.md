@@ -28,7 +28,7 @@ WindowsでのDockerのインストール手順は[こちら](docker_install_for_
     ただしM1 Macなどの非x86系CPUの上だと多分動かないです。
 
 Dockerはソフトウェアの動作似必要なライブラリ群を1つにまとめ、共有できる仕組みです。  
-あたかも仮想マシンのように(厳密にはコンテナ仮想化といいます)振る舞い、`docker pulll`や`docker run`といったコマンドを叩くだけでかんたんに環境を再現できます。　　
+あたかも仮想マシンのように(厳密にはコンテナ仮想化といいます)振る舞い、`docker pull`や`docker run`といったコマンドを叩くだけでかんたんに環境を再現できます。  
 このとき、動作環境に必要なファイルを1つにまとめたものを「Docker Image」、そのファイルから作られた動作環境のことを「Docker Container」といいます。
 1つのDocker Imageから複数のDocker Containerを作って同時に動かすことも可能です。
 Docker Imageが本体、Docker Containerが分身という関係性あると考えるとわかりやすいかもしれません。
