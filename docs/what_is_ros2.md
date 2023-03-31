@@ -458,13 +458,13 @@ rclcpp_components_register_nodes(scan_segmentation_component
 ```
 
 サンプルコードは[こちら](https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/src/scan_segmentation_component.cpp#L349)と
-[こちら](https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/CMakeLists.txt#L44-L45)に有ります。
+[こちら](https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/CMakeLists.txt#L44-L45)にあります。
 
 出来上がったコンポーネントは後述する[ros2 launch](https://hakuturu583.github.io/ros_rsj_seminar/ros2/#ros2-launch)を使用して動的に立ち上げることができます。
 
 ### ros2 launchによるより柔軟な起動手段の提供
 
-ROS2ではlaunchファイルがPythonになるという言説が有りますが、筆者はこれは誤りであると考えます。
+ROS2ではlaunchファイルがPythonになるという言説がありますが、筆者はこれは誤りであると考えます。
 ROS2のPython形式のlaunchファイルはあくまでROS1時代にあったroslaunch APIの後継であり
 xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchファイルの後継であると考えます。
 
