@@ -96,7 +96,8 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_div_format
-
+  - mdx_math
+      
 nav:
   - Home: index.md
   - ハンズオン資料:
