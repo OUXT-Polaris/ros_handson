@@ -114,7 +114,7 @@ rviz2 -d /home/ubuntu/.rviz2/rosbag_play.rviz
 次に、`ros2 bag info`コマンドを実行したときと同じディレクトリで下記のコマンドを実行します。
 
 ```bash
-ros2 bag play --storage mcap
+ros2 bag play --storage mcap .
 ```
 
 するとrosbagが再生され記録されていたデータがrviz上に可視化されました。
