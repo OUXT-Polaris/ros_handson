@@ -269,94 +269,54 @@ ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </
 <p><img alt="braitenberg vehicle" src="../images/braitenberg_vehicle.png"/></p>
 <p>それぞれのセンサのシミュレーション方法は以下のようになっています。</p>
 <h2 id="_1">仮想光センサのシミュレーション<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
-<p>仮想光センサはゴール姿勢のトピックからゴール地点の座標<span class="arithmatex"><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span>をセンサから見た座標系で取得します。</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">
+<p>仮想光センサはゴール姿勢のトピックからゴール地点の座標<span class="arithmatex">\(P\)</span>をセンサから見た座標系で取得します。</p>
+<div class="arithmatex">\[
 P = (P_x, P_y , P_z)
-</div>
-<script type="math/tex; mode=display">
-P = (P_x, P_y , P_z)
-</script>
-</div>
+\]</div>
 <p>次に、この座標Pが視界の範囲に入っているかを確認します。
 この計算にはarctangentを使用します。
 ロボットのパスプランニングの文脈でarctangentを使用するときには必ずatanではなくatan2を使用しましょう。
 値がぶっ飛んで大変なことになります。</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">
+<div class="arithmatex">\[
 \theta = \arctan2(P_y, P_x)
-</div>
-<script type="math/tex; mode=display">
-\theta = \arctan2(P_y, P_x)
-</script>
-</div>
+\]</div>
 <p>θの値が視界の値を超えている場合は0,視界内にある場合は距離の二乗に反比例した値をセンサの出力とします。</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">
+<div class="arithmatex">\[
 m_l = 0  (\theta &lt; -\theta_{limit}, \theta_{limit} &lt; \theta)
-</div>
-<script type="math/tex; mode=display">
-m_l = 0  (\theta < -\theta_{limit}, \theta_{limit} < \theta)
-</script>
-</div>
-<div class="arithmatex">
-<div class="MathJax_Preview">
+\]</div>
+<div class="arithmatex">\[
 m_l = 1 / (P_x^2 + P_y ^2 + P_z^2) ^ 2  (-\theta_{limit} \leqq \theta \leqq \theta_{limit})
-</div>
-<script type="math/tex; mode=display">
-m_l = 1 / (P_x^2 + P_y ^2 + P_z^2) ^ 2  (-\theta_{limit} \leqq \theta \leqq \theta_{limit})
-</script>
-</div>
+\]</div>
 <p>この式から得られた結果が1を超えた場合、最終的な出力は1となります。</p>
 <h2 id="_2">仮想超音波センサのシミュレーション<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
 <p>次に、仮想超音波センサのシミュレーション方法について説明します。
 このシミュレーションには、laserscanの結果を使用します。<br/>
 まず、laserscanの点群をセンサから見た座標系に変換します。
 その結果得られた点群を仮想光センサと同様の手順で座標変換し、視界の範囲内に入った点群をすべてリストアップします。
-視界に入った点群<span class="arithmatex"><span class="MathJax_Preview">P_n</span><script type="math/tex">P_n</script></span>に対して以下の処理をします。</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">
+視界に入った点群<span class="arithmatex">\(P_n\)</span>に対して以下の処理をします。</p>
+<div class="arithmatex">\[
 P_n = (P_{x0}, P_{y0} , P_{z0}), (P_{x1}, P_{y1} , P_{z1}) ... (P_{xn}, P_{yn} , P_{zn})
-</div>
-<script type="math/tex; mode=display">
-P_n = (P_{x0}, P_{y0} , P_{z0}), (P_{x1}, P_{y1} , P_{z1}) ... (P_{xn}, P_{yn} , P_{zn})
-</script>
-</div>
+\]</div>
 <p>まず、すべての点に対して距離を計算し、距離が近いものだけをフィルターします。
-フィルターした結果何も残らない場合は超音波センサの出力<span class="arithmatex"><span class="MathJax_Preview">m_u</span><script type="math/tex">m_u</script></span>は0となります。</p>
-<p>それ以外の場合は最も距離が近い点<span class="arithmatex"><span class="MathJax_Preview">P_i=(P_{xi}, P_{yi} , P_{zi})</span><script type="math/tex">P_i=(P_{xi}, P_{yi} , P_{zi})</script></span>に対して
+フィルターした結果何も残らない場合は超音波センサの出力<span class="arithmatex">\(m_u\)</span>は0となります。</p>
+<p>それ以外の場合は最も距離が近い点<span class="arithmatex">\(P_i=(P_{xi}, P_{yi} , P_{zi})\)</span>に対して
 以下の計算式を適用し、超音波センサの出力を計算します。</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">
+<div class="arithmatex">\[
 m_u = 1 / (P_{xi}^2 + P_{yi} ^2 + P_{zi}^2) ^ 2 
-</div>
-<script type="math/tex; mode=display">
-m_u = 1 / (P_{xi}^2 + P_{yi} ^2 + P_{zi}^2) ^ 2 
-</script>
-</div>
+\]</div>
 <h2 id="_3">モータコマンドの生成<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
 <p>最後に、2つのセンサ出力を統合します。</p>
-<p>左の仮想光センサ出力を<span class="arithmatex"><span class="MathJax_Preview">m_{ll}</span><script type="math/tex">m_{ll}</script></span>、右の仮想超音波センサ出力<span class="arithmatex"><span class="MathJax_Preview">m_{ru}</span><script type="math/tex">m_{ru}</script></span>
-左側のモータのモータコマンド<span class="arithmatex"><span class="MathJax_Preview">M_l</span><script type="math/tex">M_l</script></span>は以下の式で計算されます。</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">
+<p>左の仮想光センサ出力を<span class="arithmatex">\(m_{ll}\)</span>、右の仮想超音波センサ出力<span class="arithmatex">\(m_{ru}\)</span>
+左側のモータのモータコマンド<span class="arithmatex">\(M_l\)</span>は以下の式で計算されます。</p>
+<div class="arithmatex">\[
 M_l = m_{ll} * gain_l + m_{ru} * gain_u
-</div>
-<script type="math/tex; mode=display">
-M_l = m_{ll} * gain_l + m_{ru} * gain_u
-</script>
-</div>
-<p>ここで、<span class="arithmatex"><span class="MathJax_Preview">gain_l</span><script type="math/tex">gain_l</script></span>は仮想光センサからのゲイン、<span class="arithmatex"><span class="MathJax_Preview">gain_u</span><script type="math/tex">gain_u</script></span>は仮想超音波センサからのゲインです。</p>
-<p>左の仮想光センサ出力を<span class="arithmatex"><span class="MathJax_Preview">m_{rl}</span><script type="math/tex">m_{rl}</script></span>、右の仮想超音波センサ出力<span class="arithmatex"><span class="MathJax_Preview">m_{lu}</span><script type="math/tex">m_{lu}</script></span>
-左側のモータのモータコマンド<span class="arithmatex"><span class="MathJax_Preview">M_r</span><script type="math/tex">M_r</script></span>は以下の式で計算されます。</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">
+\]</div>
+<p>ここで、<span class="arithmatex">\(gain_l\)</span>は仮想光センサからのゲイン、<span class="arithmatex">\(gain_u\)</span>は仮想超音波センサからのゲインです。</p>
+<p>左の仮想光センサ出力を<span class="arithmatex">\(m_{rl}\)</span>、右の仮想超音波センサ出力<span class="arithmatex">\(m_{lu}\)</span>
+左側のモータのモータコマンド<span class="arithmatex">\(M_r\)</span>は以下の式で計算されます。</p>
+<div class="arithmatex">\[
 M_r = m_{rl} * gain_l + m_{lu} * gain_u
-</div>
-<script type="math/tex; mode=display">
-M_r = m_{rl} * gain_l + m_{lu} * gain_u
-</script>
-</div>
+\]</div>
 <h2 id="_4">実際に車両を動かしてみよう<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
 <p>実際に動作する様子を確かめてみましょう。
 ターミナルを立ち上げて以下のコマンドを実行します。</p>
@@ -421,7 +381,9 @@ colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
 <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.expand", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
 <script src="../assets/javascripts/bundle.407015b8.min.js"></script>
 <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../js/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
 </body>
 </html>
