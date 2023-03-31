@@ -612,7 +612,7 @@ Subscriberを生成するときに登録された関数はコールバック関�
 どの程度早くなるかというと、こちらの記事の計測結果が参考になりました。</p>
 <blockquote class="embedly-card"><h4><a href="https://qiita.com/Ke_N_551/items/d8637ddc806f94260ba8">ROS2で同一デバイス内画像通信の遅延について知りたくて色々試した話 - Qiita</a></h4><p>単一デバイス（Ultra96）内でROS2通信を利用して画像を送受信した場合、 画像のサイズ、圧縮するか否か、使用するDDS、などを変えて画像の送受信にかかる時間を測定・評価しました。どちらかというと通信遅延そのものについての評価というより、画像を送信する際にかかる時間の評価です。ですので、圧縮画像送信の際には画像の圧縮にかかる時間も遅延時間に含んでいたりします。</p></blockquote>
 <script async="" charset="UTF-8" src="//cdn.embedly.com/widgets/platform.js"></script>
-<p>非圧縮の画像データ(sensor_msgs/Image型)のデータを746msで送信することが実現できており、圧縮する時間よりも同じExecutorに載せて通信してしまうのが早いということが伺えます。</p>
+<p>非圧縮の画像データ(sensor_msgs/Image型)のデータを746μsで送信することが実現できており、圧縮する時間よりも同じExecutorに載せて通信してしまうのが早いということが伺えます。</p>
 <p>自作のROS2 NodeをExecutorに乗せる際には以下のようなコードを記述すれば可能です。</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
