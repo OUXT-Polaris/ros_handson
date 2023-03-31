@@ -112,6 +112,7 @@ $$
 ```bash
 cd /home/ubuntu/Desktop/colcon_ws
 colcon build --symlink-install
+source install/local_setup.bash
 ```
 
 次にシミュレータを起動します。
