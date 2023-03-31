@@ -10,9 +10,9 @@
 <link href="../how_to_setup/" rel="prev"/>
 <link href="../teleop/" rel="next"/>
 <link href="../images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.4.2, mkdocs-material-9.1.0" name="generator"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.5" name="generator"/>
 <title>ROS2とは? - ros_handson</title>
-<link href="../assets/stylesheets/main.402914a4.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/main.7a7fce14.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -264,6 +264,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../rclcpp/">
         C++によるpub/sub通信
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../braitenberg_vehicle/">
+        Braitenberg Vehicleを作ろう!
       </a>
 </li>
 </ul>
@@ -675,10 +680,10 @@ Subscriberを生成するときに登録された関数はコールバック関�
 <span class="w">  </span><span class="s2">"scan_segmentation::ScanSegmentationComponent"</span><span class="p">)</span>
 </code></pre></div>
 <p>サンプルコードは<a href="https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/src/scan_segmentation_component.cpp#L349">こちら</a>と
-<a href="https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/CMakeLists.txt#L44-L45">こちら</a>に有ります。</p>
+<a href="https://github.com/OUXT-Polaris/scan_segmentation/blob/1327a54ab14cc6f5bd8b5aea462714062134c458/CMakeLists.txt#L44-L45">こちら</a>にあります。</p>
 <p>出来上がったコンポーネントは後述する<a href="https://hakuturu583.github.io/ros_rsj_seminar/ros2/#ros2-launch">ros2 launch</a>を使用して動的に立ち上げることができます。</p>
 <h3 id="ros2-launch">ros2 launchによるより柔軟な起動手段の提供<a class="headerlink" href="#ros2-launch" title="Permanent link">#</a></h3>
-<p>ROS2ではlaunchファイルがPythonになるという言説が有りますが、筆者はこれは誤りであると考えます。
+<p>ROS2ではlaunchファイルがPythonになるという言説がありますが、筆者はこれは誤りであると考えます。
 ROS2のPython形式のlaunchファイルはあくまでROS1時代にあったroslaunch APIの後継であり
 xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchファイルの後継であると考えます。</p>
 <p>python形式でlaunchファイルが記述できるようになったことでros2 launchでは下記のような複雑な起動シーケンスもlaunchファイルで記述できるようになりました。
@@ -750,10 +755,10 @@ xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchフ
 </article>
 </div>
 </div>
-<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
             Back to top
-          </a>
+          </button>
 </main>
 <footer class="md-footer">
 <div class="md-footer-meta md-typeset">
@@ -785,7 +790,7 @@ xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchフ
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.expand", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="../assets/javascripts/bundle.ce72ebac.min.js"></script>
+<script src="../assets/javascripts/bundle.407015b8.min.js"></script>
 <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>

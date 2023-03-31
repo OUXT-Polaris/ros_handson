@@ -8,11 +8,11 @@
 <meta content="Masaya Kataoka" name="author"/>
 <link href="https://ouxt-polaris.github.io/ros_handson/rclcpp/" rel="canonical"/>
 <link href="../navigation2/" rel="prev"/>
-<link href="../appendix/" rel="next"/>
+<link href="../braitenberg_vehicle/" rel="next"/>
 <link href="../images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.4.2, mkdocs-material-9.1.0" name="generator"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.5" name="generator"/>
 <title>C++によるpub/sub通信 - ros_handson</title>
-<link href="../assets/stylesheets/main.402914a4.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/main.7a7fce14.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -233,6 +233,11 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../braitenberg_vehicle/">
+        Braitenberg Vehicleを作ろう!
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -254,7 +259,8 @@
 本教材で出来上がるコードは<a href="https://github.com/OUXT-Polaris/ros_handson_packages.git">こちらのリポジトリ</a>に収録しています。参考にしてみてください。<br/>
 また、コードの詳細な解説はコードのコメントに残してあります。ぜひご参照ください。<br/>
 <code>ros2 pkg create</code>コマンドを使用し、実際にパッケージを作ってみましょう。  </p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/ubuntu/Desktop/colcon_ws/src
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages
+<span class="nb">cd</span><span class="w"> </span>/home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages
 ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </span>tutorial<span class="w"> </span>--dependencies<span class="w"> </span>rclcpp<span class="w"> </span>rclcpp_components<span class="w"> </span>ament_cmake_auto<span class="w"> </span>geometry_msgs<span class="w"> </span>--library-name<span class="w"> </span>publish<span class="w"> </span>--license<span class="w"> </span>Apache-2.0
 </code></pre></div>
 <p>このコマンドを実行すると<code>tutorial</code>という名前のROS2パッケージが出来上がります。</p>
@@ -422,10 +428,10 @@ colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
 </article>
 </div>
 </div>
-<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
             Back to top
-          </a>
+          </button>
 </main>
 <footer class="md-footer">
 <div class="md-footer-meta md-typeset">
@@ -457,7 +463,7 @@ colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.expand", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="../assets/javascripts/bundle.ce72ebac.min.js"></script>
+<script src="../assets/javascripts/bundle.407015b8.min.js"></script>
 <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
