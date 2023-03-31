@@ -322,17 +322,6 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 six = ">=1.5"
 
 [[package]]
-name = "python-markdown-math"
-version = "0.8"
-description = "Math extension for Python-Markdown"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-Markdown = ">=3.0"
-
-[[package]]
 name = "pytz"
 version = "2023.3"
 description = "World timezone definitions, modern and historical"
@@ -436,7 +425,7 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "ece379fd5f62f37e7314054401ba64eb828cb8f19902807322e3ac63f1f576af"
+content-hash = "78d017d837abed03018cf4628ea1d4a0ed3456ff5d801b819314afca3cfd5b77"
 
 [metadata.files]
 babel = []
@@ -467,7 +456,6 @@ plantuml-markdown = []
 pygments = []
 pymdown-extensions = []
 python-dateutil = []
-python-markdown-math = []
 pytz = []
 pyyaml = []
 pyyaml-env-tag = []
