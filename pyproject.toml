@@ -13,7 +13,6 @@ fontawesome_markdown = "*"
 mkdocs-mermaid2-plugin = "*"
 pymdown-extensions = "*"
 plantuml-markdown = "*"
-python-markdown-math = "*"
 mkdocs-git-revision-date-localized-plugin = "*"
 mkdocs-gitsnippet-plugin = "*"
 
