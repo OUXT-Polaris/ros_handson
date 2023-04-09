@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/appendix/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/braitenberg_vehicle/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/docker_install_for_windows/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/how_to_setup/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/navigation2/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/rclcpp/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/teleop/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/visualization/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ouxt-polaris.github.io/ros_handson/what_is_ros2/</loc>
-         <lastmod>2023-03-31</lastmod>
+         <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
