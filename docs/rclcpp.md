@@ -8,7 +8,7 @@
 `ros2 pkg create`コマンドを使用し、実際にパッケージを作ってみましょう。  
 
 ```bash
-mkdir -p cd /home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages
+mkdir -p /home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages
 cd /home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages
 ros2 pkg create tutorial --dependencies rclcpp rclcpp_components ament_cmake_auto geometry_msgs --library-name publish --license Apache-2.0
 ```
