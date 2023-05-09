@@ -15,6 +15,7 @@ pymdown-extensions = "*"
 plantuml-markdown = "*"
 mkdocs-git-revision-date-localized-plugin = "*"
 mkdocs-gitsnippet-plugin = "*"
+urllib3 = "1.26.15"
 
 [tool.poetry.dev-dependencies]
 
