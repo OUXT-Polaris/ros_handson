@@ -7,8 +7,8 @@ license = "Apache 2.0"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-mkdocs = "*"
-mkdocs-material = "*"
+mkdocs = "^1.4"
+mkdocs-material = "^9.1"
 fontawesome_markdown = "*"
 mkdocs-mermaid2-plugin = "*"
 pymdown-extensions = "*"
