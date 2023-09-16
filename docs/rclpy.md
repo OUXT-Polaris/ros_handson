@@ -280,7 +280,7 @@ ros2 run python_tutorial subscribe
 ```
 
 これでsubscribeノードが起動しました。
-もう一つターミナルを立ち上げます。
+もう1つターミナルを立ち上げます。
 
 ```bash
 source /home/ubuntu/Desktop/colcon_ws/install/local_setup.bash
@@ -324,8 +324,8 @@ rqt_graph
 ## ros2 launchによる複数ノードの一括実行
 
 大規模なロボットシステムを組む際には、このノードが100を超えることも珍しくありません。
-それを毎回`ros2 run`コマンドで行うのは非現実的です。
-一括実行を行うためにROS 2は`ros2 launch`というコマンドを用意しています。
+それを毎回`ros2 run`コマンドで行なうのは非現実的です。
+一括実行を行なうためにROS 2は`ros2 launch`というコマンドを用意しています。
 `ros2 launch`コマンドで複数のノードを実行するためには以下のコマンドを実行してください。
 
 ```bash
@@ -348,7 +348,7 @@ ros2 launch python_tutorial pub_sub.launch.xml
 [subscribe-2] [INFO] [1694839562.376012771] [subscribe]: I heard: "Hello World: 2"
 ```
 
-また、このコマンド実行中に別ターミナルを立ち上げ
+また、このコマンド実行中に別ターミナルを立ち上げます。
 
 ```bash
 rqt_graph
