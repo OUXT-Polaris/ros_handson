@@ -308,12 +308,7 @@ ros2 run python_tutorial publish
 ```
 
 それぞれ得られます。
-このとき、
-
-```bash
-rqt_graph
-```
-コマンドを入力すると以下のような表示が得られます。
+このとき、別なターミナルを立ち上げて`rqt_graph`コマンドを入力すると以下のような表示が得られます。
 
 ![Not Found](images/rqt_graph_rclpy_ros2run.png)
 
