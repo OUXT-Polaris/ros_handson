@@ -13,7 +13,7 @@ mkdir -p /home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages
 # ソースコードを置くディレクトリに移動
 cd /home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages
 # ros2 pkg createコマンドを使用してパッケージを作成する
-## --dependenciesオプションは依存するパッケージを指定することができます。
+## --dependenciesオプションは依存するパッケージを指定できます。
 ## --build-typeオプションはビルドの仕方を指定します。デフォルトはament_cmakeなのでこれを忘れるとC++のパッケージが作られます。
 ## --licenseオプションはライセンスを指定します。なんらかの論文などのコードを公開するときにはライセンスがついていると親切です。
 ros2 pkg create python_tutorial --dependencies rclpy --build-type ament_python --license Apache-2.0
@@ -259,8 +259,8 @@ touch /home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages/python_tutorial/la
 
 ## パッケージのインストール
 
-pythonは動的型付言語であり、コマンドは`colcon build`を使用しますが実質的にはファイルを適切な場所にコピーするインストールの作業を行います。
-下記のコマンドを実行し、パッケージのインストール作業を行ってください。
+pythonは動的型付言語であり、コマンドは`colcon build`を使用しますが実質的にはファイルを適切な場所にコピーするインストールの作業をします。
+下記のコマンドを実行し、パッケージのインストール作業を行なってください。
 
 ```bash
 # workspaceのルートディレクトリに移動
@@ -287,9 +287,8 @@ source /home/ubuntu/Desktop/colcon_ws/install/local_setup.bash
 ros2 run python_tutorial publish
 ```
 
-２つのコマンドを実行すると、
+２つのコマンドを実行すると、`ros2 run python_tutorial subscribe`を実行したターミナルからは下記のような出力が得られます。
 
-`ros2 run python_tutorial subscribe`を実行したターミナルからは下記のような出力が
 ```bash
 [INFO] [1694838910.442890102] [minimal_subscriber]: I heard: "Hello World: 0"
 [INFO] [1694838910.931468850] [minimal_subscriber]: I heard: "Hello World: 1"
@@ -298,7 +297,7 @@ ros2 run python_tutorial publish
 [INFO] [1694838912.431568172] [minimal_subscriber]: I heard: "Hello World: 4"
 ```
 
-`ros2 run python_tutorial publish`を実行したターミナルからは下記のような出力が
+`ros2 run python_tutorial publish`を実行したターミナルからは下記のような出力が得られます。
 
 ```bash
 [INFO] [1694838910.442878124] [minimal_publisher]: Publishing: "Hello World: 0"
@@ -359,5 +358,5 @@ rqt_graph
 
 ![Not Found](images/rqt_graph_rclpy_ros2launch.png)
 
-このようにすることで、複数のノードを一括実行することができます。
+このようにすることで、複数のノードを一括実行できます。
 実行を終了するときは`ros2 run`コマンドのときと同様に`ctrl+cで終了指示をだしてください。`
