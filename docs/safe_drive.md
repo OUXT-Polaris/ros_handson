@@ -65,14 +65,12 @@ safe_drive_version = "0.2"
   <maintainer email="hoge@hoge.com">Hoge Hogesuke</maintainer>
   <license>Hoge license</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
-
   <depend>std_msgs</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
   <export>
-    <build_type>ament_cmake</build_type>
+    <build_type>ament_cargo</build_type>
   </export>
 </package>
 ```
