@@ -20,7 +20,7 @@ PRやstarが来ると泣いて喜びます。
 
 ## 執筆者
 ### 片岡　大哉
-OUXT Polarisで自律航行ソフトを書いて遊んでる人、お仕事は自動運転のCI/CDをやってるらしい、[ツイ廃](https://twitter.com/hakuturu583)  
+OUXT Polarisで自律航行ソフトを書いて遊んでる人、お仕事は自動運転のCI/CDをやってるらしい、[ツイ廃](https://x.com/hakuturu583)  
 質問事項は本リポジトリにIssueを立ててもらっても構いませんが、TwitterでDMやリプ飛ばすのが一番早いです。  
 M1のインターンのときにROS1を使い始め、robocup / RobotX / 修論の研究はROSでシステムを作りました。  
 ROS歴は7年くらい？
