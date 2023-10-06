@@ -313,9 +313,9 @@
 ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </span>tutorial<span class="w"> </span>--dependencies<span class="w"> </span>rclcpp<span class="w"> </span>rclcpp_components<span class="w"> </span>ament_cmake_auto<span class="w"> </span>geometry_msgs<span class="w"> </span>--library-name<span class="w"> </span>publish<span class="w"> </span>--license<span class="w"> </span>Apache-2.0
 </code></pre></div>
 <p>このコマンドを実行すると<code>tutorial</code>という名前のROS2パッケージが出来上がります。</p>
-<p><code>--dependencies</code>オプションは依存関係を追加します。<br/>
-依存関係は<code>tutorial</code>パッケージは<code>rclcpp</code>パッケージに依存しています。
-というふうに依存関係を<code>package.xml</code>に記述してあげることで<code>rclcpp</code>パッケージに含まれるリソースを<code>tutorial</code>パッケージで使えるようにしたりビルド順を制御したりします。<br/>
+<p><code>--dependencies</code>オプションは依存関係を追加し、結果は<code>package.xml</code>に反映されます。<br/>
+ROSのビルドシステムであるcolconは<code>package.xml</code>の依存を確認してビルド順を制御、適切に環境を構築していきます。
+ここでは、<code>tutorial</code>パッケージは<code>rclcpp</code>、<code>rclcpp_components</code>、<code>ament_cmake_auto</code>、<code>geometry_msgs</code>に依存している。というようなに依存関係を設定しています。<br/>
 <code>ament_cmake_auto</code>はament_cmakeを楽に記述させてくれるパッケージです。正直これがないと記述がとても冗長で面倒くさいので使用を推奨します。
 <a href="https://hans-robo.hatenablog.com/entry/2020/12/15/153503">この記事</a>が参考になります。</p>
 <p><code>--library-name</code>オプションは共有ライブラリを作るオプションです。

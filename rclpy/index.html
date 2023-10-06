@@ -328,10 +328,11 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>/home/ubuntu/Desktop/colc
 <span class="c1">## --licenseオプションはライセンスを指定します。なんらかの論文などのコードを公開するときにはライセンスがついていると親切です。</span>
 ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </span>python_tutorial<span class="w"> </span>--dependencies<span class="w"> </span>rclpy<span class="w"> </span>--build-type<span class="w"> </span>ament_python<span class="w"> </span>--license<span class="w"> </span>Apache-2.0
 </code></pre></div>
-<p><code>--dependencies</code>オプションで指示した結果は<code>package.xml</code>に反映されます。
+<p><code>--dependencies</code>オプションは依存関係を追加し、結果は<code>package.xml</code>に反映されます。<br/>
 ROSのビルドシステムであるcolconは<code>package.xml</code>の依存を確認してビルド順を制御、適切に環境を構築していきます。</p>
-<p><code>--license</code>オプションの指定がない場合、パッケージにライセンスが振られません。
-ここを適切につけておかないと結果みなさんが作ったパッケージを他の人が使っていいか判断ができなくなってしまいます。</p>
+<p><code>--license</code>オプションはライセンスを設定します。
+ライセンス？どうでもいいじゃんと思うかもしれませんが、ライセンスの書いていないソフトウェアは公開されていたとしても、使っていいかの判断が付きません。<br/>
+ちゃんと設定して他の人から使ってもらえるパッケージを作りましょう。  </p>
 <h2 id="setuppy">setup.pyの編集<a class="headerlink" href="#setuppy" title="Permanent link">#</a></h2>
 <p>つぎにsetup.pyを一部修正します。
 <code>/home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages/python_tutorial/setup.py</code>を下記のように書き換えてください。</p>
@@ -373,7 +374,7 @@ ROSのビルドシステムであるcolconは<code>package.xml</code>の依存�
     <span class="n">license</span><span class="o">=</span><span class="s1">'Apache-2.0'</span><span class="p">,</span>
     <span class="c1"># 単体テストのため依存を追加</span>
     <span class="n">tests_require</span><span class="o">=</span><span class="p">[</span><span class="s1">'pytest'</span><span class="p">],</span>
-    <span class="c1"># ros2 runコマンドやros2 launchコマンドでノードを起動できる王にするための設定。</span>
+    <span class="c1"># ros2 runコマンドやros2 launchコマンドでノードを起動できるようにするための設定。</span>
     <span class="c1"># ここを忘れていると実行ができません。</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">'console_scripts'</span><span class="p">:</span> <span class="p">[</span>
@@ -610,7 +611,7 @@ ros2<span class="w"> </span>launch<span class="w"> </span>python_tutorial<span c
 <p>を実行すると下記のような出力が得られます。</p>
 <p><img alt="Not Found" src="../images/rqt_graph_rclpy_ros2launch.png"/></p>
 <p>このようにすることで、複数のノードを一括実行できます。
-実行を終了するときは<code>ros2 run</code>コマンドのときと同様に<code>ctrl+cで終了指示をだしてください。</code></p>
+実行を終了するときは<code>ros2 run</code>コマンドのときと同様に<code>ctrl+c</code>で終了指示をだしてください。</p>
 <hr/>
 <div class="md-source-file">
 <small>
