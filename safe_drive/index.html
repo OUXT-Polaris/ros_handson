@@ -564,7 +564,7 @@ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release --cargo-a
 <h3 id="q-colcon-build">Q: Colcon buildしたのに変更が反映されない<a class="headerlink" href="#q-colcon-build" title="Permanent link">#</a></h3>
 <p><code>colcon build</code>を実行したディレクトリ配下に生成される<code>install</code>,<code>build</code>,<code>log</code>ディレクトリを削除し<code>colcon build</code>すると確実に反映されます。</p>
 <h3 id="ros2-topic-list-ros2-node-list">ros2 topic list や ros2 node listが反応しない<a class="headerlink" href="#ros2-topic-list-ros2-node-list" title="Permanent link">#</a></h3>
-<p><code>ps -a</code>コマンドで作成したノードが起動してないことを確認してください。動作していた場合はパソコンを再起動して下さい。</p>
+<p><code>ps -a</code>コマンドで作成したノードが起動してないことを確認してください。動作していた場合はパソコンを再起動してください。</p>
 <h3 id="ctrl-c">ctrl-c が反応しない<a class="headerlink" href="#ctrl-c" title="Permanent link">#</a></h3>
 <p>プログラムのミスが原因です。非同期コードを書いている場合に発生することが多いです。シグナル適切に受信するよう<code>signal-hook-async-std</code>と<code>signal-hook</code>クレートを使うと解決する場合があります。</p>
 <h2 id="_4">参考情報<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
