@@ -19,11 +19,12 @@ cd /home/ubuntu/Desktop/colcon_ws/src/ros_handson_packages
 ros2 pkg create python_tutorial --dependencies rclpy --build-type ament_python --license Apache-2.0
 ```
 
-`--dependencies`オプションで指示した結果は`package.xml`に反映されます。
+`--dependencies`オプションは依存関係を追加し、結果は`package.xml`に反映されます。  
 ROSのビルドシステムであるcolconは`package.xml`の依存を確認してビルド順を制御、適切に環境を構築していきます。
 
-`--license`オプションの指定がない場合、パッケージにライセンスが振られません。
-ここを適切につけておかないと結果みなさんが作ったパッケージを他の人が使っていいか判断ができなくなってしまいます。
+`--license`オプションはライセンスを設定します。
+ライセンス？どうでもいいじゃんと思うかもしれませんが、ライセンスの書いていないソフトウェアは公開されていたとしても、使っていいかの判断が付きません。  
+ちゃんと設定して他の人から使ってもらえるパッケージを作りましょう。  
 
 ## setup.pyの編集
 
@@ -69,7 +70,7 @@ setup(
     license='Apache-2.0',
     # 単体テストのため依存を追加
     tests_require=['pytest'],
-    # ros2 runコマンドやros2 launchコマンドでノードを起動できる王にするための設定。
+    # ros2 runコマンドやros2 launchコマンドでノードを起動できるようにするための設定。
     # ここを忘れていると実行ができません。
     entry_points={
         'console_scripts': [
@@ -354,4 +355,4 @@ rqt_graph
 ![Not Found](images/rqt_graph_rclpy_ros2launch.png)
 
 このようにすることで、複数のノードを一括実行できます。
-実行を終了するときは`ros2 run`コマンドのときと同様に`ctrl+cで終了指示をだしてください。`
+実行を終了するときは`ros2 run`コマンドのときと同様に`ctrl+c`で終了指示をだしてください。
