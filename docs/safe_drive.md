@@ -257,7 +257,7 @@ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release --cargo-a
 
 ### ros2 topic list や ros2 node listが反応しない
 
-`ps -a`コマンドで作成したノードが起動してないことを確認してください。動作していた場合はパソコンを再起動して下さい。
+`ps -a`コマンドで作成したノードが起動してないことを確認してください。動作していた場合はパソコンを再起動してください。
 
 ### ctrl-c が反応しない
 
