@@ -1,0 +1,129 @@
+{
+    "cameraState": {
+      "perspective": true,
+      "distance": 8.802533373035159,
+      "phi": 58.95409645554882,
+      "thetaOffset": 45,
+      "targetOffset": [
+        0,
+        0,
+        0
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "targetOrientation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "fovy": 45,
+      "near": 0.5,
+      "far": 5000
+    },
+    "followMode": "follow-pose",
+    "followTf": "map",
+    "scene": {
+      "transforms": {
+        "enablePreloading": true,
+        "editable": false,
+        "showLabel": true,
+        "axisScale": 0.5,
+        "lineWidth": 0.5
+      },
+      "enableStats": false
+    },
+    "transforms": {
+      "frame:": {
+        "visible": false
+      },
+      "frame:base_link": {
+        "visible": true
+      },
+      "frame:wheel_left_link": {
+        "visible": false
+      },
+      "frame:wheel_right_link": {
+        "visible": false
+      },
+      "frame:imu_link": {
+        "visible": false
+      },
+      "frame:caster_back_link": {
+        "visible": false
+      },
+      "frame:base_scan": {
+        "visible": false
+      },
+      "frame:base_footprint": {
+        "visible": false
+      },
+      "frame:odom": {
+        "visible": false
+      }
+    },
+    "topics": {
+      "/global_costmap/costmap": {
+        "visible": true
+      },
+      "/global_costmap/clearing_endpoints": {
+        "visible": false,
+        "colorField": "x",
+        "colorMode": "colormap",
+        "colorMap": "turbo"
+      },
+      "/cost_cloud": {
+        "visible": true
+      },
+      "/slam_toolbox/scan_visualization": {
+        "visible": true
+      },
+      "/robot_description": {
+        "visible": false
+      },
+      "/transformed_global_plan": {
+        "visible": false
+      },
+      "/marker": {
+        "visible": false
+      },
+      "/scan": {
+        "visible": false,
+        "colorField": "intensity",
+        "colorMode": "colormap",
+        "colorMap": "turbo"
+      },
+      "/slam_toolbox/graph_visualization": {
+        "visible": false
+      },
+      "/waypoints": {
+        "visible": false
+      },
+      "/global_costmap/published_footprint": {
+        "visible": false
+      },
+      "/plan": {
+        "visible": false
+      },
+      "/local_plan": {
+        "visible": false
+      },
+      "/local_costmap/published_footprint": {
+        "visible": false
+      }
+    },
+    "layers": {},
+    "publish": {
+      "type": "point",
+      "poseTopic": "/move_base_simple/goal",
+      "pointTopic": "/clicked_point",
+      "poseEstimateTopic": "/initialpose",
+      "poseEstimateXDeviation": 0.5,
+      "poseEstimateYDeviation": 0.5,
+      "poseEstimateThetaDeviation": 0.26179939
+    }
+  }
+  
