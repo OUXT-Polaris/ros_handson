@@ -22,3 +22,12 @@ COPY rviz/rosbag_play.rviz /home/ubuntu/.rviz2/rosbag_play.rviz
 COPY config/turtlebot3_navigation.json /home/ubuntu/Desktop/turtlebot3_navigation.json
 COPY workspace.repos /home/ubuntu/Desktop/colcon_ws/src/workspace.repos
 RUN curl -s https://raw.githubusercontent.com/karaage0703/ubuntu-setup/master/install-vscode.sh | /bin/bash
+ENV RUST_VERSION stable
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${RUST_VERSION}
+ENV PATH $PATH:$HOME/.cargo/bin
+RUN apt install -y python3-pip && python3 -m pip install -U pip
+RUN python3 -m pip install git+https://github.com/tier4/colcon-cargo.git git+https://github.com/colcon/colcon-ros-cargo.git
+WORKDIR /home/ubuntu
+RUN git clone https://github.com/tier4/cargo-ament-build && \
+    cd cargo-ament-build && \
+    cargo install --path .

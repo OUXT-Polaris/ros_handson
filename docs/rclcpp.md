@@ -15,9 +15,9 @@ ros2 pkg create tutorial --dependencies rclcpp rclcpp_components ament_cmake_aut
 
 このコマンドを実行すると`tutorial`という名前のROS2パッケージが出来上がります。
 
-`--dependencies`オプションは依存関係を追加します。  
-依存関係は`tutorial`パッケージは`rclcpp`パッケージに依存しています。
-というふうに依存関係を`package.xml`に記述してあげることで`rclcpp`パッケージに含まれるリソースを`tutorial`パッケージで使えるようにしたりビルド順を制御したりします。  
+`--dependencies`オプションは依存関係を追加し、結果は`package.xml`に反映されます。  
+ROSのビルドシステムであるcolconは`package.xml`の依存を確認してビルド順を制御、適切に環境を構築していきます。
+ここでは、`tutorial`パッケージは`rclcpp`、`rclcpp_components`、`ament_cmake_auto`、`geometry_msgs`に依存している。というようなに依存関係を設定しています。  
 `ament_cmake_auto`はament_cmakeを楽に記述させてくれるパッケージです。正直これがないと記述がとても冗長で面倒くさいので使用を推奨します。
 [この記事](https://hans-robo.hatenablog.com/entry/2020/12/15/153503)が参考になります。
 
