@@ -109,5 +109,6 @@ nav:
     - navigation2による自律移動: navigation2.md
     - C++によるpub/sub通信: rclcpp.md
     - Pythonによるpub/sub通信: rclpy.md
+    - Rustによるpub/sub通信: safe_drive.md
     - Braitenberg Vehicleを作ろう!: braitenberg_vehicle.md
   - 付録: appendix.md
