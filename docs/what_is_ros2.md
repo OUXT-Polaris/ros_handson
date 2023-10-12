@@ -5,7 +5,7 @@
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQvX8nOOldvSrj9L7rbCSRcZuO4d4oCj_-KuVAo85D8urMcMmoIJIpqZDmme514_nvCcb4uaGTKdiut/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-ロボットのソフトウェアはには以下の性質があります。
+ロボットのソフトウェアには以下の性質があります。
 
 - 密結合になりがち（ちゃんと動くシステムを作ろうとすると数万行になるのは当たり前）
 - イベントドリブンになりがち（〇〇のセンサーに反応があったら〇〇する）という
@@ -464,6 +464,7 @@ rclcpp_components_register_nodes(scan_segmentation_component
 
 ### ros2 launchによるより柔軟な起動手段の提供
 
+ROSおよびROS2では、複数のROSノードを立ち上げることができる [ros launch](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Creating-Launch-Files.html)という機能があり、ROS1では[XML形式でlaunchファイルを記述](https://wiki.ros.org/roslaunch/XML)します。  
 ROS2ではlaunchファイルがPythonになるという言説がありますが、筆者はこれは誤りであると考えます。
 ROS2のPython形式のlaunchファイルはあくまでROS1時代にあったroslaunch APIの後継であり
 xml形式やyaml形式のlaunchファイルがROS1時代のxml形式のlaunchファイルの後継であると考えます。
