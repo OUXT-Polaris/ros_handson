@@ -11,11 +11,11 @@ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 次に、下記のコマンドでnavigation2を起動します。
 
 ```bash
-ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=$HOME/map.yaml param_file:=$HOME/Desktop/burger.yaml
+ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=$HOME/map.yaml params_file:=$HOME/Desktop/burger.yaml
 ```
 
 ここでは、 `slam:=True` ではなく先ほど作成した地図のファイルを指定`map`パラメータでします。  
-また、`param_file`パラメータで、ナビゲーション用のロボットのパラメータを指定します。  
+また、`params_file`パラメータで、ナビゲーション用のロボットのパラメータを指定します。  
 現状、ROS2 Humbleではデフォルトの設定だと動かないことが確認されています。[参考](https://github.com/ROBOTIS-GIT/turtlebot3/issues/884)  
 
 起動直後は以下のような画面になり、Rvizには白黒の地図のみが表示されていると思います。  
