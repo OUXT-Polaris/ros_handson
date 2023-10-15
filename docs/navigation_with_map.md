@@ -28,4 +28,3 @@ Rviz上の「2D Pose Estimate」メニューからそれを実行できます。
 その後の自律移動の方法は、SLAMをしながら自律移動を動かした際と同様に、「Nav2 Goal」メニューから行ないます。  
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/szk8N7jZN_I?si=sLMXwSX1IWgN7wWI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
