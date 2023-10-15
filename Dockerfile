@@ -20,6 +20,7 @@ RUN mkdir -p /home/ubuntu/Desktop/colcon_ws/src
 WORKDIR /home/ubuntu/Desktop/colcon_ws/src
 COPY rviz/rosbag_play.rviz /home/ubuntu/.rviz2/rosbag_play.rviz
 COPY config/turtlebot3_navigation.json /home/ubuntu/Desktop/turtlebot3_navigation.json
+COPY config/burger.yaml /home/ubuntu/Desktop/burger.yaml
 COPY workspace.repos /home/ubuntu/Desktop/colcon_ws/src/workspace.repos
 RUN curl -s https://raw.githubusercontent.com/karaage0703/ubuntu-setup/master/install-vscode.sh | /bin/bash
 ENV RUST_VERSION stable
