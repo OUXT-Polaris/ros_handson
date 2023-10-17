@@ -129,6 +129,8 @@ rviz2上で2D Goal Poseボタンをおして緑の矢印でゴール姿勢を指
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/-XdvmhwDhmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+## 地図を使用したnavigation2での自律移動
+
 前述したように、ここでは事前に地図を用意することなく自律移動を行なっています。  
 屋内の環境のような、ある程度環境が固定されている場所をロボットに移動させる場合は  
 その環境の地図を作成したうえで、Navigation2の自立移動を実施させることもあります。  
@@ -144,7 +146,33 @@ ros2 run nav2_map_server map_saver_cli -f ~/map
 
 ![](images/preparation_making_map.png)
 
-この地図を使用した自立移動の方法については、[地図を使用したnavigation2での自律移動](navigation_with_map.md)で解説します。
+一度GazeboとNavigation2を実行しているターミナルを終了して、再度立ち上げましょう。  
+ターミナルを起動し、以下のコマンドを叩いてgazeboを立ち上げ、その世界にturtlebot3を召喚しましょう。
+
+```bash
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+```
+
+次に、下記のコマンドでnavigation2を起動します。
+
+```bash
+ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=$HOME/map.yaml params_file:=$HOME/Desktop/burger.yaml
+```
+
+ここでは、 `slam:=True` ではなく先ほど作成した地図のファイルを指定`map`パラメータでします。  
+また、`params_file`パラメータで、ナビゲーション用のロボットのパラメータを指定します。  
+現状、ROS2 Humbleではデフォルトの設定だと動かないことが確認されています。[参考](https://github.com/ROBOTIS-GIT/turtlebot3/issues/884)  
+
+起動直後は以下のような画面になり、Rvizには白黒の地図のみが表示されていると思います。  
+
+![](images/rviz_launched_nav_with_map.png)
+
+
+そこで、まずはロボットがどこにいるかをNavigation2に教えてあげる必要があります。  
+Rviz上の「2D Pose Estimate」メニューからそれを実行できます。  
+その後の自律移動の方法は、SLAMをしながら自律移動を動かした際と同様に、「Nav2 Goal」メニューから行ないます。  
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/szk8N7jZN_I?si=sLMXwSX1IWgN7wWI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## foxgloveによるrosbag可視化
