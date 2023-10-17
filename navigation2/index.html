@@ -10,9 +10,9 @@
 <link href="../visualization/" rel="prev"/>
 <link href="../rclcpp/" rel="next"/>
 <link href="../images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-9.4.5" name="generator"/>
+<meta content="mkdocs-1.5.3, mkdocs-material-9.4.6" name="generator"/>
 <title>navigation2による自律移動 - ros_handson</title>
-<link href="../assets/stylesheets/main.6a10b989.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/main.35e1ed30.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.356b1318.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -235,6 +235,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#navigation2_2">
+    地図を使用したnavigation2での自律移動
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#foxgloverosbag">
     foxgloveによるrosbag可視化
   </a>
@@ -297,10 +302,10 @@
 </ul>
 <p>navigation2には<a href="https://navigation.ros.org/getting_started/index.html">かなり詳細なドキュメント</a>が用意されており、自分のロボットに適用する際の大きな助けになるでしょう。</p>
 <p>本教材では、navigation2を用いてgazebo上にspawnさせたturtlebot3をSLAMアルゴリズムで地図作成しながら自律移動させます。<br/>
-では、早速実際ハンズオン環境でnavigation2を使ってロボットを自律移動させていきましょう。</p>
+では、早速実際にハンズオン環境でnavigation2を使ってロボットを自律移動させていきましょう。</p>
 <h2 id="navigation2turtlebot3">navigation2によるTurtlebot3の自律移動<a class="headerlink" href="#navigation2turtlebot3" title="Permanent link">#</a></h2>
 <p>ターミナルを起動し、以下のコマンドを叩いてgazeboを立ち上げ、その世界にturtlebot3を召喚しましょう。</p>
-<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_gazebo<span class="w"> </span>turtlebot3_house.launch.py
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_gazebo<span class="w"> </span>turtlebot3_world.launch.py
 </code></pre></div>
 <p>次に、下記のコマンドでnavigation2を起動します。</p>
 <div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_navigation2<span class="w"> </span>navigation2.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span>True<span class="w"> </span>slam:<span class="o">=</span>True
@@ -400,6 +405,33 @@ ROS2には以下の3種類の時間ソースがあります。</p>
 <p>２つ目の<code>ros2 launch</code>コマンドを実行するとrviz2が立ち上がります。<br/>
 rviz2上で2D Goal Poseボタンをおして緑の矢印でゴール姿勢を指定するとロボットが自動的に指定地点に向かいます。  </p>
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="720" src="https://www.youtube.com/embed/-XdvmhwDhmo" title="YouTube video player" width="1280"></iframe>
+<h2 id="navigation2_2">地図を使用したnavigation2での自律移動<a class="headerlink" href="#navigation2_2" title="Permanent link">#</a></h2>
+<p>前述したように、ここでは事前に地図を用意することなく自律移動を行なっています。<br/>
+屋内の環境のような、ある程度環境が固定されている場所をロボットに移動させる場合は<br/>
+その環境の地図を作成したうえで、Navigation2の自立移動を実施させることもあります。<br/>
+事前に地図を作成する必要はありますが、ロボットから見えていない場所の壁や柱などの既知の障害物も<br/>
+あらかじめ回避の対象として認識できることや、地図作成のための計算量が減るため、<br/>
+全体の計算量が落ちることがメリットとして挙げられます。</p>
+<p>上記の手順で、以下のRvizの画面のように環境全体を読み込むことができた後に、以下のコマンドを実行することで地図が生成できます。</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>nav2_map_server<span class="w"> </span>map_saver_cli<span class="w"> </span>-f<span class="w"> </span>~/map
+</code></pre></div>
+<p><img alt="" src="../images/preparation_making_map.png"/></p>
+<p>一度GazeboとNavigation2を実行しているターミナルを終了して、再度立ち上げましょう。<br/>
+ターミナルを起動し、以下のコマンドを叩いてgazeboを立ち上げ、その世界にturtlebot3を召喚しましょう。</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_gazebo<span class="w"> </span>turtlebot3_world.launch.py
+</code></pre></div>
+<p>次に、下記のコマンドでnavigation2を起動します。</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_navigation2<span class="w"> </span>navigation2.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span>True<span class="w"> </span>map:<span class="o">=</span><span class="nv">$HOME</span>/map.yaml<span class="w"> </span>params_file:<span class="o">=</span><span class="nv">$HOME</span>/Desktop/burger.yaml
+</code></pre></div>
+<p>ここでは、 <code>slam:=True</code> ではなく先ほど作成した地図のファイルを指定<code>map</code>パラメータでします。<br/>
+また、<code>params_file</code>パラメータで、ナビゲーション用のロボットのパラメータを指定します。<br/>
+現状、ROS2 Humbleではデフォルトの設定だと動かないことが確認されています。<a href="https://github.com/ROBOTIS-GIT/turtlebot3/issues/884">参考</a> </p>
+<p>起動直後は以下のような画面になり、Rvizには白黒の地図のみが表示されていると思います。  </p>
+<p><img alt="" src="../images/rviz_launched_nav_with_map.png"/></p>
+<p>そこで、まずはロボットがどこにいるかをNavigation2に教えてあげる必要があります。<br/>
+Rviz上の「2D Pose Estimate」メニューからそれを実行できます。<br/>
+その後の自律移動の方法は、SLAMをしながら自律移動を動かした際と同様に、「Nav2 Goal」メニューから行ないます。  </p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="720" src="https://www.youtube.com/embed/szk8N7jZN_I?si=sLMXwSX1IWgN7wWI" title="YouTube video player" width="1280"></iframe>
 <h2 id="foxgloverosbag">foxgloveによるrosbag可視化<a class="headerlink" href="#foxgloverosbag" title="Permanent link">#</a></h2>
 <p>navigation2を含むROS2ノードでは、一般的に<code>visualization_msgs/msg/MarkerArray</code>というrviz2にマーカー描画を行なうための専用型にマーカーの姿勢情報などを詰めてROS2 topicとしてpublishしています。<br/>
 この型を使ってデータをpublishしてそれをrosbagに記録しておけば<a href="https://foxglove.dev/">foxglove</a>という極めて強力なツールを使用できます。<br/>
@@ -562,7 +594,7 @@ rviz2上で2D Goal Poseボタンをおして緑の矢印でゴール姿勢を指
 <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 12, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 17, 2023</span>
 </small>
 </div>
 </article>
